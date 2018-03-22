@@ -1,0 +1,9 @@
+package myVelib;
+
+public class StationOffline extends Exception {
+	
+	public String toString() {
+		return "Station is offline";
+	}
+
+}

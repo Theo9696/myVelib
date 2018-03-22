@@ -1,0 +1,16 @@
+package myVelib;
+
+public class Vmax implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit() {
+		
+	}
+
+	@Override
+	public void cost() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

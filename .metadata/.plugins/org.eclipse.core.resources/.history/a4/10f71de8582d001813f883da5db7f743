@@ -1,0 +1,21 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class ShortestPath implements RidePreferences {
+
+	@Override
+	public PlanningRide compute(ArrayList<Station> stations, User user) {
+		
+		try {
+			double distance = Math.pow(user.getUserLat()-stations.getStationLat(),2)
+		}
+		catch (NullPointerException e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	
+
+}

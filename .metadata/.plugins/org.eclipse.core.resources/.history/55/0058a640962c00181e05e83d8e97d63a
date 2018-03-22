@@ -1,0 +1,52 @@
+package myVelib;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class UserTest {
+
+	@Test
+	void testElectricalWithout() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u1 = new User("Patrick", 0, new WithoutSubscription());
+		assertTrue(u1.payement((float) 2.35, b)==6);
+	}
+	
+	void testMechanicalWithout() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u1 = new User("Patrick", 0, new WithoutSubscription());
+		assertTrue(u1.payement((float) 2.35, b2)==3);
+	}
+	
+	void testElectricalVlibre() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vlibre());
+		assertTrue(u2.payement(2.20f, b)==5);
+	}
+	
+	void testElectricalVlibreCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0.22f, new Vlibre());
+		assertTrue(u2.payement(2.20f, b)==3);
+	}
+	
+	void testMechanicalVlibre() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vlibre());
+		assertTrue(u2.payement(2.20f, b2)==2);
+	}
+	
+	void testMechanicalVlibreCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0.22f, new Vlibre());
+		assertTrue(u2.payement(1.20f, b2)==0);
+	}
+
+}

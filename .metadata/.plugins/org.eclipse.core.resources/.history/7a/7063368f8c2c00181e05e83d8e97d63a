@@ -1,0 +1,9 @@
+package myVelib;
+
+public interface SubscriptionPossibility {
+	
+	public abstract void getCredit(float time);
+	
+	public abstract int cost(float time, Bicycle bicycle, User user);
+
+}

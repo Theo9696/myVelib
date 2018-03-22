@@ -1,0 +1,41 @@
+package myVelib;
+
+public class Vmax implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit(float time) {
+		
+	}
+
+	@Override
+	public void cost(float time) {
+		
+		float surplus = (int)(Math.ceil(time)) - time;
+		float diff = surplus - user.getTimecreditbalance();
+		int timeToPay = 0;
+		
+		if (diff <= 0 ) {
+			getCredit(-surplus, user);
+			timeToPay = (int)(Math.floor(time));
+		
+		} else if (surplus ==0 ) {
+			timeToPay = (int)(Math.floor(time));
+		}else {
+			timeToPay = (int)(Math.ceil(time));
+			getCredit(surplus, user);
+		}
+			
+		if (timeToPay == 0)
+			return 0;
+	
+		else if (bicycle instanceof ElectricalBicycle) {
+			return (int) (2*Math.max((timeToPay-1),0) + 1);
+		} else {
+			return (int) (Math.max((timeToPay-1),0));
+				
+		}
+	}
+		
+	}
+
+}

@@ -1,0 +1,27 @@
+package myVelib;
+
+public class PlanningRide {
+	
+	private Station source;
+	private Station destination;
+	private Bicycle bicycle;
+	private User user;
+	
+	PlanningRide(Station source, Station destination, User user) {
+		this.source = source;
+		this.destination = destination;
+		this.user = user;
+	}
+	
+	private void setDestination(Station destination) {
+		this.destination = destination;
+	}
+	
+	public String toString() {
+		return "------------------------------------------------------- \n" +
+				"Hi " + user.getName() + " ! \n" +
+		"Departure : station n° " +  source.getStationID() + " | Arrival : station n° " + destination.getStationID();
+		
+	}
+
+}

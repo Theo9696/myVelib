@@ -1,0 +1,15 @@
+package myVelib;
+
+public class Vmax implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit(float time) {
+		
+	}
+
+	@Override
+	public void cost(float time) {
+		
+	}
+
+}

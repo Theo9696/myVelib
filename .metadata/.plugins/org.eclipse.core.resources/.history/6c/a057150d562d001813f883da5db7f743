@@ -1,0 +1,81 @@
+package myVelib;
+
+public class User {
+	
+	private String name;
+	private static int nextnumericalID;
+	private int UserID;
+	private float timecreditbalance;
+	SubscriptionPossibility subscription;
+	private int[] GPScoordinate = new int[2];
+	
+	User(String name) {
+		
+		try {
+			this.name = name;
+			timecreditbalance = 0;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			this.subscription = new WithoutSubscription();
+			this.GPScoordinate = {0,0};
+		} catch (NullPointerException e) {
+		System.err.println("You tried to enter a null name !");
+	}
+	}
+	
+	User(String name, float timecreditbalance, SubscriptionPossibility subscription) {
+		
+		try {
+			this.name = name;
+			this.timecreditbalance = timecreditbalance;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			this.subscription = subscription;
+		} catch (NullPointerException e) {
+			System.err.println("You tried to enter a null name or subscription !");
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	public int payement(float time, Bicycle bicycle) {
+		int cost = subscription.cost(time, bicycle, this);
+		System.out.println("The cost of the rent is " + cost + " €");
+		return cost;
+		
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+
+	public float getTimecreditbalance() {
+		return timecreditbalance;
+	}
+
+	public void setTimecreditbalance(float f) {
+		this.timecreditbalance = f;
+	}
+	
+	public void setSubscription(SubscriptionPossibility sub) {
+		this.subscription = sub;
+		
+	}
+
+	
+
+}

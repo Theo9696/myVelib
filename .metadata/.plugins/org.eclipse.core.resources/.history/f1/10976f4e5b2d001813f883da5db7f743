@@ -1,0 +1,28 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class ComputingRide {
+	
+	private User user;
+	ArrayList<Station> stations;
+	private double[] destination;
+	RidePreferences ridepref;
+	
+	ComputingRide(User user, ArrayList<Station> stations) {
+		this.user = user;
+		this.stations = stations;
+	}
+	
+	public PlanningRide computeWay() {
+		
+		try {
+			float distance = user.GPS
+			
+		}
+		catch (NullPointerException e) {
+			System.out.println(e);
+		}
+	}
+
+}

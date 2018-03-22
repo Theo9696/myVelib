@@ -1,0 +1,17 @@
+package myVelib;
+
+public class Vlibre implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit(float time) {
+		
+		
+	}
+
+	@Override
+	public int cost(float time, Bicycle bicycle) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

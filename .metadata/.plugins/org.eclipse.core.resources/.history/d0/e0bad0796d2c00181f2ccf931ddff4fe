@@ -1,0 +1,14 @@
+package myVelib;
+
+public class MechanicalBicycle extends Bicycle {
+
+	
+	public MechanicalBicyle(){
+		super();
+	}
+	
+	public String getType() {
+		return 'mechanical';
+	}
+	
+}

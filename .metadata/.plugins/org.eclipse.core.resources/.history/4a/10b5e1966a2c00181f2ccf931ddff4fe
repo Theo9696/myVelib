@@ -1,0 +1,9 @@
+package myVelib;
+
+public class ElectricalBicycle extends Bicycle {
+
+		ElectricalBicycle(){
+			this.ID = numericalID;
+			numericalID++;
+		}
+}

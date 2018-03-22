@@ -1,0 +1,18 @@
+package myVelib;
+
+public class WithoutSubscription implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit() {
+		System.out.println("You can't obtain credits since you are not a suscriber");
+		
+	}
+
+	@Override
+	public void cost(float hour, Bicycle bicycle) {
+		
+		
+	}
+	
+
+}

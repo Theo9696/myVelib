@@ -1,0 +1,7 @@
+package myVelib;
+
+public class ShortestPath implements RidePreferences {
+	
+	
+
+}

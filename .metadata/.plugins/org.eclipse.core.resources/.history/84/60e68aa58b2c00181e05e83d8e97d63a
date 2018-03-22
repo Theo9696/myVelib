@@ -1,0 +1,19 @@
+package myVelib;
+
+public class Vlibre implements SubscriptionPossibility {
+
+	@Override
+	public void getCredit(float time) {
+		
+		
+		
+	}
+
+	@Override
+	public int cost(float time, Bicycle bicycle, User user) {
+		// TODO Auto-generated method stub
+		int surplus = (int)(Math.ceil(time)) - (int)(Math.floor(time));
+		if user.getTimecreditbalance()
+	}
+
+}

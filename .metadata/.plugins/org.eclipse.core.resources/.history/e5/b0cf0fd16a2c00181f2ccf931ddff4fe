@@ -1,0 +1,17 @@
+package myVelib;
+
+public class ElectricalBicycle extends Bicycle {
+
+		ElectricalBicycle(){
+			this.ID = numericalID;
+			numericalID++;
+		}
+		
+		public String getType() {
+			return "electrical";
+		}
+		
+		public String toString() {
+			return "I am the" + this.ID + "bicycle and i am" +this.getType();
+		}
+}

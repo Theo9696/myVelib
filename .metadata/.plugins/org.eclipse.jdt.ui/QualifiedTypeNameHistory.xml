@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="myVelib.ParkingSlot"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="myVelib.SubscriptionPossibility"/>
+<fullyQualifiedTypeName name="myVelib.ElectricalBicycle"/>
+<fullyQualifiedTypeName name="myVelib.MechanicalBicycle"/>
+<fullyQualifiedTypeName name="myVelib.WithoutSubscription"/>
+</qualifiedTypeNameHistroy>

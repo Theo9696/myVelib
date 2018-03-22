@@ -1,0 +1,26 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class ComputingRide {
+	
+	private User user;
+	ArrayList<Station> stations;
+	
+	ComputingRide(User user, ArrayList<Station> stations) {
+		this.user = user;
+		this.stations = stations;
+	}
+	
+	public PlanningRide computeWay() {
+		
+		try {
+			
+			
+		}
+		catch (NullPointerException e) {
+			System.out.println(e);
+		}
+	}
+
+}

@@ -1,0 +1,8 @@
+package myVelib;
+
+public class ParkingSlot {
+	
+	private static int nextnumericalID;
+	private Bicycle bicycle [] = new Bicycle[1];
+
+}

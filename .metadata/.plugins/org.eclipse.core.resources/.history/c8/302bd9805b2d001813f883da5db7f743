@@ -1,0 +1,6 @@
+package myVelib;
+
+public interface RidePreferences {
+	
+	public abstract PlanningRide compute();
+}

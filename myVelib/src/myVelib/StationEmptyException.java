@@ -1,0 +1,17 @@
+package myVelib;
+
+public class StationEmptyException extends Exception {
+	
+	Station station;
+	
+	
+	public StationEmptyException(Station station) {
+		// TODO Auto-generated constructor stub
+		this.station = station;
+	}
+	
+	public String toString() {
+		return "The station n° " + station.getStationID() + " is empty !";
+	}
+
+}

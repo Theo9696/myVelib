@@ -1,0 +1,35 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class ComputingRide {
+	
+	private User user;
+	ArrayList<Station> stations;
+	private double[] destination;
+	RidePreferences ridepref;
+	
+	ComputingRide(User user, ArrayList<Station> stations, double latitude, double longitude) {
+		this.user = user;
+		this.stations = stations;
+		this.destination[0] = latitude;
+		this.destination[1] = longitude;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	public PlanningRide computeWay() throws ComputingRideImpossibleException {
+		
+		try {
+			return ridepref.compute(stations, user, destination);
+			
+		}
+		catch (NullPointerException e) {
+			System.out.println(e);
+		}
+		throw new ComputingRideImpossibleException();
+	}
+
+}

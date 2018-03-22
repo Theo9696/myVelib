@@ -1,0 +1,12 @@
+package myVelib;
+
+public abstract class Bicycle {
+	
+	protected static int numericalID;
+	protected int ID;
+	
+	Bicycle() {
+		
+	}
+
+}

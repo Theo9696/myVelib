@@ -1,0 +1,7 @@
+package myVelib;
+
+public class StationFullException extends Exception {
+	
+	
+
+}

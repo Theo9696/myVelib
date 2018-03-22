@@ -1,0 +1,22 @@
+package myVelib;
+
+public class ElectricalBicycle extends Bicycle {
+
+		ElectricalBicycle(){
+			super();
+		}
+		
+		public String getType() {
+			return "electrical";
+		}
+		
+		public static void main(String[] args) {
+			Bicycle b = new ElectricalBicycle();
+			Bicycle b2 = new ElectricalBicycle();
+			Bicycle b3 = new MechanicalBicycle();
+			Bicycle b4 = new ElectricalBicyle();
+			System.out.println(b);
+			System.out.println(b2);
+		}
+		
+}

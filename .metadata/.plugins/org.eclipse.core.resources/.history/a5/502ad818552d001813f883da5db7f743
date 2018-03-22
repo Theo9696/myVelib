@@ -1,0 +1,11 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class ComputingRide {
+	
+	private User user;
+	ArrayList<Station> stations;
+	
+
+}

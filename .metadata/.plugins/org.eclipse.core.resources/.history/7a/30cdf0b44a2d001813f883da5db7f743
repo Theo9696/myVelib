@@ -1,0 +1,17 @@
+package myVelib;
+
+public class PlanningRide {
+	
+	private Station source;
+	private Station destination;
+	private Bicycle bicycle;
+	private User user;
+	
+	PlanningRide(Station source, Station destination, Bicycle bicycle, User user) {
+		this.source = source;
+		this.destination = destination;
+		this.bicycle = bicycle;
+		this.user = user;
+	}
+
+}

@@ -1,0 +1,80 @@
+package myVelib;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class UserTest {
+
+	@Test
+	void testElectricalWithout() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u1 = new User("Patrick", 0, new WithoutSubscription());
+		assertTrue(u1.payement((float) 2.35, b)==6);
+	}
+	@Test
+	void testMechanicalWithout() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u1 = new User("Patrick", 0, new WithoutSubscription());
+		assertTrue(u1.payement((float) 2.35, b2)==3);
+	}
+	@Test
+	void testElectricalVlibre() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vlibre());
+		assertTrue(u2.payement(2.20f, b)==5);
+	}
+	@Test
+	void testElectricalVlibreCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent2", 0.22f, new Vlibre());
+		assertTrue(u2.payement(2.20f, b)==3);
+	}
+	@Test
+	void testMechanicalVlibre() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vlibre());
+		assertTrue(u2.payement(2.20f, b2)==2);
+	}
+	
+	void testMechanicalVlibreCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0.22f, new Vlibre());
+		assertTrue(u2.payement(1.20f, b2)==0);
+	}
+	@Test
+	void testElectricalVmax() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vmax());
+		assertTrue(u2.payement(2.20f, b)==2);
+	}
+	@Test
+	void testElectricalVmaxCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0.22f, new Vmax());
+		assertTrue(u2.payement(2.20f, b)==1);
+	}
+	@Test
+	void testMechanicalVmax() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0, new Vmax());
+		assertTrue(u2.payement(2.20f, b2)==2);
+	}
+	@Test
+	void testMechanicalVmaxCredit() {
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		User u2 = new User("Vincent", 0.22f, new Vmax());
+		assertTrue(u2.payement(1.20f, b2)==0);
+	}
+
+}
