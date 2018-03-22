@@ -1,12 +1,15 @@
 package myVelib;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Station {
 	
-	ArrayList<ParkingSlot> parkingslot = new ArrayList<ParkingSlot>();
-	ArrayList<ParkingSlot> freeparkingslot = new ArrayList<ParkingSlot>();
-	ArrayList<ParkingSlot> occupiedparkingslot = new ArrayList<ParkingSlot>();
+	private ArrayList<ParkingSlot> parkingslot = new ArrayList<ParkingSlot>();
+	private ArrayList<ParkingSlot> freeparkingslot = new ArrayList<ParkingSlot>();
+	private ArrayList<ParkingSlot> occupiedparkingslot = new ArrayList<ParkingSlot>();
+	private Map<String, Integer> NumberBicycle = new HashMap<>();
 	private boolean inorder;
 	private double[] GPScoordinate =  new double[2];
 	private static int nextnumericalID;
@@ -18,6 +21,18 @@ public class Station {
 		this.GPScoordinate[1] = 0;
 		this.StationID = nextnumericalID;
 		nextnumericalID++;
+		NumberBicycle.put("Electrical",0);
+		NumberBicycle.put("Mechanical", 0);
+	}
+	
+	Station(double latitude, double longitude){
+		this.inorder = true;
+		this.GPScoordinate[0] = latitude;
+		this.GPScoordinate[1] = longitude;
+		this.StationID = nextnumericalID;
+		nextnumericalID++;
+		NumberBicycle.put("Electrical",0);
+		NumberBicycle.put("Mechanical", 0);
 	}
 	
 	Station(ArrayList<ParkingSlot> parkingslot, double latitude, double longitude) {
@@ -29,15 +44,20 @@ public class Station {
 			this.GPScoordinate[1] = longitude;
 			this.StationID = nextnumericalID;
 			nextnumericalID++;
+			NumberBicycle.put("Electrical", 0);
+			NumberBicycle.put("Mechanical", 0);
 		
 			//initialisation of the free parkingslot list by testing each parkingslot of the station
 			for (ParkingSlot p : parkingslot) {
 				if (p.isFree())
 					freeparkingslot.add(p);
-				else
+				else {
 					occupiedparkingslot.add(p);
+					updateNumberBicyclePlus(p.getBicycle());
+				
 				
 			}
+		}
 		}
 		
 		catch (NullPointerException e ) {
@@ -91,6 +111,15 @@ public class Station {
 		
 	}
 	
+	public boolean hasStationBicycle(String type) {
+		try {
+			return NumberBicycle.get(type) != 0;
+		}
+		catch (NullPointerException e) {
+			System.err.println("A wrong type of bicycle has been asked !");
+		}
+		return false;
+	}
 	public double getStationLat() {
 		return this.GPScoordinate[0];
 	}
@@ -105,6 +134,7 @@ public class Station {
 			freeparkingslot.add(p);
 		} else {
 			occupiedparkingslot.add(p);
+			updateNumberBicyclePlus(p.getBicycle());
 		}
 	}
 	
@@ -141,6 +171,7 @@ public class Station {
 					Bicycle b = occupiedparkingslot.get(n).removeBicycle();
 					this.slotisfree(occupiedparkingslot.get(n));
 					igotabicycle = true;
+					updateNumberBicycleLess(b);
 					return b;
 					}
 			}
@@ -165,6 +196,7 @@ public class Station {
 						p.addBicycle(bicycle);
 						this.slotisoccupied(p);
 						igotaplace = true;
+						updateNumberBicyclePlus(p.getBicycle());
 					}
 				}
 
@@ -178,9 +210,41 @@ public class Station {
 	}
 	}
 	
+	private void updateNumberBicyclePlus(Bicycle bicycle) {
+		if (bicycle instanceof ElectricalBicycle) {
+			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")+1);
+		} else if (bicycle instanceof MechanicalBicycle) {
+			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")+1);
+		}
+	}
+	
+	private void updateNumberBicycleLess(Bicycle bicycle) {
+		if (bicycle instanceof ElectricalBicycle) {
+			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")-1);
+		} else if (bicycle instanceof MechanicalBicycle) {
+			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")-1);
+		}
+	}
+	
+	public boolean isFull() {
+
+		for (ParkingSlot p : freeparkingslot) {
+			if (p.isUsable()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean isOffline() {
+		return !this.inorder;
+	}
+	
 	public String toString() {
-		return "The station has " + freeparkingslot.size() + " free slot(s) " + freeparkingslot.toString()+ " and " + occupiedparkingslot.size() 
-		+ " occupied slot(s)" + occupiedparkingslot.toString(); 
+		return "-------------------------------------------\n" + 
+				"The station " + this.getStationID()+" has " + freeparkingslot.size() + " free slot(s) " + freeparkingslot.toString()+ " and " + occupiedparkingslot.size() 
+		+ " occupied slot(s)" + occupiedparkingslot.toString() + "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
+				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n" + "-------------------------------------------"; 
 	}
 	
 }

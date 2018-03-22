@@ -5,17 +5,29 @@ import java.util.ArrayList;
 public class ComputingRide {
 	
 	private User user;
-	ArrayList<Station> stations;
+	private ArrayList<Station> stations;
 	private double[] destination = new double[2];
-	RidePreferences ridepref;
+	private RidePreferences ridepref;
+	private String typeBicycle;
+	
 	
 	ComputingRide(User user, ArrayList<Station> stations, double latitude, double longitude) {
 			this.user = user;
 			this.stations = stations;
 			this.destination[0] = latitude;
 			this.destination[1] = longitude;
-			this.ridepref = new ShortestPath();
+			this.ridepref = new FastestPath();
+			this.typeBicycle = "Electrical";
 	}
+	
+	ComputingRide(User user, ArrayList<Station> stations, double latitude, double longitude, String type, RidePreferences pref) {
+		this.user = user;
+		this.stations = stations;
+		this.destination[0] = latitude;
+		this.destination[1] = longitude;
+		this.ridepref = pref;
+		this.typeBicycle = type;
+}
 	
 	public static void main(String[] args) throws ParkingSlotFullException, ComputingRideImpossibleException {
 		Bicycle b = new ElectricalBicycle();
@@ -23,7 +35,7 @@ public class ComputingRide {
 		Bicycle b3 = new MechanicalBicycle();
 		Bicycle b4 = new ElectricalBicycle();
 		Bicycle b5 = new ElectricalBicycle();
-		Bicycle b6 = new ElectricalBicycle();
+		Bicycle b6 = new MechanicalBicycle();
 		Bicycle b7 = new MechanicalBicycle();
 		Bicycle b8 = new ElectricalBicycle();
 		ParkingSlot p1 = new ParkingSlot();
@@ -34,6 +46,11 @@ public class ComputingRide {
 		ParkingSlot p6 = new ParkingSlot();
 		ParkingSlot p7 = new ParkingSlot();
 		ParkingSlot p8 = new ParkingSlot();
+		ParkingSlot p9 = new ParkingSlot();
+		ParkingSlot p10 = new ParkingSlot();
+		ParkingSlot p11 = new ParkingSlot();
+		ParkingSlot p12 = new ParkingSlot();
+
 		p1.addBicycle(b);
 		p2.addBicycle(b2);
 		p3.addBicycle(b3);
@@ -49,17 +66,21 @@ public class ComputingRide {
 		
 		parkingslot1.add(p1);
 		parkingslot1.add(p2);
+		parkingslot1.add(p9);
 		parkingslot2.add(p3);
 		parkingslot2.add(p4);
+		parkingslot2.add(p10);
 		parkingslot3.add(p5);
 		parkingslot3.add(p6);
+		parkingslot3.add(p11);
 		parkingslot4.add(p7);
 		parkingslot4.add(p8);
+		parkingslot4.add(p12);
 		
-		Station station = new Station(parkingslot1, 0d, 10d);
-		Station station2 = new Station(parkingslot2, 2d, 1d);
-		Station station3 = new Station(parkingslot3, 0d, 10d);
-		Station station4 = new Station(parkingslot4, 0d, 0.5d);
+		Station station = new Station(parkingslot1, 1d, 1d);
+		Station station2 = new Station(parkingslot2, 12d, 11d);
+		Station station3 = new Station(parkingslot3, 5d, 5d);
+		Station station4 = new Station(parkingslot4, 8d, 8d);
 		System.out.println(station);
 		
 		ArrayList<Station> stations = new ArrayList<Station>();
@@ -74,7 +95,7 @@ public class ComputingRide {
 		User mika = new User("Tanguy");
 		System.out.println(mika);
 		
-		ComputingRide computingRide = new ComputingRide(mika, stations, 2, 2);
+		ComputingRide computingRide = new ComputingRide(mika, stations, 10, 10);
 		System.out.println(computingRide);
 		System.out.println(computingRide.computeWay());
 		
@@ -83,7 +104,7 @@ public class ComputingRide {
 	public PlanningRide computeWay() throws ComputingRideImpossibleException {
 		
 		try {
-			return ridepref.compute(stations, user, destination);
+			return ridepref.compute(stations, user, destination, typeBicycle);
 			
 		}
 		catch (NullPointerException e) {
