@@ -87,6 +87,17 @@ public class User {
 		this.subscription = sub;
 		
 	}
+	public SubscriptionPossibility getSubscription() {
+		return this.subscription ;
+		
+	}
+	
+	public String toString() {
+		return "-------------------------"+ "User " + this.getName()+ "----------------- " + this.getUserLat() +
+				"\"\" " + this.getUserLong() + "\"\" " + "---------------\n" + "time credit balance : " + this.getTimecreditbalance() +
+				" | subscription : " + this.getSubscription().toString() +	
+				"\n"; 
+	}
 
 	
 

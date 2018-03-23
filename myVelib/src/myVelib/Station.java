@@ -241,10 +241,11 @@ public class Station {
 	}
 	
 	public String toString() {
-		return "-------------------------------------------\n" + 
-				"The station " + this.getStationID()+" has " + freeparkingslot.size() + " free slot(s) " + freeparkingslot.toString()+ " and " + occupiedparkingslot.size() 
-		+ " occupied slot(s)" + occupiedparkingslot.toString() + "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
-				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n" + "-------------------------------------------"; 
+		return "-------------------------"+ "Station " + this.getStationID()+ "-----------------" + this.getStationLat() +
+				"\"\" " + this.getStationLong() + "\"\" " +"---------------\n" + 
+				freeparkingslot.size() + " free slot(s) : " + freeparkingslot.toString()+ "\n" + occupiedparkingslot.size() 
+		+ " occupied slot(s) : " + occupiedparkingslot.toString() + "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
+				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n"; 
 	}
 	
 }

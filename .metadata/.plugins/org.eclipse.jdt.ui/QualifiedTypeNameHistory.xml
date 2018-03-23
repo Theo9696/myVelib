@@ -2,8 +2,8 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="myVelib.ParkingSlot"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="myVelib.SubscriptionPossibility"/>
 <fullyQualifiedTypeName name="myVelib.ElectricalBicycle"/>
 <fullyQualifiedTypeName name="myVelib.MechanicalBicycle"/>
 <fullyQualifiedTypeName name="myVelib.WithoutSubscription"/>
+<fullyQualifiedTypeName name="myVelib.SubscriptionPossibility"/>
 </qualifiedTypeNameHistroy>

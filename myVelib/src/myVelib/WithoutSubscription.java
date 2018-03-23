@@ -18,5 +18,9 @@ public class WithoutSubscription implements SubscriptionPossibility {
 		}
 	}
 	
+	public String toString() {
+		return "No subscription";
+	}
+	
 
 }

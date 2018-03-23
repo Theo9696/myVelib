@@ -39,4 +39,7 @@ public class Vlibre implements SubscriptionPossibility {
 				
 		}
 	}
+	public String toString() {
+		return "card Vlibre";
+	}
 }

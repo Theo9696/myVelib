@@ -1,0 +1,107 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class Simulation {
+	
+	public final String[] ListOfNameBasic = {"Patrick", "Jean-Louis","Baptiste", "Victor", "Emile","Louise",
+			"Camille", "Hajar", "Leïla", "Sarah", "Wiam", "Théo", "Lucas", "Paul", "Anna", "Mahaut", "Odelin", "Morgan", "Paloma"};
+	
+	public ArrayList<String> initListOfName(){
+		
+		ArrayList<String> ListOfName = new ArrayList<String>();
+	
+		for (String nom : ListOfNameBasic) {
+			ListOfName.add(nom);
+			}
+		return ListOfName;
+	}
+	
+	public void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) {
+		
+		ArrayList<Station> stations = new ArrayList<Station>();
+		ArrayList<Bicycle> bicycles = new ArrayList<Bicycle>();
+		ArrayList<ParkingSlot> slots = new ArrayList<ParkingSlot>();
+		
+		
+
+		
+		ArrayList<Station> stations = new ArrayList<Station>();
+		stations.add(station);
+		stations.add(station2);
+		stations.add(station3);
+		stations.add(station4);
+		System.out.println(stations);
+		
+		
+		
+		User mika = new User("Tanguy");
+		System.out.println(mika);
+		
+		ComputingRide computingRide = new ComputingRide(mika, stations, 10, 10);
+		System.out.println(computingRide);
+		System.out.println(computingRide.computeWay());
+		
+	}
+	
+	private Bicycle newBicycle() {
+		if (Math.random() < 0.3) {
+			return new ElectricalBicycle();
+		} else {
+			return new MechanicalBicycle();
+		}
+	}
+	
+	private ParkingSlot newParkingSlot() {
+		double proba = Math.random();
+		try {
+			if (proba < 0.5) {
+				// The parkingSlot will either have a mechanical or a electrical car
+				ParkingSlot ps = new ParkingSlot();
+				ps.addBicycle(this.newBicycle()); 
+				return ps ;
+			} else if (proba >= 0.5 && proba<0.9 ) {
+				// The parkingslot will be empty
+				ParkingSlot ps = new ParkingSlot();
+				return ps ;
+			} else {
+				//The parkingslot will be out of order
+				ParkingSlot ps = new ParkingSlot();
+				ps.setInOrder(false);
+				return ps ;
+			}
+		} catch (ParkingSlotFullException e) {
+			e.printStackTrace();
+		}
+		
+		return new ParkingSlot();
+	}
+	
+	private Station newStation(int lengthOfMap) {
+		//need to be changed when station will include "plus" possibility
+		int numberOfParkingSlot = (int) Math.ceil(50*Math.random());
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		
+		Station station = new Station(latitude, longitude);
+		
+		for (int k=0; k<numberOfParkingSlot; k++) {
+			station.addParkingSlot(newParkingSlot());
+		}
+		
+		return station;
+	}
+	
+	private User newUser(int lengthOfMap) {
+		double proba = Math.random();
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		int nameChoice = Math.floor(ListOfName.size()*Math.random());
+		
+		
+		if (proba <0.5) {
+			return new User()
+		}
+	}
+
+}

@@ -30,5 +30,9 @@ public class Vmax implements SubscriptionPossibility {
 		return (int) (Math.max((timeToPay-1),0));
 				
 	}
+	
+	public String toString() {
+		return "card Vmax";
+	}
 
 }

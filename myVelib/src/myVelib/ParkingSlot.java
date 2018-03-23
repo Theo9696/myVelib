@@ -37,6 +37,10 @@ public class ParkingSlot {
 			System.out.println("you can't put a bicycle there");
 			return null;
 	}
+	
+	public void setInOrder(boolean bool) {
+		this.usable = bool;
+	}
 
 	public Bicycle getBicycle() {
 		return bicycle[0];
