@@ -1,0 +1,29 @@
+package myVelib;
+
+import java.util.Scanner;
+
+public class Playground {
+	
+	public static void main(String[] args)  throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException {
+		Simulation simu = new Simulation(4,1,20);
+		System.out.println(simu);
+		simu.newUser(new User("Paul",0, new WithoutSubscription(),1,7));
+		
+		simu.newRide(0, 10, 15, "Electrical", new FastestPath());		
+		System.out.println(simu);
+		simu.takeABicycleInTheStationSource(0, "Electrical", 20);
+		System.out.println(simu);
+		simu.returnABicycle(0, 3, 52.5);		
+		System.out.println(simu);
+		simu.newRide(0, 0, 3, "Electrical", new FastestPath());		
+		System.out.println(simu);
+		simu.takeABicycleInTheStationSource(0, "Electrical", 53);
+		System.out.println(simu);
+		simu.returnABicycle(0, 3, 54.5);		
+		System.out.println(simu);
+		
+		
+	}
+	
+	
+}

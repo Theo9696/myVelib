@@ -39,7 +39,12 @@ public class ParkingSlot {
 	}
 	
 	public void setInOrder(boolean bool) {
-		this.usable = bool;
+		if (this.free) {
+			this.usable = bool;
+		}
+		else {
+			System.out.println("The place is occupied and can't become outoforder");
+		}
 	}
 
 	public Bicycle getBicycle() {
@@ -61,12 +66,8 @@ public class ParkingSlot {
 	public boolean isUsable() {
 		return usable;
 	}
-
-	public void setUsable(boolean usable) {
-		this.usable = usable;
-	}
 	
 	public String toString() {
-		return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : "[free]");
+		return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : (!usable)? "[OutofOrder]" : "[free]");
 	}
 }

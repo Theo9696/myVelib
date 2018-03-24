@@ -21,7 +21,7 @@ public abstract class Bicycle {
 	}
 	
 	public String toString() {
-		return "I am the " + this.getID() + " bicycle and i am " +this.getType();
+		return "[bicycle n° " + this.getID() + " | type : " +this.getType() + "]";
 	}
 }
 

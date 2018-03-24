@@ -3,8 +3,8 @@ package myVelib;
 public class Vlibre implements SubscriptionPossibility {
 
 	@Override
-	public void getCredit(float time, User user) {
-		user.setTimecreditbalance(user.getTimecreditbalance()+time);
+	public void getCredit(float time, User user, TypeStation typeStation) {
+		user.setTimecreditbalance(user.getTimecreditbalance()+time+typeStation.getExtraCredit());
 		System.out.println("You obtain " + time + " hour of credit");
 		
 		
@@ -12,21 +12,21 @@ public class Vlibre implements SubscriptionPossibility {
 	}
 
 	@Override
-	public int cost(float time, Bicycle bicycle, User user) {
+	public int cost(double time, Bicycle bicycle, User user, TypeStation typeStation) {
 		// TODO Auto-generated method stub
-		float surplus = (time - (int)(Math.floor(time)));
+		float surplus = (float) (time - (int)(Math.floor(time)));
 		float diff = (surplus - user.getTimecreditbalance());
 		int timeToPay = 0;
 		
 		if (diff <= 0 ) {
-			getCredit(-surplus, user);
+			getCredit(-surplus, user, typeStation);
 			timeToPay = (int)(Math.floor(time));
 		
 		} else if (surplus == 0 ) {
 			timeToPay = (int)(Math.floor(time));
 		}else {
 			timeToPay = (int)(Math.ceil(time));
-			getCredit(1-surplus, user);
+			getCredit(1-surplus, user, typeStation);
 		}
 			
 		if (timeToPay == 0)

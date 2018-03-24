@@ -12,6 +12,7 @@ public PlanningRide compute(ArrayList<Station> stations, User user, double[] des
 			double rideTime = Double.POSITIVE_INFINITY ;
 			Station departure = stations.get(0);
 			Station arrival = stations.get(1);
+			
 			for (Station s1 : stations) {
 				for (Station s2 : stations) {
 					

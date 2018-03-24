@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="myVelib.ParkingSlot"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="myVelib.ElectricalBicycle"/>
 <fullyQualifiedTypeName name="myVelib.MechanicalBicycle"/>
-<fullyQualifiedTypeName name="myVelib.WithoutSubscription"/>
 <fullyQualifiedTypeName name="myVelib.SubscriptionPossibility"/>
+<fullyQualifiedTypeName name="myVelib.WithoutSubscription"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="myVelib.PlanningRide"/>
+<fullyQualifiedTypeName name="myVelib.ComputingRideImpossibleException"/>
+<fullyQualifiedTypeName name="myVelib.AskPlanningRideImpossibleException"/>
+<fullyQualifiedTypeName name="myVelib.FastestPath"/>
+<fullyQualifiedTypeName name="myVelib.RidePreferences"/>
+<fullyQualifiedTypeName name="java.lang.IndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="myVelib.StationOfflineException"/>
+<fullyQualifiedTypeName name="myVelib.StationFullException"/>
+<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="myVelib.StandardStation"/>
 </qualifiedTypeNameHistroy>

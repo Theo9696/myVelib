@@ -1,0 +1,177 @@
+package myVelib;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Simulation {
+	
+	public final String[] ListOfNameBasic = {"Patrick", "Jean-Louis","Baptiste", "Victor", "Emile","Louise",
+			"Camille", "Hajar", "Leïla", "Sarah", "Wiam", "Théo", "Lucas", "Paul", "Anna", "Mahaut", "Odelin", "Morgan", "Paloma"};
+	
+	public ArrayList<String> ListOfName = initListOfName();
+	private ArrayList<Station> stations;
+	private Map<Integer, User> users = new HashMap<Integer, User>();
+	
+	Simulation(int numberOfStations, int numberOfUsers, int lengthOfMap){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, numberOfUsers, lengthOfMap);
+		
+	}
+	Simulation(int numberOfStations, int lengthOfMap){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, 0, lengthOfMap);
+		
+	}
+	
+	Simulation(int numberOfStations){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, 0, 50);
+		
+	}
+	
+	Simulation(){
+		this.stations = new ArrayList<Station>();
+		createAMap(20, 0, 50);
+		
+	}
+	
+	
+	private void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) {
+		
+		ArrayList<Station> stations = new ArrayList<Station>();
+		
+		for (int numstation = 0; numstation<numberOfStations; numstation++) {
+			stations.add(newStation(lengthOfMap));
+		}
+		this.stations = stations;
+		
+		Map<Integer, User> users = new HashMap<Integer,User>();
+		
+		for (int numUser = 0; numUser<numberOfUsers; numUser++) {
+			User user = newUser(lengthOfMap);
+			users.put(user.getUserID(), user);
+		}
+		this.users = users;
+		
+	}
+	
+	
+	public ArrayList<String> initListOfName(){
+		
+		ArrayList<String> ListOfName = new ArrayList<String>();
+	
+		for (String nom : ListOfNameBasic) {
+			ListOfName.add(nom);
+			}
+		return ListOfName;
+	}
+	
+	private Bicycle newBicycle() {
+		if (Math.random() < 0.3) {
+			return new ElectricalBicycle();
+		} else {
+			return new MechanicalBicycle();
+		}
+	}
+	
+	private ParkingSlot newParkingSlot() {
+		double proba = Math.random();
+		try {
+			if (proba < 0.5) {
+				// The parkingSlot will either have a mechanical or a electrical car
+				ParkingSlot ps = new ParkingSlot();
+				ps.addBicycle(this.newBicycle()); 
+				return ps ;
+			} else if (proba >= 0.5 && proba<0.9 ) {
+				// The parkingslot will be empty
+				ParkingSlot ps = new ParkingSlot();
+				return ps ;
+			} else {
+				//The parkingslot will be out of order
+				ParkingSlot ps = new ParkingSlot();
+				ps.setInOrder(false);
+				return ps ;
+			}
+		} catch (ParkingSlotFullException e) {
+			e.printStackTrace();
+		}
+		
+		return new ParkingSlot();
+	}
+	
+	private Station newStation(int lengthOfMap) {
+		//need to be changed when station will include "plus" possibility
+		int numberOfParkingSlot = (int) Math.ceil(30*Math.random());
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		
+		Station station = new Station(latitude, longitude);
+		
+		for (int k=0; k<numberOfParkingSlot; k++) {
+			station.addParkingSlot(newParkingSlot());
+		}
+		
+		return station;
+	}
+	
+	private User newUser(int lengthOfMap) {
+		double proba = Math.random();
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		String name = ListOfName.get((int) Math.floor(ListOfName.size()*Math.random()));
+		
+		
+		if (proba <0.6) { 
+			// The user doesn't subscribe to any card
+			return new User(name,0,new WithoutSubscription(),latitude, longitude);
+		} 
+		// The user has made a Vlibre subscription
+		else if (proba >= 0.6 && proba<0.85) {
+			return new User(name,0,new Vlibre(),latitude, longitude);
+		} 
+		// The user has made a Vmax subscription
+		else {
+			return new User(name,0,new Vmax(),latitude, longitude);
+		}
+	}
+	
+	public void addnewUser (User user) {
+		this.users.add(user);
+	}
+	
+	public void askNewRide(User user, double latitude, double longitude, String type, RidePreferences ridePref) throws AskPlanningRideImpossibleException {
+		ComputingRide computingRide = new ComputingRide(user, this.stations, latitude, longitude, type, ridePref);
+		try {
+			PlanningRide ride = computingRide.computeWay();
+			user.receiveRide(ride);
+		}
+		catch (ComputingRideImpossibleException e) {
+			System.err.println(e);
+		}
+		
+		
+	}
+	
+	public ArrayList<Station> getStations() {
+		return stations;
+	}
+	public void setStations(ArrayList<Station> stations) {
+		this.stations = stations;
+	}
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
+	public String toString() {
+		
+		return "The gameground is composed of " + this.stations.size() + " stations\n" +
+				"*************************Stations*********************\n" +
+				stations.toString() + "\n" + "and " + this.users.size() +  " users\n"+
+				"*************************Users**************************\n"
+				+ users.toString();
+	}
+
+}

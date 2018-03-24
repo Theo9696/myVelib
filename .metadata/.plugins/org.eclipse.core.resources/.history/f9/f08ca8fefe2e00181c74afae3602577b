@@ -1,0 +1,143 @@
+package myVelib;
+
+import java.util.ArrayList;
+
+public class User {
+	
+	private String name;
+	private static int nextnumericalID;
+	private int UserID;
+	private float timecreditbalance;
+	SubscriptionPossibility subscription;
+	private double[] GPScoordinate = new double[2];
+	private ArrayList<PlanningRide> pastRide = new ArrayList<PlanningRide>();
+	private PlanningRide currentRide;
+	
+	User(String name) {
+		
+		try {
+			this.name = name;
+			timecreditbalance = 0;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			this.subscription = new WithoutSubscription();
+			this.GPScoordinate[0] = 0;
+			this.GPScoordinate[1] = 0;
+			this.currentRide = null;
+			
+		} catch (NullPointerException e) {
+		System.err.println("You tried to enter a null name !");
+	}
+	}
+	
+	User(String name, float timecreditbalance, SubscriptionPossibility subscription, double latitude, double longitude) {
+		
+		try {
+			this.name = name;
+			this.timecreditbalance = timecreditbalance;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			this.subscription = subscription;
+			this.GPScoordinate[0] = latitude;
+			this.GPScoordinate[1] = longitude;
+			this.currentRide = null;
+		} catch (NullPointerException e) {
+			System.err.println("You tried to enter a null name or subscription !");
+		}
+	}
+	
+	
+	public double getUserLat() {
+		return this.GPScoordinate[0];
+	}
+	
+	public double getUserLong() {
+		return this.GPScoordinate[1];
+	}
+	
+	public int payement(double time, Bicycle bicycle) {
+		int cost = subscription.cost(time, bicycle, this);
+		return cost;
+		
+	}
+	
+	protected void receiveRide(PlanningRide planningRide) throws AskPlanningRideImpossibleException {
+		if (this.currentRide != null) {
+			if (this.currentRide.getBicycle() != null) {
+				// comparer les stations de départ et d'arrivée
+			}
+			throw new AskPlanningRideImpossibleException();
+		} else {
+			this.currentRide = planningRide;
+		}
+		
+	}
+	
+	public void completeARide(double timeBicycleGivenBack) {
+		if (this.currentRide != null) {
+			pastRide.add(currentRide);
+			currentRide.setTimeGivenBack(timeBicycleGivenBack);
+			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle()) + " €"
+					+ "\n We hope to see you another time ! ");
+			this.currentRide = null;
+		} else {
+			System.out.println("You can't complete a ride without having one, does it sound logical? :)");
+		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+
+	public float getTimecreditbalance() {
+		return timecreditbalance;
+	}
+
+	public void setTimecreditbalance(float f) {
+		this.timecreditbalance = f;
+	}
+	
+	public void setSubscription(SubscriptionPossibility sub) {
+		this.subscription = sub;
+		
+	}
+	public SubscriptionPossibility getSubscription() {
+		return this.subscription ;
+		
+	}
+	
+	private void setActualRide(PlanningRide ride) {
+		this.currentRide = ride;
+	}
+	
+	public PlanningRide getActualRide() {
+		return this.currentRide;
+	}
+	
+	public ArrayList<PlanningRide> getPastRide (){
+		return this.pastRide;
+	}
+	
+	public String toString() {
+		return "-------------------------"+ "User " + this.getUserID()+ " "+ this.getName()+ "----------------- " + this.getUserLat() +
+				"\"\" " + this.getUserLong() + "\"\" " + "---------------\n" + "time credit balance : " + this.getTimecreditbalance() +
+				" | subscription : " + this.getSubscription().toString() +	"\n"+
+				((this.currentRide == null) ? "Not asking for a ride" : ((this.currentRide.getBicycle() == null) ? "Currently walking to or from a station " + this.currentRide.toString() : "Doing bicycle" + this.currentRide.toString())) +
+				"\n"; 
+	}
+
+	
+
+}

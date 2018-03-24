@@ -7,7 +7,7 @@ public class ElectricalBicycle extends Bicycle {
 		}
 		
 		public String getType() {
-			return "electrical";
+			return "Electrical";
 		}
 		
 		

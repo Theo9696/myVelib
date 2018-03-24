@@ -1,0 +1,13 @@
+package myVelib;
+
+public class StandardStation {
+	
+	public String getType() {
+		return "Standard";
+	}
+	
+	public float getExtraCredit() {
+		return 0;
+	}
+
+}

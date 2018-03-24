@@ -8,7 +8,7 @@ public class MechanicalBicycle extends Bicycle {
 	}
 	
 	public String getType() {
-		return "mechanical";
+		return "Mechanical";
 	}
 	
 }
