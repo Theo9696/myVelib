@@ -3,6 +3,7 @@ package myVelib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Station {
 	
@@ -11,11 +12,14 @@ public class Station {
 	private ArrayList<ParkingSlot> occupiedparkingslot = new ArrayList<ParkingSlot>();
 	private ArrayList<ParkingSlot> outOfOrderParkingslot = new ArrayList<ParkingSlot>();
 	private Map<String, Integer> NumberBicycle = new HashMap<>();
+	private Map<Integer, User> userComing = new HashMap<Integer, User>();
+	private int NumberOfRent = 0;
 	private boolean inorder;
 	private TypeStation typestation;
 	private double[] GPScoordinate =  new double[2];
 	private static int nextnumericalID;
 	private int StationID;
+	private boolean changed;
 	
 	Station(){
 		this.inorder = true;
@@ -95,6 +99,13 @@ public class Station {
 		typestation = new StandardStation();
 	}
 		
+	public void aNewUserComing(User user) {
+		this.userComing.put(user.getUserID(),user);
+	}
+	
+	public void aNewUserLeftABicycle(User user) {
+		this.userComing.remove(user.getUserID());
+	}
 	
 	public TypeStation getTypeStation() {
 		return this.typestation;
@@ -138,6 +149,8 @@ public class Station {
 	
 	public void becomeOffline() {
 		this.inorder = false;
+		this.changed = true;
+		notifyObservers();
 	}
 	
 	public void slotisfree(ParkingSlot p) {
@@ -167,7 +180,13 @@ public class Station {
 					this.slotisfree(occupiedparkingslot.get(n));
 					igotabicycle = true;
 					updateNumberBicycleLess(b);
+					NumberOfRent++;
 					
+					//Not taken into account yet
+					/*if (occupiedparkingslot.size() + outOfOrderParkingslot.size() == parkingslot.size() -1) {
+						this.changed = true;
+						notifyObservers();
+					}*/
 					return b;
 					}
 				else {
@@ -196,6 +215,10 @@ public class Station {
 						this.slotisoccupied(p);
 						igotaplace = true;
 						updateNumberBicyclePlus(p.getBicycle());
+						
+						if (occupiedparkingslot.size() + outOfOrderParkingslot.size() == parkingslot.size()) {
+							notifyObservers();
+						}
 					}
 					else {
 						n++;
@@ -210,6 +233,17 @@ public class Station {
 		}
 		
 	}
+	}
+	
+	private void notifyObservers() {
+		if (this.changed) {
+			for( Entry<Integer, User> entry : this.userComing.entrySet()) {
+				Integer userID = entry.getKey();
+				User user = entry.getValue();
+				user.update();
+			}
+			this.changed = false;
+		}
 	}
 	
 	private void updateNumberBicyclePlus(Bicycle bicycle) {
@@ -250,7 +284,15 @@ public class Station {
 		+ " occupied slot(s) : " + occupiedparkingslot.toString() + "\n" +
 		outOfOrderParkingslot.size() + " out-of-order slot(s) : " + outOfOrderParkingslot.toString()
 		+ "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
-				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n\n"; 
+				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n\n" + "\n" + userComing.toString() + "\n"; 
+	}
+
+	public boolean isEmpty() {
+		if (freeparkingslot.size() ==0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }

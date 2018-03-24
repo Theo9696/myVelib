@@ -61,15 +61,23 @@ public class User {
 		
 	}
 	
-	protected void receiveRide(PlanningRide planningRide) throws AskPlanningRideImpossibleException {
-		if (this.currentRide != null) {
-			if (this.currentRide.getBicycle() != null) {
-				// comparer les stations de départ et d'arrivée
-			}
-			throw new AskPlanningRideImpossibleException();
-		} else {
+	protected void receiveRide(PlanningRide planningRide) {
+		
 			this.currentRide = planningRide;
+			planningRide.getStationDestination().aNewUserComing(this);
+		
+	}
+	
+	public void askNewRide(double latitude, double longitude, String type, RidePreferences ridePref, ArrayList<Station> stations) throws AskPlanningRideImpossibleException {
+		ComputingRide computingRide = new ComputingRide(this, stations, latitude, longitude, type, ridePref);
+		try {
+			PlanningRide ride = computingRide.computeWay();
+			this.receiveRide(ride);
 		}
+		catch (ComputingRideImpossibleException e) {
+			System.err.println(e);
+		}
+		
 		
 	}
 	
@@ -77,11 +85,27 @@ public class User {
 		if (this.currentRide != null) {
 			pastRide.add(currentRide);
 			currentRide.setTimeGivenBack(timeBicycleGivenBack);
+			currentRide.getStationDestination().aNewUserLeftABicycle(this);
 			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
 					+ "\n We hope to see you another time ! ");
 			this.currentRide = null;
 		} else {
 			System.out.println("You can't complete a ride without having one, does it sound logical? :)");
+		}
+	}
+	/*
+	 * Send a notification to the user when a problem in the destination station or source happens
+	 */
+	public void update() {
+		//Ma station d'arrivée n'est plus disponible
+		if (currentRide.getStationDestination().isFull() || currentRide.getStationDestination().isOffline()) {
+			System.out.println("The destination station is full or offline ! Do you want to recalculate the ride? (y/n)");
+		} else if (currentRide.getBicycle() == null) {
+			if (currentRide.getStationSource().isEmpty() || currentRide.getStationSource().isOffline()) {
+				System.out.println("The source station where you should take a bicycle is no more available"
+						+ "\n Do you want to recalculate the ride? (y/n)");
+			}
+			
 		}
 	}
 

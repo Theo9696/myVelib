@@ -147,18 +147,6 @@ public class Simulation {
 		this.users.put(user.getUserID(), user);
 	}
 	
-	public void askNewRide(User user, double latitude, double longitude, String type, RidePreferences ridePref) throws AskPlanningRideImpossibleException {
-		ComputingRide computingRide = new ComputingRide(user, this.stations, latitude, longitude, type, ridePref);
-		try {
-			PlanningRide ride = computingRide.computeWay();
-			user.receiveRide(ride);
-		}
-		catch (ComputingRideImpossibleException e) {
-			System.err.println(e);
-		}
-		
-		
-	}
 	
 	public ArrayList<Station> getStations() {
 		return stations;
@@ -186,7 +174,7 @@ public class Simulation {
 	//-------------------------------------------------------------------------
 	public void newRide(int userID, double latitude, double longitude, String bicycleType, RidePreferences pref) throws AskPlanningRideImpossibleException {
 		try {
-			this.askNewRide(this.getUsers().get(userID), latitude, longitude, bicycleType, pref);
+			(this.users.get(userID)).askNewRide(latitude, longitude, bicycleType, pref, stations);
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println(e);
 			System.err.println("You tried to enter a user ID that is not yet registered in the simulation");
@@ -210,7 +198,6 @@ public class Simulation {
 			System.err.println("This station or this user is not registered in this simulation");
 			
 		}
-		System.out.println("Done");
 	}
 	
 	public void takeABicycleInTheStationSource(int userID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
