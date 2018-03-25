@@ -1,0 +1,282 @@
+package myVelib;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Simulation {
+	
+	public final String[] ListOfNameBasic = {"Patrick", "Jean-Louis","Baptiste", "Victor", "Emile","Louise",
+			"Camille", "Hajar", "Leïla", "Sarah", "Wiam", "Théo", "Lucas", "Paul", "Anna", "Mahaut", "Odelin", "Morgan", "Paloma"};
+	
+	public ArrayList<String> ListOfName = initListOfName();
+	private ArrayList<Station> stations;
+	private Map<Integer, User> users = new HashMap<Integer, User>();
+	
+	Simulation(int numberOfStations, int numberOfUsers, int lengthOfMap){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, numberOfUsers, lengthOfMap);
+		
+	}
+	Simulation(int numberOfStations, int lengthOfMap){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, 0, lengthOfMap);
+		
+	}
+	
+	Simulation(int numberOfStations){
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, 0, 50);
+		
+	}
+	
+	Simulation(){
+		this.stations = new ArrayList<Station>();
+		createAMap(20, 0, 50);
+		
+	}
+	
+	
+	private void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) {
+		
+		ArrayList<Station> stations = new ArrayList<Station>();
+		
+		for (int numstation = 0; numstation<numberOfStations; numstation++) {
+			stations.add(newStation(lengthOfMap));
+		}
+		this.stations = stations;
+		
+		Map<Integer, User> users = new HashMap<Integer,User>();
+		
+		for (int numUser = 0; numUser<numberOfUsers; numUser++) {
+			User user = newUser(lengthOfMap);
+			users.put(user.getUserID(), user);
+		}
+		this.users = users;
+		
+	}
+	
+	
+	public ArrayList<String> initListOfName(){
+		
+		ArrayList<String> ListOfName = new ArrayList<String>();
+	
+		for (String nom : ListOfNameBasic) {
+			ListOfName.add(nom);
+			}
+		return ListOfName;
+	}
+	
+	private Bicycle newBicycle() {
+		if (Math.random() < 0.3) {
+			return new ElectricalBicycle();
+		} else {
+			return new MechanicalBicycle();
+		}
+	}
+	
+	private ParkingSlot newParkingSlot() {
+		double proba = Math.random();
+		try {
+			if (proba < 0.5) {
+				// The parkingSlot will either have a mechanical or a electrical car
+				ParkingSlot ps = new ParkingSlot();
+				ps.addBicycle(this.newBicycle()); 
+				return ps ;
+			} else if (proba >= 0.5 && proba<0.9 ) {
+				// The parkingslot will be empty
+				ParkingSlot ps = new ParkingSlot();
+				return ps ;
+			} else {
+				//The parkingslot will be out of order
+				ParkingSlot ps = new ParkingSlot();
+				ps.setInOrder(false);
+				return ps ;
+			}
+		} catch (ParkingSlotFullException e) {
+			e.printStackTrace();
+		}
+		
+		return new ParkingSlot();
+	}
+	
+	private Station newStation(int lengthOfMap) {
+		//need to be changed when station will include "plus" possibility
+		int numberOfParkingSlot = (int) Math.ceil(35*Math.random());
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		
+		double proba = Math.random();
+		Station station;
+		if (proba<0.95) {
+			station = new Station(latitude, longitude);
+			
+		} else {
+			station = new Station(latitude, longitude, false);
+		}
+		
+		for (int k=0; k<numberOfParkingSlot; k++) {
+			station.addParkingSlot(newParkingSlot());
+		}
+		
+		return station;
+	}
+	
+	private User newUser(int lengthOfMap) {
+		double proba = Math.random();
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		String name = ListOfName.get((int) Math.floor(ListOfName.size()*Math.random()));
+		
+		
+		if (proba <0.6) { 
+			// The user doesn't subscribe to any card
+			return new User(name,0,new WithoutSubscription(),latitude, longitude);
+		} 
+		// The user has made a Vlibre subscription
+		else if (proba >= 0.6 && proba<0.85) {
+			return new User(name,0,new Vlibre(),latitude, longitude);
+		} 
+		// The user has made a Vmax subscription
+		else {
+			return new User(name,0,new Vmax(),latitude, longitude);
+		}
+	}
+	
+	public void addnewUser (User user) {
+		this.users.put(user.getUserID(), user);
+	}
+	
+	
+	public ArrayList<Station> getStations() {
+		return stations;
+	}
+	public void setStations(ArrayList<Station> stations) {
+		this.stations = stations;
+	}
+	public Map<Integer, User> getUsers() {
+		return users;
+	}
+	public void setUsers(Map<Integer, User> users) {
+		this.users = users;
+	}
+	public String toString() {
+		
+		return "The gameground is composed of " + this.stations.size() + " stations\n" +
+				"*************************Stations*********************\n" +
+				stations.toString() + "\n" + "and " + this.users.size() +  " users\n"+
+				"*************************Users**************************\n"
+				+ users.toString();
+	}
+	
+	
+	
+	//-------------------------------------------------------------------------
+	public void newRide(int userID, double latitude, double longitude, String bicycleType, RidePreferences pref) throws AskPlanningRideImpossibleException {
+		try {
+			(this.users.get(userID)).askNewRide(latitude, longitude, bicycleType, pref, stations);
+		} catch (IndexOutOfBoundsException e) {
+			System.err.println(e);
+			System.err.println("You tried to enter a user ID that is not yet registered in the simulation");
+		}
+	}
+	
+	public void newUser(User user) {
+		this.addnewUser(user);
+	}
+	
+	public void takeABicycle(int userID, int stationID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
+		try {
+			if (this.stations.get(stationID).hasStationBicycle(bicycleType)) {
+				Bicycle b = stations.get(stationID).needBicycle(bicycleType);
+				this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+			} else {
+				System.out.println("This station doesn't have the type of bicycle you wish !");
+			}
+		}
+		catch (NullPointerException e) {
+			System.err.println("This station or this user is not registered in this simulation");
+			
+		}
+	}
+	
+	public void takeABicycleInTheStationSource(int userID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
+		try {
+			this.takeABicycle(userID, users.get(userID).getActualRide().getStationSource().getStationID(), bicycleType, timeBicycleTaken);
+		} catch (NullPointerException e) {
+			System.out.println("You can't take a bicycle in a station if you don't ask for a planning ride or if no planning ride is possible for you!");
+		}
+	}
+	
+	public void returnABicycle(int userID, int stationID, double timeBicycleGaveBack) throws StationOfflineException, StationFullException {
+		try {
+			Station stationTargeted = stations.get(stationID);
+			try {
+				User user = users.get(userID);
+				try {
+					PlanningRide RideTargeted = user.getActualRide();
+					System.out.println(RideTargeted);
+					try { 
+						
+						Bicycle bicycle = RideTargeted.getBicycle();
+						if (bicycle == null) {
+							System.out.println("Are you on a ride right now??? You don't have a bicycle...");
+						} else {
+							stationTargeted.returnBicycle(bicycle);
+							users.get(userID).completeARide(timeBicycleGaveBack);
+						}
+						 
+					}
+					catch (NullPointerException e) {
+						System.err.println("Are you on a ride right now???");
+					} catch (StationFullException e ) {
+					}
+				}
+				catch (NullPointerException e) {
+					System.err.println("You don't ask for a right, do you?");
+				}
+			} catch (NullPointerException e) {
+				System.err.println("This user doesn't exist !");
+			}
+			
+		}
+		catch (StationOfflineException e) {
+			System.err.println("This station is offline, you can't park your bicycle there ! ");
+		} catch (NullPointerException e) {
+			System.err.println("This station is not registered !");
+		}
+					
+	}
+	
+	public void returnABicycleInTheStationDestination(int userID, double timeBicycleGivenBack) throws StationOfflineException, StationFullException {
+		try {
+			this.returnABicycle(userID, users.get(userID).getActualRide().getStationDestination().getStationID(), timeBicycleGivenBack);
+		} catch (NullPointerException e ) {
+			System.out.println("You can't return a bicycle to the station source if you don't have a planning ride...");
+		}
+	}
+	
+	public  ArrayList<Station> mostUsedStations() {
+		
+		Map<Integer, Integer> stationsNotOrdered = new HashMap<Integer, Integer>();
+		{ for (Station station : stations) {
+			stationsNotOrdered.put(station.getStationID(), station.getNumberOfDrop()+ station.getNumberOfRent());
+		}
+		
+		
+		Comparator<Integer> valueComparator = new Comparator<Integer>() {
+			@Override
+			public int compare(Integer int1, Integer int2) {
+				return int1.compareTo(int2);
+			}
+		};
+		
+		
+		MapValueComparator<Integer, Integer> mapComparator = new MapValueComparator<Integer, Integer>(stationsNotOrdered, valueComparator);
+		TreeMap<Integer, Integer> stationSorted = new TreeMap<Integer, Integer>(mapComparator);
+		stationSorted.putAll(numbers);
+}
+}

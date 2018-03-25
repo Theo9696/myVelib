@@ -13,7 +13,8 @@ public class Station {
 	private ArrayList<ParkingSlot> outOfOrderParkingslot = new ArrayList<ParkingSlot>();
 	private Map<String, Integer> NumberBicycle = new HashMap<>();
 	private Map<Integer, User> userComing = new HashMap<Integer, User>();
-	private int NumberOfRent = 0;
+	private int numberOfRent = 0;
+	private int numberOfDrop = 0;
 	private boolean inorder;
 	private TypeStation typestation;
 	private double[] GPScoordinate =  new double[2];
@@ -98,6 +99,14 @@ public class Station {
 		}
 		typestation = new StandardStation();
 	}
+	
+	public int getNumberOfRent() {
+		return this.numberOfRent;
+	}
+	
+	public int getNumberOfDrop() {
+		return this.numberOfDrop;
+	}
 		
 	public void aNewUserComing(User user) {
 		this.userComing.put(user.getUserID(),user);
@@ -180,7 +189,7 @@ public class Station {
 					this.slotisfree(occupiedparkingslot.get(n));
 					igotabicycle = true;
 					updateNumberBicycleLess(b);
-					NumberOfRent++;
+					numberOfRent++;
 					
 					if (NumberBicycle.get(bicycleType) == 0) {
 						this.changed = true;
@@ -220,6 +229,7 @@ public class Station {
 						this.slotisoccupied(p);
 						igotaplace = true;
 						updateNumberBicyclePlus(p.getBicycle());
+						numberOfDrop++;
 						
 						if (occupiedparkingslot.size() + outOfOrderParkingslot.size() == parkingslot.size()) {
 							this.changed = true;
@@ -284,8 +294,8 @@ public class Station {
 	
 	public String toString() {
 		return "-----------------"+ "Station " + this.getStationID()+ "------------ " + parkingslot.size() + " parkingslot(s)"+ "-------------" + this.getStationLat() +
+				"\"\" " + this.getStationLong() + "\"\" " +"--------------- Number of operations : "+ (this.getNumberOfDrop() + this.getNumberOfRent()) +"\n" + 
 				((!inorder) ? "\n!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" : "" ) +
-				"\"\" " + this.getStationLong() + "\"\" " +"---------------\n" + 
 				freeparkingslot.size() + " free slot(s) : " + freeparkingslot.toString()+ "\n" + occupiedparkingslot.size() 
 		+ " occupied slot(s) : " + occupiedparkingslot.toString() + "\n" +
 		outOfOrderParkingslot.size() + " out-of-order slot(s) : " + outOfOrderParkingslot.toString()

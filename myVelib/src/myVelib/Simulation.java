@@ -1,8 +1,14 @@
 package myVelib;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Simulation {
 	
@@ -255,5 +261,59 @@ public class Simulation {
 			System.out.println("You can't return a bicycle to the station source if you don't have a planning ride...");
 		}
 	}
-
+	/*
+	 * Do all the work for @getMostUsedStations()
+	 * It returns a Map<Integer, Set<Integer>> with as key the number of operations and as object a set of stations with have this number of operations
+	 * This Map is sorted wrt to the number of operations
+	 */
+	private  Map<Integer, Set<Integer>> mostUsedStations() {
+		
+		Map<Integer, Integer> stationsNotOrdered = new HashMap<Integer, Integer>();
+		{ for (Station station : stations) {
+			stationsNotOrdered.put(station.getStationID(), station.getNumberOfDrop()+ station.getNumberOfRent());
+		}
+		System.out.println(stationsNotOrdered);
+		
+		
+		Map<Integer, Set<Integer>> stationSorted = inverser(stationsNotOrdered);
+		
+		return stationSorted;
+		}
+	}
+	/*
+	 * This function aims at returning an arraylist of station ordered considering the number of rent and drop
+	 */
+	ArrayList<Station> getMostUsedStations(){
+		Map<Integer, Set<Integer>> stationSorted = mostUsedStations();
+		ArrayList<Station> stationOrdered = new ArrayList<Station>();
+		
+		for(Entry<Integer, Set<Integer>> entry : stationSorted.entrySet()) {
+			Integer key = entry.getKey();
+			Set<Integer> object = entry.getValue();
+			//This is enough to take stations.get(key) because station in position k is the kth station...
+			for (Integer integer : object) {
+				stationOrdered.add(stations.get(integer));
+			}
+			
+			
+		}
+		System.out.println("*************************List of Stations sorted by number of operations************************************");
+		System.out.println(stationOrdered);
+		return stationOrdered;
+	}
+	/*
+	 * Function to act on a Map Non ordered on values. It returns the map ordered by values with eventually key doublons
+	 */
+	public static <K,V> Map<V,Set<K>> inverser(Map<K,V> map) {
+		Map<V,Set<K>> result = new TreeMap<V,Set<K>>();
+		for (Entry<K, V> e : map.entrySet()) { 
+			if (result.containsKey(e.getValue())) 
+				result.get(e.getValue()).add(e.getKey()); 
+			else { TreeSet<K> set = new TreeSet<K>(); 
+				set.add(e.getKey()); 
+				result.put(e.getValue(), set); } 
+			} 
+		return result; 
+		} 
+	
 }

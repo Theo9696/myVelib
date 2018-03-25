@@ -10,13 +10,18 @@
 <fullyQualifiedTypeName name="myVelib.ComputingRideImpossibleException"/>
 <fullyQualifiedTypeName name="myVelib.AskPlanningRideImpossibleException"/>
 <fullyQualifiedTypeName name="myVelib.FastestPath"/>
-<fullyQualifiedTypeName name="myVelib.RidePreferences"/>
 <fullyQualifiedTypeName name="java.lang.IndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="myVelib.StationOfflineException"/>
-<fullyQualifiedTypeName name="myVelib.StationFullException"/>
-<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
 <fullyQualifiedTypeName name="myVelib.StandardStation"/>
+<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="myVelib.StationFullException"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.TreeMap"/>
+<fullyQualifiedTypeName name="java.util.TreeSet"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="myVelib.RidePreferences"/>
 </qualifiedTypeNameHistroy>

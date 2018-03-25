@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Playground {
 	
 	public static void main(String[] args)  throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException {
-		Simulation simu = new Simulation(2,12,20);
+		Simulation simu = new Simulation(5,12,20);
 		System.out.println(simu);
 		
 		double [] simudestination = new double[simu.getUsers().size()];
@@ -34,17 +34,17 @@ public class Playground {
 		{for (int k1 =0; k1<simu.getUsers().size(); k1++) {
 			simu.newRide(k1, simudestination[k1], simudestination2[k1], simupreference[k1], new FastestPath());
 		}}
+		
 		show(simu);
 		{for (int k1 =0; k1<simu.getUsers().size(); k1=k1+1) {
 			simu.takeABicycleInTheStationSource(k1, simupreference[k1], 0);
 		}}
 		show(simu);
-		simu.takeABicycleInTheStationSource(0, "Electrical", 5);
-		show(simu);
 		{for (int k1 =0; k1<simu.getUsers().size(); k1=k1+1) {
 			simu.returnABicycleInTheStationDestination(k1, 5);
 		}}		
 		show(simu);
+		simu.getMostUsedStations();
 	}
 		
 		
