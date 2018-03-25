@@ -48,7 +48,7 @@ public class ShortestPath implements RidePreferences {
 			System.out.println(e);
 		}
 		catch (ComputingRideImpossibleException e) {
-			System.err.println("No combinaison of stations found ! ");
+			System.out.println("No combinaison of stations found ! ");
 		}
 		throw new ComputingRideImpossibleException(); 
 	

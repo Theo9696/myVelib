@@ -65,6 +65,7 @@ public class User {
 		
 			this.currentRide = planningRide;
 			planningRide.getStationDestination().aNewUserComing(this);
+			planningRide.getStationSource().aNewUserComing(this);
 		
 	}
 	
@@ -75,7 +76,7 @@ public class User {
 			this.receiveRide(ride);
 		}
 		catch (ComputingRideImpossibleException e) {
-			System.err.println(e);
+			System.out.println(e);
 		}
 		
 		
@@ -86,6 +87,8 @@ public class User {
 			pastRide.add(currentRide);
 			currentRide.setTimeGivenBack(timeBicycleGivenBack);
 			currentRide.getStationDestination().aNewUserLeftABicycle(this);
+			currentRide.getStationSource().aNewUserLeftABicycle(this);
+			System.out.println("Hello user n°" + this.UserID +"!");
 			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
 					+ "\n We hope to see you another time ! ");
 			this.currentRide = null;
@@ -101,10 +104,10 @@ public class User {
 		if (currentRide.getStationDestination().isFull() || currentRide.getStationDestination().isOffline()) {
 			System.out.println("The destination station is full or offline ! Do you want to recalculate the ride? (y/n)");
 		} else if (currentRide.getBicycle() == null) {
-			if (currentRide.getStationSource().isEmpty() || currentRide.getStationSource().isOffline()) {
+		
 				System.out.println("The source station where you should take a bicycle is no more available"
 						+ "\n Do you want to recalculate the ride? (y/n)");
-			}
+			
 			
 		}
 	}

@@ -68,6 +68,12 @@ public class ParkingSlot {
 	}
 	
 	public String toString() {
-		return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : (!usable)? "[OutofOrder]" : "[free]");
+		try {
+			return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : (!usable)? "[OutofOrder]" : "[free]");
+		}
+		catch (NullPointerException e) {
+			System.err.println("The parkingslot is empty ! ");
+			return "Problem !";
+		}
 	}
 }

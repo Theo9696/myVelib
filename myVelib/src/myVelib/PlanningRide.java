@@ -21,7 +21,7 @@ public class PlanningRide {
 	
 	public String toString() {
 		return "\n Departure : station n° " +  source.getStationID() + " | Arrival : station n° " + destination.getStationID() +
-				(UserHasABicycle() ? "" : " | " + this.bicycle.toString());
+				(UserHasNotABicycle() ? "" : " | " + this.bicycle.toString());
 		
 	}
 	public Station getStationSource() {
@@ -32,15 +32,15 @@ public class PlanningRide {
 		return this.destination;
 	}
 	protected void addBicycle(Bicycle bicycle, double time) {
-		if (this.bicycle != null) {
-			System.err.println("You already got a bicycle in this ride");
+		if (!this.UserHasNotABicycle()) {
+			System.out.println("You already got a bicycle in this ride");
 		} else {
 			this.bicycle = bicycle;
 			timeBicycleTaken = time;
 		}		
 	}
 	
-	public boolean UserHasABicycle() {
+	public boolean UserHasNotABicycle() {
 		return (this.bicycle == null);
 	}
 	

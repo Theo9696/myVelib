@@ -201,7 +201,11 @@ public class Simulation {
 	}
 	
 	public void takeABicycleInTheStationSource(int userID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
-		this.takeABicycle(userID, users.get(userID).getActualRide().getStationSource().getStationID(), bicycleType, timeBicycleTaken);
+		try {
+			this.takeABicycle(userID, users.get(userID).getActualRide().getStationSource().getStationID(), bicycleType, timeBicycleTaken);
+		} catch (NullPointerException e) {
+			System.out.println("You can't take a bicycle in a station if you don't ask for a planning ride or if no planning ride is possible for you!");
+		}
 	}
 	
 	public void returnABicycle(int userID, int stationID, double timeBicycleGaveBack) throws StationOfflineException, StationFullException {
@@ -212,11 +216,20 @@ public class Simulation {
 				try {
 					PlanningRide RideTargeted = user.getActualRide();
 					System.out.println(RideTargeted);
-					try {
-						stationTargeted.returnBicycle(RideTargeted.getBicycle()); 
+					try { 
+						
+						Bicycle bicycle = RideTargeted.getBicycle();
+						if (bicycle == null) {
+							System.out.println("Are you on a ride right now??? You don't have a bicycle...");
+						} else {
+							stationTargeted.returnBicycle(bicycle);
+							users.get(userID).completeARide(timeBicycleGaveBack);
+						}
+						 
 					}
 					catch (NullPointerException e) {
 						System.err.println("Are you on a ride right now???");
+					} catch (StationFullException e ) {
 					}
 				}
 				catch (NullPointerException e) {
@@ -225,12 +238,10 @@ public class Simulation {
 			} catch (NullPointerException e) {
 				System.err.println("This user doesn't exist !");
 			}
-			users.get(userID).completeARide(timeBicycleGaveBack);
+			
 		}
 		catch (StationOfflineException e) {
 			System.err.println("This station is offline, you can't park your bicycle there ! ");
-		} catch (StationFullException e) {
-			System.err.println("This station is full, you can't park your bicycle there !");
 		} catch (NullPointerException e) {
 			System.err.println("This station is not registered !");
 		}
@@ -238,7 +249,11 @@ public class Simulation {
 	}
 	
 	public void returnABicycleInTheStationDestination(int userID, double timeBicycleGivenBack) throws StationOfflineException, StationFullException {
-		this.returnABicycle(userID, users.get(userID).getActualRide().getStationDestination().getStationID(), timeBicycleGivenBack);
+		try {
+			this.returnABicycle(userID, users.get(userID).getActualRide().getStationDestination().getStationID(), timeBicycleGivenBack);
+		} catch (NullPointerException e ) {
+			System.out.println("You can't return a bicycle to the station source if you don't have a planning ride...");
+		}
 	}
 
 }
