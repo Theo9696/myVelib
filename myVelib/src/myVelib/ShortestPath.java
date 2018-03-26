@@ -2,6 +2,8 @@ package myVelib;
 
 import java.util.ArrayList;
 
+import Exceptions.ComputingRideImpossibleException;
+
 public class ShortestPath implements RidePreferences {
 
 	@Override

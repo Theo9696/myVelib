@@ -2,8 +2,16 @@ package myVelib;
 
 import java.util.ArrayList;
 
+import Exceptions.ComputingRideImpossibleException;
+
 public class AvoidPlusStations implements RidePreferences {
-public PlanningRide compute(ArrayList<Station> stations, User user, double[] destination, String typeBicycle) throws ComputingRideImpossibleException {
+	
+	/*
+	 * The compute version for AvoidPluStations
+	 * It returns a planning ride where the source and the destination station are chosen so as to propose the fastest ride
+	 * to the user but without taking a plus station.
+	 */
+	public PlanningRide compute(ArrayList<Station> stations, User user, double[] destination, String typeBicycle) throws ComputingRideImpossibleException {
 		
 		
 		try {

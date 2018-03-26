@@ -6,6 +6,9 @@ public class PlusStation implements TypeStation {
 		return "Plus";
 	}
 	
+	/*
+	 * If you have a subscription you will have to be credited with 5min bonus time credit.
+	 */
 	public float getExtraCredit() {
 		return (float)1/12;
 	}

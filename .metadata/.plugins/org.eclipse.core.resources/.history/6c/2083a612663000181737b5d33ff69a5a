@@ -1,0 +1,103 @@
+package myVelib;
+
+import java.util.Scanner;
+
+public class Playground {
+	
+	public static void main(String[] args)  throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException {
+		
+		userCase1SettingofmyVelib(5);;
+	}
+		
+		
+	
+	public static void show(Simulation simu) {
+		System.out.println(simu);
+	}
+	
+	/*
+	 * A first user case very simple creating a simulation with @numberOfStations stations, some users...
+	 */
+	public static void userCase1SettingofmyVelib(Integer numberOfStations) {
+		
+		// Try to have a coherent number of Users and map dimensions according to the number of stations.
+		Simulation simu = new Simulation(numberOfStations, numberOfStations*3, numberOfStations*2);
+		show(simu);
+		
+	}
+	
+	
+	public static void userCase2RentalOfABicycle() throws StationOfflineException, StationEmptyException, StationFullException {
+		
+		// Creation of a simulation with one user
+		Simulation simu = new Simulation(5, 1, 10);
+		
+		// The user 0 take a electrical bicycle in the first station at the time 0
+		simu.takeABicycle(0, 1, "Electrical", 0);
+		
+		// The user 0 return his bicycle in the third station at the time 2.2(hours)
+		simu.returnABicycle(0, 3, 2.2);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * A user case describing the fonctionning of the algorithm. Fifteen users asking for a ride, seven taking a bicycle, a few returning and finally statics of stations
+	 */
+	public static void userCase4BigExample() throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException {
+		
+		// Creation of a simulation with five stations, fifteen users and a map of 20x20
+		Simulation simu = new Simulation(5,15,20);
+		System.out.println(simu);
+		
+		// Creation of random destinations and preferences of bicycles
+		double [] simudestination = new double[simu.getUsers().size()];
+		double [] simudestination2 = new double[simu.getUsers().size()];
+		String [] simupreference = new String[simu.getUsers().size()];
+		{for (int k = 0; k<simu.getUsers().size(); k++){
+			double proba = (Math.random()*20);
+			double proba2 = (Math.random()*20);
+			double proba3 = Math.random();
+			simudestination[k] = proba;
+			simudestination2[k] = proba2;
+			
+			if (proba3<0.3) {
+				simupreference[k] = "Electrical";
+			} else {
+				simupreference[k] = "Mechanical";
+			}
+	
+			
+		}}
+		
+		
+		// Every user ask for a ride
+		{for (int k1 =0; k1<simu.getUsers().size(); k1++) {
+			simu.newRide(k1, simudestination[k1], simudestination2[k1], simupreference[k1], new FastestPath());
+		}}
+		
+		show(simu);
+		
+		//A half of users ask for a bike in the station source of their rides
+		{for (int k1 =0; k1<simu.getUsers().size(); k1=k1+2) {
+			simu.takeABicycleInTheStationSource(k1, simupreference[k1], 0);
+		}}
+		show(simu);
+		
+		// A quarter give back their bicycles
+		{for (int k1 =0; k1<simu.getUsers().size(); k1=k1+4) {
+			simu.returnABicycleInTheStationDestination(k1, 5);
+		}}		
+		show(simu);
+		
+		simu.getMostUsedStations();
+	}
+	
+	
+}

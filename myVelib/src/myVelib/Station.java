@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import Exceptions.ParkingSlotFullException;
+import Exceptions.StationEmptyException;
+import Exceptions.StationFullException;
+import Exceptions.StationOfflineException;
+
 public class Station {
 	
 	private ArrayList<ParkingSlot> parkingslot = new ArrayList<ParkingSlot>();
@@ -201,6 +206,8 @@ public class Station {
 						this.changed = true;
 						notifyObservers();
 					}*/
+					
+					System.out.println("Hello ! You took the bicycle "+ b.toString() + " in the station n° " + this.getStationID());
 					return b;
 					}
 				else {
@@ -293,7 +300,7 @@ public class Station {
 	}
 	
 	public String toString() {
-		return "-----------------"+ "Station " + this.getStationID()+ "------------ " + parkingslot.size() + " parkingslot(s)"+ "-------------" + this.getStationLat() +
+		return "-----------------"+ this.getTypeStation().getType()+ " Station " + this.getStationID()+ "------------ " + parkingslot.size() + " parkingslot(s)"+ "-------------" + this.getStationLat() +
 				"\"\" " + this.getStationLong() + "\"\" " +"--------------- Number of operations : "+ (this.getNumberOfDrop() + this.getNumberOfRent()) +"\n" + 
 				((!inorder) ? "\n!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" : "" ) +
 				freeparkingslot.size() + " free slot(s) : " + freeparkingslot.toString()+ "\n" + occupiedparkingslot.size() 

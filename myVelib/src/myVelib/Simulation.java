@@ -7,6 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+
+import Exceptions.AskPlanningRideImpossibleException;
+import Exceptions.ParkingSlotFullException;
+import Exceptions.StationEmptyException;
+import Exceptions.StationFullException;
+import Exceptions.StationOfflineException;
+
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -84,12 +91,12 @@ public class Simulation {
 	private ParkingSlot newParkingSlot() {
 		double proba = Math.random();
 		try {
-			if (proba < 0.5) {
+			if (proba < 0.7) {
 				// The parkingSlot will either have a mechanical or a electrical car
 				ParkingSlot ps = new ParkingSlot();
 				ps.addBicycle(this.newBicycle()); 
 				return ps ;
-			} else if (proba >= 0.5 && proba<0.9 ) {
+			} else if (proba >= 0.7 && proba<0.95 ) {
 				// The parkingslot will be empty
 				ParkingSlot ps = new ParkingSlot();
 				return ps ;
@@ -107,17 +114,20 @@ public class Simulation {
 	}
 	
 	private Station newStation(int lengthOfMap) {
-		//need to be changed when station will include "plus" possibility
-		int numberOfParkingSlot = (int) Math.ceil(35*Math.random());
+		int numberOfParkingSlot = (int) Math.ceil(50*Math.random());
 		double latitude = Math.ceil(lengthOfMap*Math.random());
 		double longitude = Math.ceil(lengthOfMap*Math.random());
 		
 		double proba = Math.random();
 		Station station;
-		if (proba<0.95) {
-			station = new Station(latitude, longitude);
+		if (proba<0.75) {
+			station = new Station(latitude, longitude, true, new StandardStation());
 			
-		} else {
+		} else if(proba >=0.75 && proba <0.95) {
+			station = new Station(latitude, longitude, true, new PlusStation() );
+		
+		
+		}else {
 			station = new Station(latitude, longitude, false);
 		}
 		
@@ -195,7 +205,14 @@ public class Simulation {
 		try {
 			if (this.stations.get(stationID).hasStationBicycle(bicycleType)) {
 				Bicycle b = stations.get(stationID).needBicycle(bicycleType);
-				this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+				if (this.users.get(userID).getActualRide() != null) {
+					this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+					 
+				} else { // creation of a planning ride but we don't know the station of destination since the user didn't ask for a planning ride
+					PlanningRide planning = new PlanningRide(stations.get(stationID), null, users.get(userID) );
+					this.users.get(userID).receiveRide(planning);
+					this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+				}
 			} else {
 				System.out.println("This station doesn't have the type of bicycle you wish !");
 			}
@@ -221,13 +238,21 @@ public class Simulation {
 				User user = users.get(userID);
 				try {
 					PlanningRide RideTargeted = user.getActualRide();
-					System.out.println(RideTargeted);
+					
 					try { 
+						
+						if (RideTargeted.getStationDestination() == null){
+							RideTargeted.setDestination(stationTargeted);
+						}
+						
+						if (RideTargeted != null)
+							System.out.println(RideTargeted);
 						
 						Bicycle bicycle = RideTargeted.getBicycle();
 						if (bicycle == null) {
 							System.out.println("Are you on a ride right now??? You don't have a bicycle...");
-						} else {
+						
+						}else {
 							stationTargeted.returnBicycle(bicycle);
 							users.get(userID).completeARide(timeBicycleGaveBack);
 						}
@@ -272,7 +297,6 @@ public class Simulation {
 		{ for (Station station : stations) {
 			stationsNotOrdered.put(station.getStationID(), station.getNumberOfDrop()+ station.getNumberOfRent());
 		}
-		System.out.println(stationsNotOrdered);
 		
 		
 		Map<Integer, Set<Integer>> stationSorted = inverser(stationsNotOrdered);

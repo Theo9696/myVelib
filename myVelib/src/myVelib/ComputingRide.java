@@ -2,14 +2,18 @@ package myVelib;
 
 import java.util.ArrayList;
 
+import Exceptions.ComputingRideImpossibleException;
+
 public class ComputingRide {
 	
+	// Attributes
 	private User user;
 	private ArrayList<Station> stations;
 	private double[] destination = new double[2];
 	private RidePreferences ridepref;
 	private String typeBicycle;
 	
+	/* ************************************** Creators ****************************************************** */
 	
 	ComputingRide(User user, ArrayList<Station> stations, double latitude, double longitude) {
 			this.user = user;
@@ -29,6 +33,11 @@ public class ComputingRide {
 		this.typeBicycle = type;
 }
 	
+	/* ****************************************** Methods *************************************************** */
+	
+	/*
+	 * Return the planning ride according to the ride preferences of the user
+	 */
 	public PlanningRide computeWay() throws ComputingRideImpossibleException {
 		
 		try {

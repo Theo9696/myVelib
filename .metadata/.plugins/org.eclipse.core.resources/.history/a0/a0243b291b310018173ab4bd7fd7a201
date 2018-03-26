@@ -1,0 +1,15 @@
+package myVelib;
+
+public class PlusStation implements TypeStation {
+	
+	public String getType() {
+		return "Plus";
+	}
+	
+	/*
+	 * If you have a subscription you will have to be credited with 5min 
+	 */
+	public float getExtraCredit() {
+		return (float)1/12;
+	}
+}

@@ -1,13 +1,17 @@
 package myVelib;
 
+import Exceptions.ParkingSlotFullException;
+
 public class ParkingSlot {
 	
+	// Attributes
 	private static int nextnumericalID;
 	private Bicycle bicycle [] = new Bicycle[1];
 	private int parkingID;
 	private boolean free;
 	private boolean usable;
-
+	
+	/* ********************************** Creator ******************************* */
 	ParkingSlot() {
 		this.parkingID = nextnumericalID;
 		nextnumericalID++;
@@ -16,6 +20,11 @@ public class ParkingSlot {
 	}
 	
 	
+	/* ********************************* Methods ********************************* */
+	
+	/*
+	 * Use this function to put a bicycle @bi in the parkingslot if it's available
+	 */
 	public void addBicycle(Bicycle bi) throws ParkingSlotFullException {
 		if (free && usable) {
 			bicycle[0] = bi;
@@ -26,6 +35,9 @@ public class ParkingSlot {
 		}
 	}
 	
+	/*
+	 * Use this function to remove the bicycle for this parkingslot if it's not free
+	 */
 	public Bicycle removeBicycle() {
 		if (!free) {
 			free = true;	
@@ -37,6 +49,20 @@ public class ParkingSlot {
 			System.out.println("you can't put a bicycle there");
 			return null;
 	}
+	
+	/* ************************************ Display *********************************************** */
+		
+	public String toString() {
+		try {
+			return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : (!usable)? "[OutofOrder]" : "[free]");
+		}
+		catch (NullPointerException e) {
+			System.err.println("The parkingslot is empty ! ");
+			return "Problem !";
+		}
+	}
+	
+	/* *************************************** Getters / Setters ***************************************** */
 	
 	public void setInOrder(boolean bool) {
 		if (this.free) {
@@ -66,14 +92,5 @@ public class ParkingSlot {
 	public boolean isUsable() {
 		return usable;
 	}
-	
-	public String toString() {
-		try {
-			return "parkingslot " + this.getParkingID()+" : " + ((!free) ? "[bicycle " +this.getBicycle().getID()+"]" : (!usable)? "[OutofOrder]" : "[free]");
-		}
-		catch (NullPointerException e) {
-			System.err.println("The parkingslot is empty ! ");
-			return "Problem !";
-		}
-	}
+
 }

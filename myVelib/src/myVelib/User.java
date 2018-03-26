@@ -2,6 +2,9 @@ package myVelib;
 
 import java.util.ArrayList;
 
+import Exceptions.AskPlanningRideImpossibleException;
+import Exceptions.ComputingRideImpossibleException;
+
 public class User {
 	
 	private String name;
@@ -30,7 +33,7 @@ public class User {
 	}
 	}
 	
-	User(String name, float timecreditbalance, SubscriptionPossibility subscription, double latitude, double longitude) {
+	public User(String name, float timecreditbalance, SubscriptionPossibility subscription, double latitude, double longitude) {
 		
 		try {
 			this.name = name;
@@ -64,7 +67,10 @@ public class User {
 	protected void receiveRide(PlanningRide planningRide) {
 		
 			this.currentRide = planningRide;
+			
+			if (planningRide.getStationDestination() != null) {  //if a user is not following a planning ride
 			planningRide.getStationDestination().aNewUserComing(this);
+			}
 			planningRide.getStationSource().aNewUserComing(this);
 		
 	}
@@ -74,6 +80,7 @@ public class User {
 		try {
 			PlanningRide ride = computingRide.computeWay();
 			this.receiveRide(ride);
+			System.out.println("Hello ! Here is your ride : " + ride.toString());
 		}
 		catch (ComputingRideImpossibleException e) {
 			System.out.println(e);

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\Théo\Desktop\GroupN_Project_IS1220_part1_Martin_Dolle\eval\myVelib"/>
+	</list>
 	<list key="installedFeatures">
 		<item value="org.eclipse.cvs:1.4.402.v20171130-0510"/>
 		<item value="org.eclipse.draw2d.sdk:3.10.100.201606061308"/>

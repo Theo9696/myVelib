@@ -2,6 +2,7 @@ package myVelib;
 
 public class PlanningRide {
 	
+	// Attributes
 	private Station source;
 	private Station destination;
 	private Bicycle bicycle;
@@ -9,28 +10,23 @@ public class PlanningRide {
 	private double timeBicycleTaken;
 	private double timeBicycleGivenBack;
 	
+	/* *********************************** Creator ********************************* */
 	PlanningRide(Station source, Station destination, User user) {
 		this.source = source;
 		this.destination = destination;
 		this.user = user;
 	}
 	
-	private void setDestination(Station destination) {
-		this.destination = destination;
-	}
+	/* ***************************************** Display ****************************************** */
 	
 	public String toString() {
-		return "\n Departure : station n° " +  source.getStationID() + " | Arrival : station n° " + destination.getStationID() +
+		return "\n Departure : station n° " +  source.getStationID() + " | Arrival : station n° " + ((destination ==null) ? "No destination specified" :destination.getStationID()) +
 				(UserHasNotABicycle() ? "" : " | " + this.bicycle.toString());
 		
 	}
-	public Station getStationSource() {
-		return this.source;
-	}
 	
-	public Station getStationDestination() {
-		return this.destination;
-	}
+	/* **************************************** Methods ******************************************* */
+	
 	protected void addBicycle(Bicycle bicycle, double time) {
 		if (!this.UserHasNotABicycle()) {
 			System.out.println("You already got a bicycle in this ride");
@@ -38,6 +34,20 @@ public class PlanningRide {
 			this.bicycle = bicycle;
 			timeBicycleTaken = time;
 		}		
+	}
+	
+	/* ******************************************* Getters/Setters ************************************* */
+	
+	public Station getStationSource() {
+		return this.source;
+	}
+	
+	public Station getStationDestination() {
+		return this.destination;
+	}
+	
+	void setDestination(Station destination) {
+		this.destination = destination;
 	}
 	
 	public boolean UserHasNotABicycle() {
