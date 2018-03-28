@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Exceptions.ComputingRideImpossibleException;
 
-public class AvoidPlusStations implements RidePreferences {
+public class PreferPlusStation implements RidePreferences {
 	
 	/*
 	 * The compute version for AvoidPluStations
@@ -39,11 +39,13 @@ public class AvoidPlusStations implements RidePreferences {
 										+ Math.pow(destination[1]-s2.getStationLong(),2)/walkSpeed ); 
 						
 						//station of destination can't be  plus station
-						if (rideTimeNew < rideTime && !s1.isOffline() && !s2.isOffline() && s2.getTypeStation().getType() != "Plus") {
-							if (s1.hasStationBicycle(typeBicycle) && !s2.isFull()) { //Departure has a bicycle of the wished type
-								departure = s1;											//Arrival has a free slot 
+						if (!s1.isOffline() && !s2.isOffline() && rideTimeNew < rideTime) {
+							if (s1.hasStationBicycle(typeBicycle) && !s2.isFull()) {
+								//Departure has a bicycle of the wished type //Arrival has a free slot
+								departure = s1;											
 								arrival = s2;
 								rideTime = rideTimeNew;
+								
 						}
 								
 					}
@@ -51,7 +53,17 @@ public class AvoidPlusStations implements RidePreferences {
 				
 			}
 			}
-			
+			// We check if a plus station is at less than 110% from the destination than the station find with a fastest computing
+			if (arrival.getTypeStation().getType() != "Plus") {
+			for (Station s1 : stations) {
+				double distances1 = Math.sqrt(Math.pow(destination[1] - s1.getStationLong(),2) + Math.pow(destination[0] - s1.getStationLat(),2));
+				double distancearrival = Math.sqrt(Math.pow(destination[1] - arrival.getStationLong(),2) + Math.pow(destination[0] - arrival.getStationLat(),2));
+				if (s1.getTypeStation().getType() == "Plus" && 1.1*distancearrival >= distances1 ) {
+					arrival = s1;
+				}
+				
+			}
+			}
 			if (rideTime == Double.POSITIVE_INFINITY) {
 				throw new ComputingRideImpossibleException();
 			} else {

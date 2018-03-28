@@ -118,6 +118,19 @@ public class Station {
 		return this.numberOfDrop;
 	}
 		
+	public int getNumberofBikeAvailable(String bicycleType) {
+		int numberOfBicycle = 0;
+		for (ParkingSlot parkingslot : occupiedparkingslot) {
+			if (parkingslot.getBicycle() != null && parkingslot.getBicycle().getType() == bicycleType) {
+				numberOfBicycle++;
+			}
+		}
+		return numberOfBicycle;
+	}
+	
+	public int getNumberOfFreeParkingslot() {
+		return freeparkingslot.size();
+	}
 	
 	
 	public TypeStation getTypeStation() {
