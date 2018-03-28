@@ -7,7 +7,9 @@ public class WithoutSubscription implements SubscriptionPossibility {
 		System.out.println("You can't obtain credits since you are not a suscriber");
 		
 	}
-
+	/*
+	 * Cost of the ride wrt the @time spend, @bicycle uses with no subscription
+	 */
 	@Override
 	public int cost(double time, Bicycle bicycle, User user, TypeStation typeStation) {
 		if (bicycle instanceof ElectricalBicycle) {

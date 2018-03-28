@@ -4,6 +4,7 @@ public class Vlibre implements SubscriptionPossibility {
 
 	@Override
 	public void getCredit(float time, User user, TypeStation typeStation) {
+		// Credit of the ride and eventually bonus credits for having returning the bicycle in a plus station
 		user.setTimecreditbalance(user.getTimecreditbalance()+time+typeStation.getExtraCredit());
 		System.out.println("You obtain " + time + " hour of credit");
 		
@@ -12,6 +13,9 @@ public class Vlibre implements SubscriptionPossibility {
 	}
 
 	@Override
+	/*
+	 * Cost of the ride wrt the @time spend, @bicycle uses with a Vlibre subscription
+	 */
 	public int cost(double time, Bicycle bicycle, User user, TypeStation typeStation) {
 		// TODO Auto-generated method stub
 		float surplus = (float) (time - (int)(Math.floor(time)));

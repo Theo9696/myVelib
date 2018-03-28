@@ -12,6 +12,7 @@ import Exceptions.StationOfflineException;
 
 public class Station {
 	
+	/* Attributes */
 	private ArrayList<ParkingSlot> parkingslot = new ArrayList<ParkingSlot>();
 	private ArrayList<ParkingSlot> freeparkingslot = new ArrayList<ParkingSlot>();
 	private ArrayList<ParkingSlot> occupiedparkingslot = new ArrayList<ParkingSlot>();
@@ -27,7 +28,9 @@ public class Station {
 	private int StationID;
 	private boolean changed;
 	
-	Station(){
+	
+	/* ***************************************** Creators * *************************/
+	public Station(){
 		this.inorder = true;
 		this.GPScoordinate[0] = 0;
 		this.GPScoordinate[1] = 0;
@@ -38,7 +41,7 @@ public class Station {
 		typestation = new StandardStation();
 	}
 	
-	Station(double latitude, double longitude){
+	public Station(double latitude, double longitude){
 		this.inorder = true;
 		this.GPScoordinate[0] = latitude;
 		this.GPScoordinate[1] = longitude;
@@ -49,7 +52,7 @@ public class Station {
 		typestation = new StandardStation();
 	}
 	
-	Station(double latitude, double longitude, boolean offline){
+	public Station(double latitude, double longitude, boolean offline){
 		this.inorder = offline;
 		this.GPScoordinate[0] = latitude;
 		this.GPScoordinate[1] = longitude;
@@ -60,7 +63,7 @@ public class Station {
 		typestation = new StandardStation();
 	}
 	
-	Station(double latitude, double longitude, boolean offline, TypeStation typestation){
+	public Station(double latitude, double longitude, boolean offline, TypeStation typestation){
 		this.inorder = offline;
 		this.GPScoordinate[0] = latitude;
 		this.GPScoordinate[1] = longitude;
@@ -72,7 +75,7 @@ public class Station {
 	}
 	
 	
-	Station(ArrayList<ParkingSlot> parkingslot, double latitude, double longitude) {
+	public Station(ArrayList<ParkingSlot> parkingslot, double latitude, double longitude) {
 		
 		try {
 			this.parkingslot = parkingslot;
@@ -105,6 +108,8 @@ public class Station {
 		typestation = new StandardStation();
 	}
 	
+	
+	/* **************************************** Getters / Setters *************************************/
 	public int getNumberOfRent() {
 		return this.numberOfRent;
 	}
@@ -113,13 +118,7 @@ public class Station {
 		return this.numberOfDrop;
 	}
 		
-	public void aNewUserComing(User user) {
-		this.userComing.put(user.getUserID(),user);
-	}
 	
-	public void aNewUserLeftABicycle(User user) {
-		this.userComing.remove(user.getUserID());
-	}
 	
 	public TypeStation getTypeStation() {
 		return this.typestation;
@@ -142,6 +141,68 @@ public class Station {
 		return this.GPScoordinate[1];
 	}
 	
+	public int getStationID() {
+		return this.StationID;
+	}
+	
+	private void updateNumberBicyclePlus(Bicycle bicycle) {
+		if (bicycle instanceof ElectricalBicycle) {
+			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")+1);
+		} else if (bicycle instanceof MechanicalBicycle) {
+			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")+1);
+		}
+	}
+	
+	private void updateNumberBicycleLess(Bicycle bicycle) {
+		if (bicycle instanceof ElectricalBicycle) {
+			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")-1);
+		} else if (bicycle instanceof MechanicalBicycle) {
+			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")-1);
+		}
+	}
+	
+	public boolean isFull() {
+
+		for (ParkingSlot p : freeparkingslot) {
+			if (p.isUsable()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean isOffline() {
+		return !this.inorder;
+	}
+	
+	public boolean isEmpty() {
+		if (freeparkingslot.size() ==0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/* ******************************** Methods *********************************************/
+	
+	/*
+	 * Function to stock the user who had been inform to reach this station
+	 * @user could afterwards be notified if the station is no more available
+	 */
+	public void aNewUserComing(User user) {
+		this.userComing.put(user.getUserID(),user);
+	}
+	
+	/*
+	 * @user has completed his ride, it's no more significant to notify him of the station status
+	 */
+	public void aNewUserLeftABicycle(User user) {
+		this.userComing.remove(user.getUserID());
+	}
+	
+	/*
+	 * To add a parkingslot in the station
+	 */
 	public void addParkingSlot(ParkingSlot p) {
 		this.parkingslot.add(p);
 		
@@ -157,23 +218,28 @@ public class Station {
 		}
 	}
 	
-	public int getStationID() {
-		return this.StationID;
-	}
 	
+	/*
+	 * Change the status inorder of the station in offline
+	 */
 	public void becomeOffline() {
 		this.inorder = false;
 		this.changed = true;
 		notifyObservers();
 	}
 	
+	/*
+	 * Change the status of the @ParkingSlot p in free
+	 */
 	public void slotisfree(ParkingSlot p) {
 		if (!freeparkingslot.contains(p)) {
 			freeparkingslot.add(p);
 			occupiedparkingslot.remove(p);
 		}
 	}
-		
+	/*
+	 * Change the status of the @ParkingSlot p in occupied
+	 */
 	public void slotisoccupied(ParkingSlot p) {
 		if (!occupiedparkingslot.contains(p)) {
 			occupiedparkingslot.add(p);
@@ -181,6 +247,9 @@ public class Station {
 		}
 		
 	}
+	/*
+	 * Remove a bicycle from the station if possible
+	 */
 	public Bicycle needBicycle(String bicycleType) throws StationOfflineException, StationEmptyException {
 		if (!this.inorder) {
 			throw new StationOfflineException(this);
@@ -220,6 +289,9 @@ public class Station {
 			
 	}
 	
+	/*
+	 * Return a bicycle in the station if possible
+	 */
 	public void returnBicycle(Bicycle bicycle) throws StationOfflineException, StationFullException {
 		if (!this.inorder) {
 			throw new StationOfflineException(this);
@@ -258,6 +330,9 @@ public class Station {
 	}
 	}
 	
+	/*
+	 * Notify the users coming towards the station if the status of the station becomes offline, full or empty concerning the cases
+	 */
 	private void notifyObservers() {
 		if (this.changed) {
 			for( Entry<Integer, User> entry : this.userComing.entrySet()) {
@@ -269,35 +344,6 @@ public class Station {
 		}
 	}
 	
-	private void updateNumberBicyclePlus(Bicycle bicycle) {
-		if (bicycle instanceof ElectricalBicycle) {
-			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")+1);
-		} else if (bicycle instanceof MechanicalBicycle) {
-			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")+1);
-		}
-	}
-	
-	private void updateNumberBicycleLess(Bicycle bicycle) {
-		if (bicycle instanceof ElectricalBicycle) {
-			NumberBicycle.put("Electrical", NumberBicycle.get("Electrical")-1);
-		} else if (bicycle instanceof MechanicalBicycle) {
-			NumberBicycle.put("Mechanical", NumberBicycle.get("Mechanical")-1);
-		}
-	}
-	
-	public boolean isFull() {
-
-		for (ParkingSlot p : freeparkingslot) {
-			if (p.isUsable()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public boolean isOffline() {
-		return !this.inorder;
-	}
 	
 	public String toString() {
 		return "-----------------"+ this.getTypeStation().getType()+ " Station " + this.getStationID()+ "------------ " + parkingslot.size() + " parkingslot(s)"+ "-------------" + this.getStationLat() +
@@ -308,14 +354,6 @@ public class Station {
 		outOfOrderParkingslot.size() + " out-of-order slot(s) : " + outOfOrderParkingslot.toString()
 		+ "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
 				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n\n" + "\n"; 
-	}
-
-	public boolean isEmpty() {
-		if (freeparkingslot.size() ==0) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 }
