@@ -12,7 +12,7 @@ public class ParkingSlot {
 	private boolean usable;
 	
 	/* ********************************** Creator ******************************* */
-	ParkingSlot() {
+	public ParkingSlot() {
 		this.parkingID = nextnumericalID;
 		nextnumericalID++;
 		this.usable = true;

@@ -7,6 +7,7 @@ import Exceptions.ComputingRideImpossibleException;
 
 public class User {
 	
+	/* Attributes */
 	private String name;
 	private static int nextnumericalID;
 	private int UserID;
@@ -16,6 +17,8 @@ public class User {
 	private ArrayList<PlanningRide> pastRide = new ArrayList<PlanningRide>();
 	private PlanningRide currentRide;
 	
+	
+	/****************************************** Creators ***************************************/
 	User(String name) {
 		
 		try {
@@ -49,6 +52,7 @@ public class User {
 		}
 	}
 	
+	/************************************** Getters / Setters ****************************************/
 	
 	public double getUserLat() {
 		return this.GPScoordinate[0];
@@ -58,67 +62,6 @@ public class User {
 		return this.GPScoordinate[1];
 	}
 	
-	public int payement(double time, Bicycle bicycle, TypeStation typeStation) {
-		int totalCost = subscription.cost(time, bicycle, this, typeStation);
-		return totalCost;
-		
-	}
-	
-	protected void receiveRide(PlanningRide planningRide) {
-		
-			this.currentRide = planningRide;
-			
-			if (planningRide.getStationDestination() != null) {  //if a user is not following a planning ride
-			planningRide.getStationDestination().aNewUserComing(this);
-			}
-			planningRide.getStationSource().aNewUserComing(this);
-		
-	}
-	
-	public void askNewRide(double latitude, double longitude, String type, RidePreferences ridePref, ArrayList<Station> stations) throws AskPlanningRideImpossibleException {
-		ComputingRide computingRide = new ComputingRide(this, stations, latitude, longitude, type, ridePref);
-		try {
-			PlanningRide ride = computingRide.computeWay();
-			this.receiveRide(ride);
-			System.out.println("Hello ! Here is your ride : " + ride.toString());
-		}
-		catch (ComputingRideImpossibleException e) {
-			System.out.println(e);
-		}
-		
-		
-	}
-	
-	public void completeARide(double timeBicycleGivenBack) {
-		if (this.currentRide != null) {
-			pastRide.add(currentRide);
-			currentRide.setTimeGivenBack(timeBicycleGivenBack);
-			currentRide.getStationDestination().aNewUserLeftABicycle(this);
-			currentRide.getStationSource().aNewUserLeftABicycle(this);
-			System.out.println("Hello user n°" + this.UserID +"!");
-			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
-					+ "\n We hope to see you another time ! ");
-			this.currentRide = null;
-		} else {
-			System.out.println("You can't complete a ride without having one, does it sound logical? :)");
-		}
-	}
-	/*
-	 * Send a notification to the user when a problem in the destination station or source happens
-	 */
-	public void update() {
-		//Ma station d'arrivée n'est plus disponible
-		if (currentRide.getStationDestination().isFull() || currentRide.getStationDestination().isOffline()) {
-			System.out.println("The destination station is full or offline ! Do you want to recalculate the ride? (y/n)");
-		} else if (currentRide.getBicycle() == null) {
-		
-				System.out.println("The source station where you should take a bicycle is no more available"
-						+ "\n Do you want to recalculate the ride? (y/n)");
-			
-			
-		}
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -162,6 +105,79 @@ public class User {
 	
 	public ArrayList<PlanningRide> getPastRide (){
 		return this.pastRide;
+	}
+	
+	/*********************************** Methods *************************************/
+	
+	/*
+	 * Return the total cost of a ride according to the subscription of the user, the @time of the ride, the @bicycle and the @typeStation
+	 */
+	public int payement(double time, Bicycle bicycle, TypeStation typeStation) {
+		int totalCost = subscription.cost(time, bicycle, this, typeStation);
+		return totalCost;
+		
+	}
+	
+	/*
+	 * Save the planning ride advises by the system
+	 */
+	public void receiveRide(PlanningRide planningRide) {
+		
+			this.currentRide = planningRide;
+			
+			if (planningRide.getStationDestination() != null) {  //if a user is not following a planning ride
+			planningRide.getStationDestination().aNewUserComing(this);
+			}
+			planningRide.getStationSource().aNewUserComing(this);
+		
+	}
+	
+	/*
+	 * Function to enable the user to be given a planning ride to reach its destination (@latitude, @longitude) with the @type of bicycle wished 
+	 */
+	public void askNewRide(double latitude, double longitude, String type, RidePreferences ridePref, ArrayList<Station> stations) throws AskPlanningRideImpossibleException {
+		ComputingRide computingRide = new ComputingRide(this, stations, latitude, longitude, type, ridePref);
+		try {
+			PlanningRide ride = computingRide.computeWay();
+			this.receiveRide(ride);
+			System.out.println("Hello user "+ this.UserID + " ! Here is your ride : " + ride.toString());
+		}
+		catch (ComputingRideImpossibleException e) {
+			System.out.println(e);
+		}
+	}
+	
+	/*
+	 * To archive the ride the user just completes
+	 */
+	public void completeARide(double timeBicycleGivenBack) {
+		if (this.currentRide != null) {
+			pastRide.add(currentRide);
+			currentRide.setTimeGivenBack(timeBicycleGivenBack);
+			currentRide.getStationDestination().aNewUserLeftABicycle(this);
+			currentRide.getStationSource().aNewUserLeftABicycle(this);
+			System.out.println("Hello user n°" + this.UserID +"!");
+			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
+					+ "\n We hope to see you another time ! ");
+			this.currentRide = null;
+		} else {
+			System.out.println("You can't complete a ride without having one, does it sound logical? :)");
+		}
+	}
+	/*
+	 * Send a notification to the user when a problem in the destination station or source happens
+	 */
+	public void update() {
+		//Ma station d'arrivée n'est plus disponible
+		if (currentRide.getStationDestination().isFull() || currentRide.getStationDestination().isOffline()) {
+			System.out.println("The destination station is full or offline ! Do you want to recalculate the ride? (y/n)");
+		} else if (currentRide.getBicycle() == null) {
+		
+				System.out.println("The source station where you should take a bicycle is no more available"
+						+ "\n Do you want to recalculate the ride? (y/n)");
+			
+			
+		}
 	}
 	
 	public String toString() {

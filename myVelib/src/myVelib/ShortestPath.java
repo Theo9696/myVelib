@@ -7,6 +7,10 @@ import Exceptions.ComputingRideImpossibleException;
 public class ShortestPath implements RidePreferences {
 
 	@Override
+	/*
+	 * Returning the planning ride offering the shortest ride to the user corresponding to the @destination coordonates wished,
+	 * type of bicycle...
+	 */
 	public PlanningRide compute(ArrayList<Station> stations, User user, double[] destination, String typeBicycle) throws ComputingRideImpossibleException {
 		
 		

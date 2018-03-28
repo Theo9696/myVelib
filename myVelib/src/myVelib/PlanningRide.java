@@ -11,7 +11,7 @@ public class PlanningRide {
 	private double timeBicycleGivenBack;
 	
 	/* *********************************** Creator ********************************* */
-	PlanningRide(Station source, Station destination, User user) {
+	public PlanningRide(Station source, Station destination, User user) {
 		this.source = source;
 		this.destination = destination;
 		this.user = user;
@@ -27,7 +27,7 @@ public class PlanningRide {
 	
 	/* **************************************** Methods ******************************************* */
 	
-	protected void addBicycle(Bicycle bicycle, double time) {
+	public void addBicycle(Bicycle bicycle, double time) {
 		if (!this.UserHasNotABicycle()) {
 			System.out.println("You already got a bicycle in this ride");
 		} else {
@@ -46,7 +46,7 @@ public class PlanningRide {
 		return this.destination;
 	}
 	
-	void setDestination(Station destination) {
+	public void setDestination(Station destination) {
 		this.destination = destination;
 	}
 	
