@@ -3,6 +3,7 @@ package myVelib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import Exceptions.ParkingSlotFullException;
@@ -263,7 +264,7 @@ public class Station {
 	/*
 	 * Remove a bicycle from the station if possible
 	 */
-	public Bicycle needBicycle(String bicycleType) throws StationOfflineException, StationEmptyException {
+	public Bicycle needBicycle(String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
 		if (!this.inorder) {
 			throw new StationOfflineException(this);
 			
@@ -272,7 +273,7 @@ public class Station {
 			int n = 0;
 			while (!igotabicycle && n < occupiedparkingslot.size()) {
 				if (occupiedparkingslot.get(n).isUsable() && (occupiedparkingslot.get(n).getBicycle().getType() == bicycleType)) {
-					Bicycle b = occupiedparkingslot.get(n).removeBicycle();
+					Bicycle b = occupiedparkingslot.get(n).removeBicycle(timeBicycleTaken);
 					this.slotisfree(occupiedparkingslot.get(n));
 					igotabicycle = true;
 					updateNumberBicycleLess(b);
@@ -305,7 +306,7 @@ public class Station {
 	/*
 	 * Return a bicycle in the station if possible
 	 */
-	public void returnBicycle(Bicycle bicycle) throws StationOfflineException, StationFullException {
+	public void returnBicycle(Bicycle bicycle, double timeBicycleGaveBack) throws StationOfflineException, StationFullException {
 		if (!this.inorder) {
 			throw new StationOfflineException(this);
 		} else if (freeparkingslot.size() == 0) {
@@ -317,7 +318,7 @@ public class Station {
 				try {
 					ParkingSlot p = freeparkingslot.get(n);
 					if (p.isUsable()) {
-						p.addBicycle(bicycle);
+						p.addBicycle(bicycle, timeBicycleGaveBack);
 						this.slotisoccupied(p);
 						igotaplace = true;
 						updateNumberBicyclePlus(p.getBicycle());
@@ -365,8 +366,26 @@ public class Station {
 				freeparkingslot.size() + " free slot(s) : " + freeparkingslot.toString()+ "\n" + occupiedparkingslot.size() 
 		+ " occupied slot(s) : " + occupiedparkingslot.toString() + "\n" +
 		outOfOrderParkingslot.size() + " out-of-order slot(s) : " + outOfOrderParkingslot.toString()
-		+ "\n There is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
-				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)\n\n" + "\n"; 
+		+ "\nThere is " + NumberBicycle.get("Electrical") + " electrical bicycle(s) and "+
+				NumberBicycle.get("Mechanical") + " mechanical bicycle(s)" + "\n\n"; 
+	}
+	
+	public double rateOfOccupation(double timeStart, double timeEnd) {
+		
+		double averageTimeOfOccupation = 0;
+		
+		for (ParkingSlot slot : parkingslot) {
+			averageTimeOfOccupation += slot.rateOfOccupationSlot(timeStart, timeEnd);
+		}
+		
+		averageTimeOfOccupation /= (parkingslot.size() * (timeEnd - timeStart));
+		
+		return averageTimeOfOccupation;
+	}
+	
+	public String returnStationStatistics() {
+		return "************************** Statistics Station n° " + this.StationID + "********************\n" +
+				"Number of rents operation: " + this.numberOfRent +" | Number of return operations: " + this.numberOfDrop + "\n";
 	}
 	
 }

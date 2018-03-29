@@ -6,6 +6,7 @@ public class Vmax implements SubscriptionPossibility {
 	public void getCredit(float time, User user, TypeStation typeStation) {
 		// Credit of the ride and eventually bonus credits for having returning the bicycle in a plus station
 		user.setTimecreditbalance(user.getTimecreditbalance()+time + typeStation.getExtraCredit());
+		user.addTimeCreditEarned(time+typeStation.getExtraCredit());
 		System.out.println("You obtain " + time + "hour of credit");
 		
 	}
