@@ -1,4 +1,4 @@
-package myVelib;
+package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import Exceptions.AskPlanningRideImpossibleException;
 import Exceptions.ParkingSlotFullException;
+import myVelib.Bicycle;
+import myVelib.ElectricalBicycle;
+import myVelib.ParkingSlot;
+import myVelib.PlusStation;
+import myVelib.StandardStation;
+import myVelib.Station;
+import myVelib.UniformityBicycleConservation;
+import myVelib.User;
+import myVelib.WithoutSubscription;
 
 class UniformityBicycleConservationTest {
 
@@ -34,11 +43,11 @@ class UniformityBicycleConservationTest {
 		Bicycle b3 = new ElectricalBicycle();
 		Bicycle b4 = new ElectricalBicycle();
 		Bicycle b5 = new ElectricalBicycle();
-		p0.addBicycle(b);
-		p1.addBicycle(b5);
-		p2.addBicycle(b2);
-		p3.addBicycle(b3);
-		p4.addBicycle(b4);
+		p0.addBicycle(b,0);
+		p1.addBicycle(b5,0);
+		p2.addBicycle(b2,0);
+		p3.addBicycle(b3,0);
+		p4.addBicycle(b4,0);
 		s0.addParkingSlot(p0);
 		s3.addParkingSlot(p1);
 		s3.addParkingSlot(p2);
@@ -84,11 +93,11 @@ class UniformityBicycleConservationTest {
 		Bicycle b3 = new ElectricalBicycle();
 		Bicycle b4 = new ElectricalBicycle();
 		Bicycle b5 = new ElectricalBicycle();
-		p0.addBicycle(b);
-		p1.addBicycle(b5);
-		p2.addBicycle(b2);
-		p3.addBicycle(b3);
-		p4.addBicycle(b4);
+		p0.addBicycle(b,0);
+		p1.addBicycle(b5,0);
+		p2.addBicycle(b2,0);
+		p3.addBicycle(b3,0);
+		p4.addBicycle(b4,0);
 		s0.addParkingSlot(p0);
 		s3.addParkingSlot(p1);
 		s3.addParkingSlot(p2);
@@ -133,11 +142,11 @@ class UniformityBicycleConservationTest {
 		Bicycle b3 = new ElectricalBicycle();
 		Bicycle b4 = new ElectricalBicycle();
 		Bicycle b5 = new ElectricalBicycle();
-		p0.addBicycle(b);
-		p1.addBicycle(b5);
-		p2.addBicycle(b2);
-		p3.addBicycle(b3);
-		p4.addBicycle(b4);
+		p0.addBicycle(b,0);
+		p1.addBicycle(b5,0);
+		p2.addBicycle(b2,0);
+		p3.addBicycle(b3,0);
+		p4.addBicycle(b4,0);
 		s0.addParkingSlot(p0);
 		s3.addParkingSlot(p1);
 		s3.addParkingSlot(p2);

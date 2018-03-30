@@ -1,4 +1,4 @@
-package myVelib;
+package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import Exceptions.AskPlanningRideImpossibleException;
 import Exceptions.ParkingSlotFullException;
+import myVelib.Bicycle;
+import myVelib.ElectricalBicycle;
+import myVelib.ParkingSlot;
+import myVelib.PlusStation;
+import myVelib.PreferPlusStation;
+import myVelib.StandardStation;
+import myVelib.Station;
+import myVelib.User;
+import myVelib.WithoutSubscription;
 
 class RidePreferencesTest {
 
@@ -21,7 +30,7 @@ class RidePreferencesTest {
 		ParkingSlot p1 = new ParkingSlot();
 		ParkingSlot p2 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
-		p0.addBicycle(b);
+		p0.addBicycle(b,0);
 		s0.addParkingSlot(p0);
 		s1.addParkingSlot(p1);
 		s2.addParkingSlot(p2);
@@ -43,7 +52,7 @@ class RidePreferencesTest {
 		ParkingSlot p4 = new ParkingSlot();
 		ParkingSlot p5 = new ParkingSlot();
 		Bicycle b2 = new ElectricalBicycle();
-		p3.addBicycle(b2);
+		p3.addBicycle(b2,0);
 		s3.addParkingSlot(p3);
 		s4.addParkingSlot(p4);
 		s5.addParkingSlot(p5);
@@ -65,7 +74,7 @@ class RidePreferencesTest {
 		ParkingSlot p7 = new ParkingSlot();
 		ParkingSlot p8 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
-		p6.addBicycle(b);
+		p6.addBicycle(b,0);
 		s6.addParkingSlot(p6);
 		s7.addParkingSlot(p7);
 		s8.addParkingSlot(p8);

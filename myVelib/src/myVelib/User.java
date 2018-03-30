@@ -16,6 +16,9 @@ public class User {
 	private double[] GPScoordinate = new double[2];
 	private ArrayList<PlanningRide> pastRide = new ArrayList<PlanningRide>();
 	private PlanningRide currentRide;
+	private float timeSpentOfABike;
+	private int totalAmountOfCharges;
+	private float timeCreditEarned;
 	
 	
 	/****************************************** Creators ***************************************/
@@ -107,6 +110,32 @@ public class User {
 		return this.pastRide;
 	}
 	
+	public float getTimeSpentOnABike() {
+		return this.timeSpentOfABike;
+	}
+	
+	
+	public int getTotalAmountOfCharges() {
+		return this.totalAmountOfCharges;
+	}
+	
+	public float getTimeCreditEarned() {
+		return this.timeCreditEarned;
+	}
+	
+	public void addTimeSpentOnABike(float time) {
+		this.timeSpentOfABike += time;
+	}
+	
+	
+	public void addTotalAmountOfCharges(int charge) {
+		this.totalAmountOfCharges += charge;
+	}
+	
+	public void addTimeCreditEarned(float timecredit) {
+		this.timeCreditEarned += timecredit;
+	}
+	
 	/*********************************** Methods *************************************/
 	
 	/*
@@ -114,6 +143,7 @@ public class User {
 	 */
 	public int payement(double time, Bicycle bicycle, TypeStation typeStation) {
 		int totalCost = subscription.cost(time, bicycle, this, typeStation);
+		addTotalAmountOfCharges(totalCost);
 		return totalCost;
 		
 	}
@@ -159,6 +189,7 @@ public class User {
 			System.out.println("Hello user n°" + this.UserID +"!");
 			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
 					+ "\n We hope to see you another time ! ");
+			this.addTimeSpentOnABike((float)(currentRide.getTimeGivenBack() - currentRide.getTimeTaken()));
 			this.currentRide = null;
 		} else {
 			System.out.println("You can't complete a ride without having one, does it sound logical? :)");
@@ -186,6 +217,12 @@ public class User {
 				" | subscription : " + this.getSubscription().toString() +	"\n"+
 				((this.currentRide == null) ? "Not asking for a ride" : ((this.currentRide.getBicycle() == null) ? "Currently walking to or from a station " + this.currentRide.toString() : "Doing bicycle" + this.currentRide.toString())) +
 				"\n"; 
+	}
+	
+	public String returnUserStatistics() {
+		return "******************** Statistics User n° "+ this.getUserID() +" ******************************\n" +
+	"Number of rides: " + this.pastRide.size() + " | total time spent on a bike: " + this.timeSpentOfABike +
+	"\ntotal amount of charges: " + this.totalAmountOfCharges + " | time-credit earned: " + this.timeCreditEarned +"\n"; 
 	}
 
 	
