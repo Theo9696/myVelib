@@ -48,6 +48,8 @@ public PlanningRide compute(ArrayList<Station> stations, User user, double[] des
 				
 			}
 			}
+			
+			
 			// We check if a plus station is at less than 110% from the destination than the station find with a fastest computing
 			Station arrivalnew = arrival;
 			Station departurenew = departure;
