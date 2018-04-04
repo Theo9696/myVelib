@@ -34,44 +34,111 @@ public class Simulation {
 	
 	// Base of names
 	public final String[] ListOfNameBasic = {"Patrick", "Jean-Louis","Baptiste", "Victor", "Emile","Louise",
-			"Camille", "Hajar", "Leïla", "Sarah", "Wiam", "Théo", "Lucas", "Paul", "Anna", "Mahaut", "Odelin", "Morgan", "Paloma"};
+			"Camille", "Hajar", "Leïla", "Sarah", "Wiam", "Théo", "Lucas", "Paul", "Anna", "Mahaut", "Odelin", "Morgan", "Paloma", "Antoine"};
 	
 	public ArrayList<String> ListOfName = initListOfName();
 	private ArrayList<Station> stations;
 	private Map<Integer, User> users = new HashMap<Integer, User>();
+	private String nameOfNetwork;
 	
 	/* ********************************************* Creators ********************************************** */
-	Simulation(int numberOfStations, int numberOfUsers, int lengthOfMap){
+	Simulation(int numberOfStations, int numberOfUsers, int lengthOfMap, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
 		createAMap(numberOfStations, numberOfUsers, lengthOfMap);
+		this.nameOfNetwork = nameOfNetwork;
 		
 	}
-	Simulation(int numberOfStations, int lengthOfMap){
+	
+	Simulation(int numberOfStations, int numberOfParkingSlot, int numberOfUsers, int lengthOfMap, int numberOfBike, String nameOfNetwork) throws StationOfflineException, ParkingSlotFullException{
+		this.stations = new ArrayList<Station>();
+		createAMap(numberOfStations, numberOfParkingSlot, numberOfUsers, lengthOfMap, numberOfBike);
+		this.nameOfNetwork = nameOfNetwork;
+		
+	}
+	
+	
+	Simulation(int numberOfStations, int lengthOfMap, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
 		createAMap(numberOfStations, 0, lengthOfMap);
+		this.nameOfNetwork = nameOfNetwork;
 		
 	}
 	
-	Simulation(int numberOfStations){
+	Simulation(int numberOfStations, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
 		createAMap(numberOfStations, 0, 50);
+		this.nameOfNetwork = nameOfNetwork;
 		
 	}
 	
-	Simulation(){
+	Simulation(String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.nameOfNetwork = nameOfNetwork;
 		createAMap(20, 0, 50);
 		
 	}
 	
+	Simulation() throws ParkingSlotFullException{
+		this.stations = new ArrayList<Station>();
+		this.nameOfNetwork = "Essai";
+		createAMap(20, 0, 50);
+		
+	}
+	
+	public static void main(String[] args) throws StationOfflineException, ParkingSlotFullException {
+		Simulation simu = new Simulation(5,10,5,1,20,"Hello");
+		System.out.println(simu);
+	}
+	
 	/* ********************************************** Methods : creation of objects **************************************** */
 	
-	private void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) {
+	private void createAMap(int numberOfStations, int numberOfParkingSlot, int numberOfUsers, int lengthOfMap, int numberOfBike) throws StationOfflineException, ParkingSlotFullException {
 		
 		ArrayList<Station> stations = new ArrayList<Station>();
 		
 		for (int numstation = 0; numstation<numberOfStations; numstation++) {
-			stations.add(newStation(lengthOfMap));
+			stations.add(newStation(numberOfParkingSlot, lengthOfMap, false ));
+		}
+		this.stations = stations;
+		
+		Map<Integer, User> users = new HashMap<Integer,User>();
+		
+		for (int numUser = 0; numUser<numberOfUsers; numUser++) {
+			User user = newUser(lengthOfMap);
+			users.put(user.getUserID(), user);
+		}
+		this.users = users;
+		
+		if (numberOfBike>numberOfStations*numberOfParkingSlot) {
+			System.out.println("Too much bicycles for the total number of parkingslot");
+		}
+		else {
+			for (int bike =0; bike<numberOfBike; bike++) {
+				boolean a = true;
+				Integer tries = 0;
+				while (a == true) {
+					float r = (float) (numberOfStations*Math.random());
+					try {
+						stations.get((int) Math.floor(r)).returnBicycle(newBicycle() , 0);
+						a = false;
+					} catch (StationFullException e) {
+						tries++;
+						if (tries > 20) {
+							System.out.println("Too much bicycles");
+							a = false;
+						}
+					}
+				}
+			}
+	}
+	}
+	
+	private void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) throws ParkingSlotFullException {
+		
+		ArrayList<Station> stations = new ArrayList<Station>();
+		
+		for (int numstation = 0; numstation<numberOfStations; numstation++) {
+			stations.add(newStation(lengthOfMap, true));
 		}
 		this.stations = stations;
 		
@@ -104,9 +171,10 @@ public class Simulation {
 		}
 	}
 	
-	private ParkingSlot newParkingSlot() {
+	private ParkingSlot newParkingSlot(boolean autoGenerationOfRandomBicycle) throws ParkingSlotFullException {
 		double proba = Math.random();
-		try {
+		
+		if (autoGenerationOfRandomBicycle) {
 			if (proba < 0.7) {
 				// The parkingSlot will either have a mechanical or a electrical car
 				ParkingSlot ps = new ParkingSlot();
@@ -116,20 +184,52 @@ public class Simulation {
 				// The parkingslot will be empty
 				ParkingSlot ps = new ParkingSlot();
 				return ps ;
-			} else {
+			} 
+			else {
 				//The parkingslot will be out of order
 				ParkingSlot ps = new ParkingSlot();
 				ps.setInOrder(false,0);
 				return ps ;
 			}
-		} catch (ParkingSlotFullException e) {
-			e.printStackTrace();
+				
 		}
+		else if (proba >0.95)
+		{
+				//The parkingslot will be out of order
+				ParkingSlot ps = new ParkingSlot();
+				ps.setInOrder(false,0);
+				return ps ;
+			}
 		
 		return new ParkingSlot();
 	}
 	
-	private Station newStation(int lengthOfMap) {
+	private Station newStation(int nbOfSlots, int lengthOfMap, boolean autoGenerationOfRandomBicycle) throws ParkingSlotFullException {
+		int numberOfParkingSlot = nbOfSlots;
+		double latitude = Math.ceil(lengthOfMap*Math.random());
+		double longitude = Math.ceil(lengthOfMap*Math.random());
+		
+		double proba = Math.random();
+		Station station;
+		if (proba<0.75) {
+			station = new Station(latitude, longitude, true, new StandardStation());
+			
+		} else if(proba >=0.75 && proba <0.95) {
+			station = new Station(latitude, longitude, true, new PlusStation() );
+		
+		
+		}else {
+			station = new Station(latitude, longitude, false);
+		}
+		
+		for (int k=0; k<numberOfParkingSlot; k++) {
+			station.addParkingSlot(newParkingSlot(autoGenerationOfRandomBicycle));
+		}
+		
+		return station;
+	}
+	
+	private Station newStation(int lengthOfMap, boolean autoGenerationOfRandomBicycle) throws ParkingSlotFullException {
 		int numberOfParkingSlot = (int) Math.ceil(50*Math.random());
 		double latitude = Math.ceil(lengthOfMap*Math.random());
 		double longitude = Math.ceil(lengthOfMap*Math.random());
@@ -148,7 +248,7 @@ public class Simulation {
 		}
 		
 		for (int k=0; k<numberOfParkingSlot; k++) {
-			station.addParkingSlot(newParkingSlot());
+			station.addParkingSlot(newParkingSlot(autoGenerationOfRandomBicycle));
 		}
 		
 		return station;
@@ -218,6 +318,11 @@ public class Simulation {
 	
 	public void newUser(User user) {
 		this.addnewUser(user);
+	}
+	
+	public void newUser(String cartType ) {
+		int r = (int) Math.floor((int)ListOfNameBasic.length*(Math.random()));
+		this.addnewUser(new User(ListOfNameBasic[r], cartType));
 	}
 	
 	public void takeABicycle(int userID, int stationID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {

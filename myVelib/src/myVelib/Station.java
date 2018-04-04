@@ -242,6 +242,12 @@ public class Station {
 		notifyObservers();
 	}
 	
+	public void becomeOnline() {
+		this.inorder = true;
+		/*this.changed = true;
+		notifyObservers();*/
+	}
+	
 	/*
 	 * Change the status of the @ParkingSlot p in free
 	 */
