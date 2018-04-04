@@ -14,10 +14,10 @@ import Exceptions.ComputingRideImpossibleException;
 
 public class Playground {
 	
-	public static void main(String[] args)  throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException {
+	public static void main(String[] args)  throws AskPlanningRideImpossibleException, StationOfflineException, StationEmptyException, StationFullException, ParkingSlotFullException {
 		
 		// Une simulation avec des stations et des utilisateurs est utilisable...
-		Simulation simu = new Simulation(5,10,20);
+		Simulation simu = new Simulation(5,4,10, "velibsystem1");
 		show(simu);
 		
 		/*usercase1 */
@@ -43,10 +43,10 @@ public class Playground {
 	/*
 	 * A first user case very simple creating a simulation with @numberOfStations stations, some users...
 	 */
-	public static void userCase1SettingofmyVelib(Integer numberOfStations) {
+	public static void userCase1SettingofmyVelib(Integer numberOfStations) throws ParkingSlotFullException {
 		
 		// Try to have a coherent number of Users and map dimensions according to the number of stations.
-		Simulation simu = new Simulation(numberOfStations, numberOfStations*3, numberOfStations*2);
+		Simulation simu = new Simulation(numberOfStations, numberOfStations*3, numberOfStations*2, "Velibsystemtest");
 		show(simu);
 		
 	}

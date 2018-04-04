@@ -39,6 +39,30 @@ public class User {
 	}
 	}
 	
+	public User(String name, String cartType) {
+		
+		try {
+			this.name = name;
+			timecreditbalance = 0;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			if (cartType == "Vlibre") {
+				this.subscription = new Vlibre();
+			} else if (cartType == "Vmax") {
+				this.subscription = new Vmax();
+			} else {
+				this.subscription = new WithoutSubscription();
+			}
+
+			this.GPScoordinate[0] = 0;
+			this.GPScoordinate[1] = 0;
+			this.currentRide = null;
+			
+		} catch (NullPointerException e) {
+		System.err.println("You tried to enter a null name !");
+	}
+	}
+	
 	public User(String name, float timecreditbalance, SubscriptionPossibility subscription, double latitude, double longitude) {
 		
 		try {

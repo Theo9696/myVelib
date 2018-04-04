@@ -22,9 +22,6 @@ public abstract class Bicycle {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
-	}
 	
 	/*
 	 * Show main characteristics of bicycle
