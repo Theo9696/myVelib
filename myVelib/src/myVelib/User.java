@@ -46,11 +46,14 @@ public class User {
 			timecreditbalance = 0;
 			this.UserID = nextnumericalID;
 			nextnumericalID++;
-			if (cartType == "Vlibre") {
+			if (cartType.equals("Vlibre")) {
 				this.subscription = new Vlibre();
-			} else if (cartType == "Vmax") {
+			} else if (cartType.equals( "Vmax")) {
 				this.subscription = new Vmax();
+			} else if (cartType.equals("No subscription")) {
+				this.subscription = new WithoutSubscription();
 			} else {
+				System.out.println("The subscription hasn't been recognized, the user created has then no subscription");
 				this.subscription = new WithoutSubscription();
 			}
 

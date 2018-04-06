@@ -1,0 +1,16 @@
+
+ setup done !
+
+ setup done !
+************* Statistics Station n° 10***************
+Number of rents operation: 0 | Number of return operations: 6
+
+The user Théo has been added to the simulation simulation1
+
+
+The user 0 try to take a bicycle in the station 1
+The bicycle [bicycle n° 87 | type : Mechanical] in the station n° 11 has been taken
+
+ One of the arguments of the command "returnBike 0 2 simulatio1 6" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation
+
+ The station 0 of the simulation simulation1 has become offline!
