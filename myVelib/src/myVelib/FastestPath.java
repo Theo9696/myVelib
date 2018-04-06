@@ -6,6 +6,19 @@ import Exceptions.ComputingRideImpossibleException;
 
 public class FastestPath implements RidePreferences {
 	
+	String name;
+	
+	FastestPath(){
+		super();
+		this.name = "fastest";
+	}
+	
+	
+	
+	public String getName() {
+		return this.name;
+	}
+	
 	/*
 	 *  It returns a planning ride where the source and the destination station are chosen so as to propose the fastest ride
 	 */

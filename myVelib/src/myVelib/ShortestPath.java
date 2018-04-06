@@ -5,6 +5,19 @@ import java.util.ArrayList;
 import Exceptions.ComputingRideImpossibleException;
 
 public class ShortestPath implements RidePreferences {
+	
+	String name;
+	
+	ShortestPath(){
+		super();
+		this.name = "shortest";
+	}
+	
+	
+	
+	public String getName() {
+		return this.name;
+	}
 
 	@Override
 	/*

@@ -307,9 +307,9 @@ public class Simulation {
 	/* ******************************************* Methods : actions on the simulation **************************************** */
 	
 	
-	public void newRide(int userID, double latitude, double longitude, String bicycleType, RidePreferences pref) throws AskPlanningRideImpossibleException {
+	public void newRide(int userID, double latitude, double longitude, String bicycleType, String Ridepref) throws AskPlanningRideImpossibleException {
 		try {
-			(this.users.get(userID)).askNewRide(latitude, longitude, bicycleType, pref, stations);
+			(this.users.get(userID)).askNewRide(latitude, longitude, bicycleType, Ridepref, stations);
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println(e);
 			System.err.println("You tried to enter a user ID that is not yet registered in the simulation");
