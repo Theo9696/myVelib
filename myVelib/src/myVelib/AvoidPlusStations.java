@@ -6,6 +6,18 @@ import Exceptions.ComputingRideImpossibleException;
 
 public class AvoidPlusStations implements RidePreferences {
 	
+	String name;
+	
+	AvoidPlusStations(){
+		super();
+		this.name = "avoidplus";
+	}
+	
+	
+	
+	public String getName() {
+		return this.name;
+	}
 	/*
 	 * The compute version for AvoidPluStations
 	 * It returns a planning ride where the source and the destination station are chosen so as to propose the fastest ride

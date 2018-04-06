@@ -192,8 +192,23 @@ public class User {
 	/*
 	 * Function to enable the user to be given a planning ride to reach its destination (@latitude, @longitude) with the @type of bicycle wished 
 	 */
-	public void askNewRide(double latitude, double longitude, String type, RidePreferences ridePref, ArrayList<Station> stations) throws AskPlanningRideImpossibleException {
-		ComputingRide computingRide = new ComputingRide(this, stations, latitude, longitude, type, ridePref);
+	public void askNewRide(double latitude, double longitude, String type, String ridePref, ArrayList<Station> stations) throws AskPlanningRideImpossibleException {
+		RidePreferences ridePreference;
+		if (ridePref.equals("avoidplus")) {
+			ridePreference = new AvoidPlusStations();
+		} else if (ridePref.equals("preferplus")) {
+			ridePreference = new PreferPlusStation();
+		} else if (ridePref.equals("shortest")) {
+			ridePreference = new ShortestPath();
+		} else if (ridePref.equals("fastest")) {
+			ridePreference = new FastestPath();
+		} else if (ridePref.equals("uniformity")) {
+			ridePreference = new UniformityBicycleConservation();
+		} else {
+			System.out.println("The type of ride preference has not been recognized ! It would be by default uniformity");
+			ridePreference = new UniformityBicycleConservation();
+		}
+		ComputingRide computingRide = new ComputingRide(this, stations, latitude, longitude, type, ridePreference);
 		try {
 			PlanningRide ride = computingRide.computeWay();
 			this.receiveRide(ride);

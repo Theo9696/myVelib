@@ -89,7 +89,7 @@ public class Playground {
 		//Simulation simu = new Simulation(5,10,10);
 		
 		// The user 0 ask for a ride planning to go on (5,5), the fastest way with an electrical bicycle
-		simu.getUsers().get(0).askNewRide(5, 5, "Electrical", new FastestPath(), simu.getStations());
+		simu.getUsers().get(0).askNewRide(5, 5, "Electrical", "fastest", simu.getStations());
 		
 		simu.takeABicycleInTheStationSource(0, "Electrical", 0);
 		
@@ -135,7 +135,7 @@ public class Playground {
 		
 		// Every user ask for a ride
 		{for (int k1 =0; k1<simu.getUsers().size(); k1++) {
-			simu.newRide(k1, simudestination[k1], simudestination2[k1], simupreference[k1], new FastestPath());
+			simu.newRide(k1, simudestination[k1], simudestination2[k1], simupreference[k1], "uniformity");
 		}}
 		
 		if (showdetails) {

@@ -1,3 +1,29 @@
 
  ***Enter next command or stop to end****
-stop
+setup Velib
+
+ setup done !
+
+ ***Enter next command or stop to end****
+addUser Théo Vmax 0
+
+ One of the arguments of the command "addUser Théo Vmax 0" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation
+
+ ***Enter next command or stop to end****
+addUser Théo Vmax
+
+
+Pas le bon nombre d'arguments avec la commande "addUser Théo Vmax" à la ligne 0
+
+ ***Enter next command or stop to end****
+addUser Théo Vamx Velib
+The subscription hasn't been recognized, the user created has then no subscription
+The user Théo has been added to the simulation Velib
+
+
+ ***Enter next command or stop to end****
+newRide 0 2 5 Electrical fastest Velib
+Hello user 0 ! Here is your ride : 
+ Departure : station n° 0 | Arrival : station n° 6
+
+ ***Enter next command or stop to end****

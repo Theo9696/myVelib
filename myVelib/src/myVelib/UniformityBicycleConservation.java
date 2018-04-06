@@ -5,8 +5,21 @@ import java.util.ArrayList;
 import Exceptions.ComputingRideImpossibleException;
 
 public class UniformityBicycleConservation implements RidePreferences {
+	
+	String name;
+	
+	UniformityBicycleConservation(){
+		super();
+		this.name = "uniformity";
+	}
+	
+	
+	
+	public String getName() {
+		return this.name;
+	}
 
-public PlanningRide compute(ArrayList<Station> stations, User user, double[] destination, String typeBicycle) throws ComputingRideImpossibleException {
+	public PlanningRide compute(ArrayList<Station> stations, User user, double[] destination, String typeBicycle) throws ComputingRideImpossibleException {
 		
 		
 		try {

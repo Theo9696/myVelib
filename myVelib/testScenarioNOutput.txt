@@ -1,16 +1,88 @@
-
- setup done !
-
- setup done !
-************* Statistics Station n° 10***************
+************* Statistics Station n° 0***************
 Number of rents operation: 0 | Number of return operations: 6
 
-The user Théo has been added to the simulation simulation1
+The user Théo has been added to the simulation Velib
 
+The gameground is composed of 10 stations
+*************************Stations*********************
+[-----------------Standard Station 0------------ 10 parkingslot(s)-------------1.0"" 4.0"" --------------- Number of operations : 6
+4 free slot(s) : [parkingslot 6 : [free], parkingslot 7 : [free], parkingslot 8 : [free], parkingslot 9 : [free]]
+6 occupied slot(s) : [parkingslot 0 : [bicycle 8], parkingslot 1 : [bicycle 11], parkingslot 2 : [bicycle 15], parkingslot 3 : [bicycle 30], parkingslot 4 : [bicycle 37], parkingslot 5 : [bicycle 46]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 5 mechanical bicycle(s)
 
-The user 0 try to take a bicycle in the station 1
-The bicycle [bicycle n° 87 | type : Mechanical] in the station n° 11 has been taken
+, -----------------Standard Station 1------------ 10 parkingslot(s)-------------2.0"" 3.0"" --------------- Number of operations : 5
+5 free slot(s) : [parkingslot 15 : [free], parkingslot 16 : [free], parkingslot 17 : [free], parkingslot 18 : [free], parkingslot 19 : [free]]
+5 occupied slot(s) : [parkingslot 10 : [bicycle 2], parkingslot 11 : [bicycle 22], parkingslot 12 : [bicycle 39], parkingslot 13 : [bicycle 65], parkingslot 14 : [bicycle 73]]
+0 out-of-order slot(s) : []
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
 
- One of the arguments of the command "returnBike 0 2 simulatio1 6" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation
+, -----------------Standard Station 2------------ 10 parkingslot(s)-------------4.0"" 1.0"" --------------- Number of operations : 7
+3 free slot(s) : [parkingslot 27 : [free], parkingslot 28 : [free], parkingslot 29 : [free]]
+7 occupied slot(s) : [parkingslot 20 : [bicycle 0], parkingslot 21 : [bicycle 13], parkingslot 22 : [bicycle 23], parkingslot 23 : [bicycle 42], parkingslot 24 : [bicycle 51], parkingslot 25 : [bicycle 59], parkingslot 26 : [bicycle 78]]
+0 out-of-order slot(s) : []
+There is 2 electrical bicycle(s) and 5 mechanical bicycle(s)
 
- The station 0 of the simulation simulation1 has become offline!
+, -----------------Standard Station 3------------ 10 parkingslot(s)-------------1.0"" 2.0"" --------------- Number of operations : 10
+0 free slot(s) : []
+10 occupied slot(s) : [parkingslot 30 : [bicycle 4], parkingslot 31 : [bicycle 7], parkingslot 32 : [bicycle 9], parkingslot 33 : [bicycle 12], parkingslot 34 : [bicycle 14], parkingslot 35 : [bicycle 29], parkingslot 36 : [bicycle 47], parkingslot 37 : [bicycle 50], parkingslot 38 : [bicycle 63], parkingslot 39 : [bicycle 67]]
+0 out-of-order slot(s) : []
+There is 4 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 4------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 6
+3 free slot(s) : [parkingslot 46 : [free], parkingslot 48 : [free], parkingslot 49 : [free]]
+6 occupied slot(s) : [parkingslot 40 : [bicycle 17], parkingslot 41 : [bicycle 21], parkingslot 42 : [bicycle 24], parkingslot 43 : [bicycle 32], parkingslot 44 : [bicycle 33], parkingslot 45 : [bicycle 80]]
+1 out-of-order slot(s) : [parkingslot 47 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 4 mechanical bicycle(s)
+
+, -----------------Standard Station 5------------ 10 parkingslot(s)-------------1.0"" 3.0"" --------------- Number of operations : 10
+0 free slot(s) : []
+10 occupied slot(s) : [parkingslot 50 : [bicycle 3], parkingslot 51 : [bicycle 20], parkingslot 52 : [bicycle 26], parkingslot 53 : [bicycle 28], parkingslot 54 : [bicycle 35], parkingslot 55 : [bicycle 38], parkingslot 56 : [bicycle 43], parkingslot 57 : [bicycle 44], parkingslot 58 : [bicycle 48], parkingslot 59 : [bicycle 49]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 9 mechanical bicycle(s)
+
+, -----------------Standard Station 6------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 5
+3 free slot(s) : [parkingslot 65 : [free], parkingslot 66 : [free], parkingslot 67 : [free]]
+5 occupied slot(s) : [parkingslot 60 : [bicycle 1], parkingslot 61 : [bicycle 6], parkingslot 62 : [bicycle 36], parkingslot 63 : [bicycle 55], parkingslot 64 : [bicycle 75]]
+2 out-of-order slot(s) : [parkingslot 68 : [OutofOrder], parkingslot 69 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Standard Station 7------------ 10 parkingslot(s)-------------2.0"" 4.0"" --------------- Number of operations : 8
+0 free slot(s) : []
+8 occupied slot(s) : [parkingslot 71 : [bicycle 5], parkingslot 72 : [bicycle 16], parkingslot 73 : [bicycle 25], parkingslot 74 : [bicycle 40], parkingslot 75 : [bicycle 54], parkingslot 76 : [bicycle 56], parkingslot 77 : [bicycle 57], parkingslot 79 : [bicycle 69]]
+2 out-of-order slot(s) : [parkingslot 70 : [OutofOrder], parkingslot 78 : [OutofOrder]]
+There is 3 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 8------------ 10 parkingslot(s)-------------4.0"" 2.0"" --------------- Number of operations : 8
+0 free slot(s) : []
+8 occupied slot(s) : [parkingslot 80 : [bicycle 10], parkingslot 81 : [bicycle 19], parkingslot 82 : [bicycle 27], parkingslot 83 : [bicycle 41], parkingslot 86 : [bicycle 58], parkingslot 87 : [bicycle 62], parkingslot 88 : [bicycle 64], parkingslot 89 : [bicycle 66]]
+2 out-of-order slot(s) : [parkingslot 84 : [OutofOrder], parkingslot 85 : [OutofOrder]]
+There is 5 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Standard Station 9------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 10
+0 free slot(s) : []
+10 occupied slot(s) : [parkingslot 90 : [bicycle 18], parkingslot 91 : [bicycle 31], parkingslot 92 : [bicycle 34], parkingslot 93 : [bicycle 45], parkingslot 94 : [bicycle 53], parkingslot 95 : [bicycle 60], parkingslot 96 : [bicycle 61], parkingslot 97 : [bicycle 68], parkingslot 98 : [bicycle 70], parkingslot 99 : [bicycle 77]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 7 mechanical bicycle(s)
+
+]
+and 2 users
+*************************Users**************************
+{0=-------------------------User 0 Théo----------------- 0.0"" 0.0"" ---------------
+time credit balance : 0.0 | subscription : card Vmax
+Not asking for a ride
+, 1=-------------------------User 1 Théo----------------- 0.0"" 0.0"" ---------------
+time credit balance : 0.0 | subscription : card Vlibre
+Not asking for a ride
+}
+
+The user 1 try to take a bicycle in the station 1
+The bicycle [bicycle n° 22 | type : Mechanical] in the station n° 1 has been taken
+
+ Departure : station n° 1 | Arrival : station n° 2 | [bicycle n° 22 | type : Mechanical]
+Hello user n°1!
+You obtain -0.0 hour of credit
+The cost of the ride is : 5 €
+ We hope to see you another time ! 
+
+ The station 0 of the simulation Velib has become offline!

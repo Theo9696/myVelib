@@ -3,6 +3,7 @@ package Gameground;
 import java.io.*;
 import java.util.*;
 
+import Exceptions.AskPlanningRideImpossibleException;
 import Exceptions.ParkingSlotFullException;
 import Exceptions.StationEmptyException;
 import Exceptions.StationFullException;
@@ -65,7 +66,7 @@ public class CLUI extends PrintStream {
 		} 
 	
 	 
-	public static void main(String[] args) throws IOException, ParkingSlotFullException, StationOfflineException, StationEmptyException, StationFullException {
+	public static void main(String[] args) throws IOException, ParkingSlotFullException, StationOfflineException, StationEmptyException, StationFullException, AskPlanningRideImpossibleException {
 		
 		Map<String, Simulation> simulations = new HashMap<String, Simulation>();
 		/*studyFile("testScenarioN.txt",simulations);*/
@@ -88,8 +89,8 @@ public class CLUI extends PrintStream {
 				stop = "stop";
 				stop();
 			} 
-			
-			else if (lignes[0].substring(0,7).contentEquals("runtest")) {
+
+			else if (lignes[0].length() == 7 && lignes[0].substring(0,7).contentEquals("runtest")) {
 				
 				String delims2 = (String) "[ ,,]";
 				String[] mots = (String[]) ((java.lang.String) lignes[0]).split((java.lang.String) delims2);
@@ -113,7 +114,7 @@ public class CLUI extends PrintStream {
 	   
 	}
 	
-	public static void studyFile(String nameOfTheInFile, Map<String, Simulation> simulations) throws IOException, StationOfflineException, ParkingSlotFullException, StationEmptyException, StationFullException {
+	public static void studyFile(String nameOfTheInFile, Map<String, Simulation> simulations) throws IOException, StationOfflineException, ParkingSlotFullException, StationEmptyException, StationFullException, AskPlanningRideImpossibleException {
 		
 		try {
 			String [] lignes = lectureFile(nameOfTheInFile);
@@ -225,7 +226,7 @@ public class CLUI extends PrintStream {
 
 		}
 		
-		public static Map<String, Simulation> testEntry(String[] lignes, Map<String, Simulation> simulations ) throws StationOfflineException, ParkingSlotFullException, IOException, StationEmptyException, StationFullException {
+		public static Map<String, Simulation> testEntry(String[] lignes, Map<String, Simulation> simulations ) throws StationOfflineException, ParkingSlotFullException, IOException, StationEmptyException, StationFullException, AskPlanningRideImpossibleException {
 			String delims2 = (String) "[ ,,]";
 			
 			for(int ligne = 0; ligne < lignes.length;ligne++)
@@ -362,16 +363,96 @@ public class CLUI extends PrintStream {
 		    				System.out.println("\n\n" +"Pas le bon nombre d'arguments avec la commande \"" + lignes[ligne] + "\" à la ligne " + ligne);
 		    			}
 		    		}
+		    		else if(commande.equals("rentBikeInTheStationAdvised"))
+		    		{
+		    			if(mots.length == 4)
+		    			{
+		    				try {
+		    				// We had an information of the simulation we placed us
+		    				// rentBike <userID, stationID, velibnetworkName, time>
+			    			int userID = Integer.parseInt(mots[1]);
+			    			String velibnetworkName = mots[2];
+			    			Double timeBicycleTaken = Double.parseDouble(mots[3]);
+			    			System.out.println("\nThe user " + userID + " try to take a bicycle in the station advised");
+			    			simulations.get(velibnetworkName).takeABicycleInTheStationSource(userID, "Mechanical", timeBicycleTaken);
+			    			
+	
+			    			}
+		    				catch(NumberFormatException e)
+		    				{
+		    					System.out.println("\n\n" +"Vous avez rentré un format non adapté à la ligne " + ligne + " dans les arguments de la commande \"" + lignes[ligne] + "\"");
+		    				}
+		    				catch (NullPointerException e) {
+		    					System.out.println("\n One of the arguments of the command \"" + lignes[ligne] + "\" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation");
+		    				}
+		    			}
+		    			else
+		    			{
+		    				System.out.println("\n\n" +"Pas le bon nombre d'arguments avec la commande \"" + lignes[ligne] + "\" à la ligne " + ligne);
+		    			}
+		    		}
 		    		else if(commande.equals("returnBike"))
 		    		{
 		    			if(mots.length == 5)
 		    			{
 		    				try {
+		    				
 			    			int userID = Integer.parseInt(mots[1]);
 			    			int stationID = Integer.parseInt(mots[2]);
 			    			String velibnetworkName = mots[3];
 			    			int time = Integer.parseInt(mots[4]);
 			    			simulations.get(velibnetworkName).returnABicycle(userID, stationID, time);
+		    				}
+		    				catch(NumberFormatException e)
+		    				{
+		    					System.out.println("\n\n" +"Vous avez rentré un format non adapté à la ligne " + ligne + " dans les arguments de la commande \"" + lignes[ligne] + "\"");
+		    				}
+		    				catch (NullPointerException e) {
+		    					System.out.println("\n One of the arguments of the command \"" + lignes[ligne] + "\" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation");
+		    				}
+		    			}
+		    			else
+		    			{
+		    				System.out.println("\n\n" +"Pas le bon nombre d'arguments avec la commande \"" + lignes[ligne] + "\" à la ligne " + ligne);
+		    			}
+		    		}
+		    		else if(commande.equals("newRide"))
+		    		{
+		    			if(mots.length == 7)
+		    			{
+		    				// We had an information of the simulation we placed us
+			    			// newRide <userID, latitude, longitude, bicycleType, RidePref, velibnetworkName>
+		    				try {
+			    			int userID = Integer.parseInt(mots[1]);
+			    			double latitude = Double.parseDouble(mots[2]);
+			    			double longitude = Double.parseDouble(mots[3]);
+			    			String bicycleType = mots[4];
+			    			String pref = mots[5];
+			    			String velibnetworkName = mots[6];
+			    			simulations.get(velibnetworkName).newRide(userID, latitude, longitude, bicycleType, pref);
+		    				}
+		    				catch(NumberFormatException e)
+		    				{
+		    					System.out.println("\n\n" +"Vous avez rentré un format non adapté à la ligne " + ligne + " dans les arguments de la commande \"" + lignes[ligne] + "\"");
+		    				}
+		    				catch (NullPointerException e) {
+		    					System.out.println("\n One of the arguments of the command \"" + lignes[ligne] + "\" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation");
+		    				}
+		    			}
+		    			else
+		    			{
+		    				System.out.println("\n\n" +"Pas le bon nombre d'arguments avec la commande \"" + lignes[ligne] + "\" à la ligne " + ligne);
+		    			}
+		    		}
+		    		else if(commande.equals("returnBikeInTheStationAdvised"))
+		    		{
+		    			if(mots.length == 4)
+		    			{
+		    				try {
+			    			int userID = Integer.parseInt(mots[1]);
+			    			String velibnetworkName = mots[2];
+			    			int time = Integer.parseInt(mots[3]);
+			    			simulations.get(velibnetworkName).returnABicycleInTheStationDestination(userID, time);
 		    				}
 		    				catch(NumberFormatException e)
 		    				{
@@ -500,6 +581,10 @@ public class CLUI extends PrintStream {
 				catch (NullPointerException e) {
 					System.out.println("You entered a null command !");
 				}
+				catch (IndexOutOfBoundsException e) {
+					System.out.println("You entered a invalid command, probably a null argument !");
+				}
+				
 		    }
 			return simulations;
 		}
