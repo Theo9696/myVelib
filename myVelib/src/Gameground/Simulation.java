@@ -119,7 +119,7 @@ public class Simulation {
 				while (a == true) {
 					float r = (float) (numberOfStations*Math.random());
 					try {
-						stations.get((int) Math.floor(r)).returnBicycle(newBicycle() , 0);
+						stations.get((int) Math.floor(r)).returnBicycle(newBicycle() , 0, true);
 						a = false;
 					} catch (StationFullException e) {
 						tries++;
@@ -219,7 +219,7 @@ public class Simulation {
 		
 		
 		}else {
-			station = new Station(latitude, longitude, false);
+			station = new Station(latitude, longitude, true);
 		}
 		
 		for (int k=0; k<numberOfParkingSlot; k++) {
@@ -244,7 +244,7 @@ public class Simulation {
 		
 		
 		}else {
-			station = new Station(latitude, longitude, false);
+			station = new Station(latitude, longitude, true);
 		}
 		
 		for (int k=0; k<numberOfParkingSlot; k++) {
@@ -325,8 +325,14 @@ public class Simulation {
 		this.addnewUser(new User(ListOfNameBasic[r], cartType));
 	}
 	
+	public void newUser(String cartType, String name ) {
+		this.addnewUser(new User(name, cartType));
+	}
+	
 	public void takeABicycle(int userID, int stationID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
 		try {
+			// Test if the user exist before taking the bicycle from the station !
+			String username  = this.users.get(userID).getName();
 			if (this.stations.get(stationID).hasStationBicycle(bicycleType)) {
 				Bicycle b = stations.get(stationID).needBicycle(bicycleType, timeBicycleTaken);
 				if (this.users.get(userID).getActualRide() != null) {

@@ -1,0 +1,11 @@
+setup simulation1
+setup simulation2
+displayStation simulation1 0
+addUser Théo Vlibre simulation1
+rentBike 0 1 simulation1 0
+returnBike 0 2 simulatio1 6
+offline simulation1 0
+
+
+
+

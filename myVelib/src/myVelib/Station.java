@@ -296,7 +296,7 @@ public class Station {
 						notifyObservers();
 					}*/
 					
-					System.out.println("Hello ! You took the bicycle "+ b.toString() + " in the station n° " + this.getStationID());
+					System.out.println("The bicycle "+ b.toString() + " in the station n° " + this.getStationID()+" has been taken");
 					return b;
 					}
 				else {
@@ -317,6 +317,47 @@ public class Station {
 			throw new StationOfflineException(this);
 		} else if (freeparkingslot.size() == 0) {
 			throw new StationFullException(this);
+		} else {
+			boolean igotaplace = false;
+			int n = 0;
+			while (!igotaplace && n < freeparkingslot.size()) {
+				try {
+					ParkingSlot p = freeparkingslot.get(n);
+					if (p.isUsable()) {
+						p.addBicycle(bicycle, timeBicycleGaveBack);
+						this.slotisoccupied(p);
+						igotaplace = true;
+						updateNumberBicyclePlus(p.getBicycle());
+						numberOfDrop++;
+						
+						if (occupiedparkingslot.size() + outOfOrderParkingslot.size() == parkingslot.size()) {
+							this.changed = true;
+							notifyObservers();
+						}
+					}
+					else {
+						n++;
+					}
+				}
+
+
+				catch (ParkingSlotFullException e) {
+					System.err.println(e);
+				}
+			
+		}
+		
+	}
+	}
+	
+	/*
+	 * Return a bicycle in the station if possible
+	 */
+	public void returnBicycle(Bicycle bicycle, double timeBicycleGaveBack, boolean bool) throws StationOfflineException, StationFullException {
+		if (!this.inorder) {
+			throw new StationOfflineException(this);
+		} else if (freeparkingslot.size() == 0) {
+			throw new StationFullException(this, bool);
 		} else {
 			boolean igotaplace = false;
 			int n = 0;
@@ -390,7 +431,7 @@ public class Station {
 	}
 	
 	public String returnStationStatistics() {
-		return "************************** Statistics Station n° " + this.StationID + "********************\n" +
+		return "************* Statistics Station n° " + this.StationID + "***************\n" +
 				"Number of rents operation: " + this.numberOfRent +" | Number of return operations: " + this.numberOfDrop + "\n";
 	}
 	
