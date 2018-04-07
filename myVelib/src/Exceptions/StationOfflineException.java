@@ -4,6 +4,10 @@ import myVelib.Station;
 
 public class StationOfflineException extends Exception {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Station station;
 	
 	public StationOfflineException(Station station) {

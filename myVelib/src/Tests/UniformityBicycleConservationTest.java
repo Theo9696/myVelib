@@ -14,7 +14,6 @@ import myVelib.ParkingSlot;
 import myVelib.PlusStation;
 import myVelib.StandardStation;
 import myVelib.Station;
-import myVelib.UniformityBicycleConservation;
 import myVelib.User;
 import myVelib.WithoutSubscription;
 
@@ -65,7 +64,7 @@ class UniformityBicycleConservationTest {
 		stations.add(s3);
 		stations.add(s4);
 		System.out.println(stations);
-		u0.askNewRide(10, 10, "Electrical", new UniformityBicycleConservation(), stations);
+		u0.askNewRide(10, 10, "Electrical", "uniformity", stations);
 		assertTrue(u0.getActualRide().getStationDestination().getStationID() == 2 && u0.getActualRide().getStationSource().getStationID() == 3);
 	}
 	
@@ -115,7 +114,7 @@ class UniformityBicycleConservationTest {
 		stations.add(s3);
 		stations.add(s4);
 		System.out.println(stations);
-		u0.askNewRide(10, 10, "Electrical", new UniformityBicycleConservation(), stations);
+		u0.askNewRide(10, 10, "Electrical", "uniformity", stations);
 		assertTrue(u0.getActualRide().getStationDestination().getStationID() == 7 && u0.getActualRide().getStationSource().getStationID() == 8);
 	}
 	
@@ -165,7 +164,7 @@ class UniformityBicycleConservationTest {
 		stations.add(s3);
 		stations.add(s4);
 		System.out.println(stations);
-		u0.askNewRide(10, 10, "Electrical", new UniformityBicycleConservation(), stations);
+		u0.askNewRide(10, 10, "Electrical", "uniformity", stations);
 		assertTrue(u0.getActualRide().getStationDestination().getStationID() == 11 && u0.getActualRide().getStationSource().getStationID() == 10);
 	}
 	

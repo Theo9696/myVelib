@@ -1,16 +1,16 @@
 package Gameground;
 
-import java.util.Set;
+//import java.util.Set;
 import java.util.Map.Entry;
 
 import Exceptions.AskPlanningRideImpossibleException;
 import Exceptions.StationEmptyException;
 import Exceptions.StationFullException;
 import Exceptions.StationOfflineException;
-import myVelib.FastestPath;
+//import myVelib.FastestPath;
 import myVelib.User;
 import Exceptions.ParkingSlotFullException;
-import Exceptions.ComputingRideImpossibleException;
+//import Exceptions.ComputingRideImpossibleException;
 
 public class Playground {
 	
@@ -163,7 +163,7 @@ public class Playground {
 		simu.getLeastOccupiedStations(0,5);
 		
 		for(Entry<Integer, User > entry : simu.getUsers().entrySet()) {
-			Integer ID = entry.getKey();
+			//Integer ID = entry.getKey();
 			User user = entry.getValue();
 			System.out.println(user.returnUserStatistics());
 		}

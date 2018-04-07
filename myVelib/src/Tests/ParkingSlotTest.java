@@ -90,7 +90,6 @@ class ParkingSlotTest {
 	void testStatistics6() throws ParkingSlotFullException {
 		ParkingSlot p1 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
-		Bicycle b2 = new MechanicalBicycle();
 			
 		p1.addBicycle(b, 0);
 		p1.removeBicycle(5);

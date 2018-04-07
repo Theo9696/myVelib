@@ -125,9 +125,9 @@ public class User {
 		
 	}
 	
-	private void setActualRide(PlanningRide ride) {
+	/*private void setActualRide(PlanningRide ride) {
 		this.currentRide = ride;
-	}
+	}*/
 	
 	public PlanningRide getActualRide() {
 		return this.currentRide;

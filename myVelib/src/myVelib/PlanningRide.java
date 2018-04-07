@@ -6,7 +6,7 @@ public class PlanningRide {
 	private Station source;
 	private Station destination;
 	private Bicycle bicycle;
-	private User user;
+	//private User user;
 	private double timeBicycleTaken;
 	private double timeBicycleGivenBack;
 	
@@ -14,7 +14,7 @@ public class PlanningRide {
 	public PlanningRide(Station source, Station destination, User user) {
 		this.source = source;
 		this.destination = destination;
-		this.user = user;
+		//this.user = user;
 	}
 	
 	/* ***************************************** Display ****************************************** */

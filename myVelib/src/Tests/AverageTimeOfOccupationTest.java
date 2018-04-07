@@ -20,7 +20,6 @@ class AverageTimeOfOccupationTest {
 		ParkingSlot p3 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
 		Bicycle b2 = new MechanicalBicycle();
-		Bicycle b3 = new ElectricalBicycle();
 		Station s1 = new Station();
 		s1.addParkingSlot(p1);
 		s1.addParkingSlot(p2);
@@ -50,7 +49,6 @@ class AverageTimeOfOccupationTest {
 		ParkingSlot p3 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
 		Bicycle b2 = new MechanicalBicycle();
-		Bicycle b3 = new ElectricalBicycle();
 		Station s1 = new Station();
 		s1.addParkingSlot(p1);
 		s1.addParkingSlot(p2);
@@ -80,7 +78,6 @@ class AverageTimeOfOccupationTest {
 		ParkingSlot p3 = new ParkingSlot();
 		Bicycle b = new ElectricalBicycle();
 		Bicycle b2 = new MechanicalBicycle();
-		Bicycle b3 = new ElectricalBicycle();
 		Station s1 = new Station();
 		s1.addParkingSlot(p1);
 		s1.addParkingSlot(p2);

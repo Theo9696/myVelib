@@ -66,8 +66,6 @@ public class UniformityBicycleConservation implements RidePreferences {
 			// We check if a plus station is at less than 110% from the destination than the station find with a fastest computing
 			Station arrivalnew = arrival;
 			Station departurenew = departure;
-			System.out.println(arrival);
-			System.out.println(departure);
 			for (Station s1 : stations) {
 				double distances1destination = Math.sqrt(Math.pow(destination[1] - s1.getStationLong(),2) + Math.pow(destination[0] - s1.getStationLat(),2));
 				double distances1source = Math.sqrt(Math.pow(user.getUserLong() - s1.getStationLong(),2) + Math.pow(user.getUserLat() - s1.getStationLat(),2));
