@@ -4,6 +4,10 @@ import myVelib.Station;
 
 public class StationEmptyException extends Exception {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Station station;
 	
 	

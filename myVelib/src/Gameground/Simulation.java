@@ -1,8 +1,8 @@
 package Gameground;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
+//import java.util.Collection;
+//import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +19,7 @@ import myVelib.MechanicalBicycle;
 import myVelib.ParkingSlot;
 import myVelib.PlanningRide;
 import myVelib.PlusStation;
-import myVelib.RidePreferences;
+//import myVelib.RidePreferences;
 import myVelib.StandardStation;
 import myVelib.Station;
 import myVelib.User;
@@ -38,19 +38,23 @@ public class Simulation {
 	
 	public ArrayList<String> ListOfName = initListOfName();
 	private ArrayList<Station> stations;
+	private Map<Integer, Station> stationsOrdered;
 	private Map<Integer, User> users = new HashMap<Integer, User>();
 	private String nameOfNetwork;
 	
 	/* ********************************************* Creators ********************************************** */
 	Simulation(int numberOfStations, int numberOfUsers, int lengthOfMap, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		createAMap(numberOfStations, numberOfUsers, lengthOfMap);
 		this.nameOfNetwork = nameOfNetwork;
 		
+		
 	}
 	
-	Simulation(int numberOfStations, int numberOfParkingSlot, int numberOfUsers, int lengthOfMap, int numberOfBike, String nameOfNetwork) throws StationOfflineException, ParkingSlotFullException{
+	public Simulation(int numberOfStations, int numberOfParkingSlot, int numberOfUsers, int lengthOfMap, int numberOfBike, String nameOfNetwork) throws StationOfflineException, ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		createAMap(numberOfStations, numberOfParkingSlot, numberOfUsers, lengthOfMap, numberOfBike);
 		this.nameOfNetwork = nameOfNetwork;
 		
@@ -59,6 +63,7 @@ public class Simulation {
 	
 	Simulation(int numberOfStations, int lengthOfMap, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		createAMap(numberOfStations, 0, lengthOfMap);
 		this.nameOfNetwork = nameOfNetwork;
 		
@@ -66,6 +71,7 @@ public class Simulation {
 	
 	Simulation(int numberOfStations, String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		createAMap(numberOfStations, 0, 50);
 		this.nameOfNetwork = nameOfNetwork;
 		
@@ -73,6 +79,7 @@ public class Simulation {
 	
 	Simulation(String nameOfNetwork) throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		this.nameOfNetwork = nameOfNetwork;
 		createAMap(20, 0, 50);
 		
@@ -80,14 +87,16 @@ public class Simulation {
 	
 	Simulation() throws ParkingSlotFullException{
 		this.stations = new ArrayList<Station>();
+		this.stationsOrdered = new HashMap<Integer, Station>();
 		this.nameOfNetwork = "Essai";
 		createAMap(20, 0, 50);
 		
+		
 	}
 	
-	public static void main(String[] args) throws StationOfflineException, ParkingSlotFullException {
-		Simulation simu = new Simulation(5,10,5,1,20,"Hello");
-		System.out.println(simu);
+	/* *************************************** getters/setters ************************************************ */
+	public String getNameOfNetwork() {
+		return this.nameOfNetwork;
 	}
 	
 	/* ********************************************** Methods : creation of objects **************************************** */
@@ -95,11 +104,15 @@ public class Simulation {
 	private void createAMap(int numberOfStations, int numberOfParkingSlot, int numberOfUsers, int lengthOfMap, int numberOfBike) throws StationOfflineException, ParkingSlotFullException {
 		
 		ArrayList<Station> stations = new ArrayList<Station>();
+		Map<Integer, Station> stationsOrdered = new HashMap<Integer, Station>();
 		
 		for (int numstation = 0; numstation<numberOfStations; numstation++) {
-			stations.add(newStation(numberOfParkingSlot, lengthOfMap, false ));
+			Station station = newStation(numberOfParkingSlot, lengthOfMap, false );
+			stations.add(station);
+			stationsOrdered.put(station.getStationID(), station);
 		}
 		this.stations = stations;
+		this.stationsOrdered = stationsOrdered;
 		
 		Map<Integer, User> users = new HashMap<Integer,User>();
 		
@@ -136,11 +149,15 @@ public class Simulation {
 	private void createAMap(int numberOfStations, int numberOfUsers, int lengthOfMap) throws ParkingSlotFullException {
 		
 		ArrayList<Station> stations = new ArrayList<Station>();
+		Map<Integer, Station> stationsOrdered = new HashMap<Integer, Station>();
 		
 		for (int numstation = 0; numstation<numberOfStations; numstation++) {
-			stations.add(newStation(lengthOfMap, true));
+			Station station = newStation(lengthOfMap, true);
+			stations.add(station);
+			stationsOrdered.put(station.getStationID(), station);
 		}
 		this.stations = stations;
+		this.stationsOrdered = stationsOrdered;
 		
 		Map<Integer, User> users = new HashMap<Integer,User>();
 		
@@ -285,9 +302,15 @@ public class Simulation {
 	public ArrayList<Station> getStations() {
 		return stations;
 	}
-	public void setStations(ArrayList<Station> stations) {
-		this.stations = stations;
+	
+	public Map<Integer, Station> getStationsOrdered(){
+		return stationsOrdered;
 	}
+	
+	/*public void setStations(ArrayList<Station> stations) {
+		this.stations = stations;
+	}*/
+	
 	public Map<Integer, User> getUsers() {
 		return users;
 	}
@@ -332,18 +355,25 @@ public class Simulation {
 	public void takeABicycle(int userID, int stationID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
 		try {
 			// Test if the user exist before taking the bicycle from the station !
-			String username  = this.users.get(userID).getName();
-			if (this.stations.get(stationID).hasStationBicycle(bicycleType)) {
-				Bicycle b = stations.get(stationID).needBicycle(bicycleType, timeBicycleTaken);
-				if (this.users.get(userID).getActualRide() != null) {
-					this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
-					 
-				} else { // creation of a planning ride but we don't know the station of destination since the user didn't ask for a planning ride
-					PlanningRide planning = new PlanningRide(stations.get(stationID), null, users.get(userID) );
-					this.users.get(userID).receiveRide(planning);
-					this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+			this.users.get(userID).getName();
+			if (this.stationsOrdered.get(stationID).hasStationBicycle(bicycleType)) {
+				
+				if(this.users.get(userID).getActualRide() != null && this.users.get(userID).getActualRide().getBicycle() != null) {
+					System.out.println("You can't ask for a bicycle if you received already one...");
 				}
-			} else {
+				else {
+					Bicycle b = stationsOrdered.get(stationID).needBicycle(bicycleType, timeBicycleTaken);
+					if (this.users.get(userID).getActualRide() != null) {
+						this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+						 
+					} else { // creation of a planning ride but we don't know the station of destination since the user didn't ask for a planning ride
+						PlanningRide planning = new PlanningRide(stations.get(stationID), null, users.get(userID) );
+						this.users.get(userID).receiveRide(planning);
+						this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
+					}
+				} 
+			}
+			else {
 				System.out.println("This station doesn't have the type of bicycle you wish !");
 			}
 		}
@@ -380,7 +410,7 @@ public class Simulation {
 						
 						Bicycle bicycle = RideTargeted.getBicycle();
 						if (bicycle == null) {
-							System.out.println("Are you on a ride right now??? You don't have a bicycle...");
+							System.out.println("This user is not on a ride right now ? He doesn't have any bicycle...");
 						
 						}else {
 							stationTargeted.returnBicycle(bicycle,timeBicycleGaveBack);
@@ -389,12 +419,13 @@ public class Simulation {
 						 
 					}
 					catch (NullPointerException e) {
-						System.err.println("Are you on a ride right now???");
+						System.out.println("This user is not on a ride right now !? He doesn't have any bicycle...");
 					} catch (StationFullException e ) {
+						new StationFullException(stationTargeted);
 					}
 				}
 				catch (NullPointerException e) {
-					System.err.println("You don't ask for a right, do you?");
+					System.err.println("You don't ask for a ride, do you?");
 				}
 			} catch (NullPointerException e) {
 				System.err.println("This user doesn't exist !");
@@ -437,12 +468,12 @@ public class Simulation {
 	/*
 	 * This function aims at returning an arraylist of station ordered considering the number of rent and drop
 	 */
-	ArrayList<Station> getMostUsedStations(){
+	public ArrayList<Station> getMostUsedStations(){
 		Map<Integer, Set<Integer>> stationSorted = mostUsedStations();
 		ArrayList<Station> stationOrdered = new ArrayList<Station>();
 		
 		for(Entry<Integer, Set<Integer>> entry : stationSorted.entrySet()) {
-			Integer key = entry.getKey();
+			//Integer key = entry.getKey();
 			Set<Integer> object = entry.getValue();
 			//This is enough to take stations.get(key) because station in position k is the kth station...
 			for (Integer integer : object) {
@@ -475,12 +506,12 @@ public class Simulation {
 	
 	
 	
-	ArrayList<Station> getLeastOccupiedStations(double timeStart, double timeEnd) {
+	public ArrayList<Station> getLeastOccupiedStations(double timeStart, double timeEnd) {
 		Map<Double, Set<Integer>> stationSorted = leastUsedStations(timeStart, timeEnd);
 		ArrayList<Station> stationOrdered = new ArrayList<Station>();
 		
 		for(Entry<Double, Set<Integer>> entry : stationSorted.entrySet()) {
-			Double rateOccupation = entry.getKey();
+			//Double rateOccupation = entry.getKey();
 			Set<Integer> stationIDs = entry.getValue();
 			//This is enough to take stations.get(key) because station in position k is the kth station...
 			for (Integer integer : stationIDs) {

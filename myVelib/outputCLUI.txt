@@ -5,25 +5,52 @@ setup Velib
  setup done !
 
  ***Enter next command or stop to end****
-addUser Théo Vmax 0
-
- One of the arguments of the command "addUser Théo Vmax 0" you entered is not correct, has not been defined in the simulation, or you have not even entered a name of an existing simulation
-
- ***Enter next command or stop to end****
-addUser Théo Vmax
-
-
-Pas le bon nombre d'arguments avec la commande "addUser Théo Vmax" à la ligne 0
-
- ***Enter next command or stop to end****
-addUser Théo Vamx Velib
+addUser T V Velib
 The subscription hasn't been recognized, the user created has then no subscription
-The user Théo has been added to the simulation Velib
+The user T has been added to the simulation Velib
 
 
  ***Enter next command or stop to end****
-newRide 0 2 5 Electrical fastest Velib
+addUser l V Velib
+The subscription hasn't been recognized, the user created has then no subscription
+The user l has been added to the simulation Velib
+
+
+ ***Enter next command or stop to end****
+newRide 0 2 5 Electrical uniformity Velib
+-----------------Plus Station 0------------ 10 parkingslot(s)-------------1.0"" 4.0"" --------------- Number of operations : 7
+2 free slot(s) : [parkingslot 8 : [free], parkingslot 9 : [free]]
+7 occupied slot(s) : [parkingslot 0 : [bicycle 4], parkingslot 1 : [bicycle 6], parkingslot 2 : [bicycle 47], parkingslot 3 : [bicycle 52], parkingslot 4 : [bicycle 53], parkingslot 5 : [bicycle 67], parkingslot 6 : [bicycle 69]]
+1 out-of-order slot(s) : [parkingslot 7 : [OutofOrder]]
+There is 3 electrical bicycle(s) and 4 mechanical bicycle(s)
+
+
+-----------------Standard Station 4------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 41 : [bicycle 10], parkingslot 42 : [bicycle 11], parkingslot 43 : [bicycle 31], parkingslot 44 : [bicycle 34], parkingslot 45 : [bicycle 40], parkingslot 46 : [bicycle 54], parkingslot 47 : [bicycle 56], parkingslot 48 : [bicycle 59], parkingslot 49 : [bicycle 70]]
+1 out-of-order slot(s) : [parkingslot 40 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 7 mechanical bicycle(s)
+
+
 Hello user 0 ! Here is your ride : 
- Departure : station n° 0 | Arrival : station n° 6
+ Departure : station n° 4 | Arrival : station n° 6
+
+ ***Enter next command or stop to end****
+rentBikeInTheStationAdvised 0 Velib 0 Electrical
+
+The user 0 try to take a bicycle in the station advised
+The bicycle [bicycle n° 40 | type : Electrical] in the station n° 4 has been taken
+
+ ***Enter next command or stop to end****
+returnBikeInTheStationAdvised 0 Velib 5
+
+ Departure : station n° 4 | Arrival : station n° 6 | [bicycle n° 40 | type : Electrical]
+Hello user n°0!
+The cost of the ride is : 10 €
+ We hope to see you another time ! 
+
+ ***Enter next command or stop to end****
+returnBike 1 6 Velib 0
+This user is not on a ride right now ? He doesn't have any bicycle...
 
  ***Enter next command or stop to end****

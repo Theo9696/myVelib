@@ -3,7 +3,6 @@ package myVelib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 import Exceptions.ParkingSlotFullException;
@@ -278,7 +277,7 @@ public class Station {
 			boolean igotabicycle = false;
 			int n = 0;
 			while (!igotabicycle && n < occupiedparkingslot.size()) {
-				if (occupiedparkingslot.get(n).isUsable() && (occupiedparkingslot.get(n).getBicycle().getType() == bicycleType)) {
+				if (occupiedparkingslot.get(n).isUsable() && (occupiedparkingslot.get(n).getBicycle().getType().equals(bicycleType))) {
 					Bicycle b = occupiedparkingslot.get(n).removeBicycle(timeBicycleTaken);
 					this.slotisfree(occupiedparkingslot.get(n));
 					igotabicycle = true;
@@ -397,7 +396,7 @@ public class Station {
 	private void notifyObservers() {
 		if (this.changed) {
 			for( Entry<Integer, User> entry : this.userComing.entrySet()) {
-				Integer userID = entry.getKey();
+				//Integer userID = entry.getKey();
 				User user = entry.getValue();
 				user.update();
 			}

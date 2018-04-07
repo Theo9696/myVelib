@@ -12,7 +12,6 @@ import myVelib.Bicycle;
 import myVelib.ElectricalBicycle;
 import myVelib.ParkingSlot;
 import myVelib.PlusStation;
-import myVelib.PreferPlusStation;
 import myVelib.StandardStation;
 import myVelib.Station;
 import myVelib.User;
@@ -38,7 +37,7 @@ class RidePreferencesTest {
 		stations.add(s0);
 		stations.add(s1);
 		stations.add(s2);
-		u0.askNewRide(10, 10, "Electrical", new PreferPlusStation(), stations);
+		u0.askNewRide(10, 10, "Electrical", "preferplus", stations);
 		assertTrue(u0.getActualRide().getStationDestination().getStationID() == 2);
 	}
 	
@@ -60,7 +59,7 @@ class RidePreferencesTest {
 		stations.add(s3);
 		stations.add(s4);
 		stations.add(s5);
-		u1.askNewRide(10, 10, "Electrical", new PreferPlusStation(), stations);
+		u1.askNewRide(10, 10, "Electrical", "preferplus", stations);
 		assertTrue(u1.getActualRide().getStationDestination().getStationID() == 5);
 	}
 	
@@ -82,7 +81,7 @@ class RidePreferencesTest {
 		stations.add(s6);
 		stations.add(s7);
 		stations.add(s8);
-		u2.askNewRide(10, 10, "Electrical", new PreferPlusStation(), stations);
+		u2.askNewRide(10, 10, "Electrical", "preferplus", stations);
 		assertTrue(u2.getActualRide().getStationDestination().getStationID() == 7);
 	}
 
