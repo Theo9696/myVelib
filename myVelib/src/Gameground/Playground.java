@@ -1,16 +1,15 @@
-package Gameground;
+package gameground;
 
 //import java.util.Set;
 import java.util.Map.Entry;
 
-import Exceptions.AskPlanningRideImpossibleException;
-import Exceptions.StationEmptyException;
-import Exceptions.StationFullException;
-import Exceptions.StationOfflineException;
+import exception.AskPlanningRideImpossibleException;
+import exception.ParkingSlotFullException;
+import exception.StationEmptyException;
+import exception.StationFullException;
+import exception.StationOfflineException;
 //import myVelib.FastestPath;
 import myVelib.User;
-import Exceptions.ParkingSlotFullException;
-//import Exceptions.ComputingRideImpossibleException;
 
 public class Playground {
 	

@@ -1,0 +1,11 @@
+setup Velib
+addUser Théo Vmax Velib
+newRide 0 3.5 3.5 Electrical uniformity Velib
+offline Velib 5
+offline Velib 6
+offline Velib 7
+rentBikeInTheStationAdvised 0 Velib 0 Electrical
+offline Velib 0
+offline Velib 1
+offline Velib 2
+returnBikeInTheStationAdvised 0 Velib 5

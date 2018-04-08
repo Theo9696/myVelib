@@ -2,9 +2,9 @@ package command;
 
 import java.util.Map;
 
-import Exceptions.StationEmptyException;
-import Exceptions.StationOfflineException;
-import Gameground.Simulation;
+import exception.StationEmptyException;
+import exception.StationOfflineException;
+import gameground.Simulation;
 
 public class RentBike implements Command {
 	

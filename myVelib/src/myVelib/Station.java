@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Exceptions.ParkingSlotFullException;
-import Exceptions.StationEmptyException;
-import Exceptions.StationFullException;
-import Exceptions.StationOfflineException;
+import exception.ParkingSlotFullException;
+import exception.StationEmptyException;
+import exception.StationFullException;
+import exception.StationOfflineException;
 
 public class Station {
 	
@@ -121,7 +121,7 @@ public class Station {
 	public int getNumberofBikeAvailable(String bicycleType) {
 		int numberOfBicycle = 0;
 		for (ParkingSlot parkingslot : occupiedparkingslot) {
-			if (parkingslot.getBicycle() != null && parkingslot.getBicycle().getType() == bicycleType) {
+			if (parkingslot.getBicycle() != null && parkingslot.getBicycle().getType().equals(bicycleType)) {
 				numberOfBicycle++;
 			}
 		}
@@ -398,10 +398,14 @@ public class Station {
 			for( Entry<Integer, User> entry : this.userComing.entrySet()) {
 				//Integer userID = entry.getKey();
 				User user = entry.getValue();
-				user.update();
+				user.update(this);
 			}
 			this.changed = false;
 		}
+	}
+	
+	public boolean equals(Station station) {
+		return this.getStationID() == station.getStationID();
 	}
 	
 	

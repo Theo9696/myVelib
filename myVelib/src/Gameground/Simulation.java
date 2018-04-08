@@ -1,4 +1,4 @@
-package Gameground;
+package gameground;
 
 import java.util.ArrayList;
 //import java.util.Collection;
@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import Exceptions.AskPlanningRideImpossibleException;
-import Exceptions.ParkingSlotFullException;
-import Exceptions.StationEmptyException;
-import Exceptions.StationFullException;
-import Exceptions.StationOfflineException;
+import exception.AskPlanningRideImpossibleException;
+import exception.ParkingSlotFullException;
+import exception.StationEmptyException;
+import exception.StationFullException;
+import exception.StationOfflineException;
 import myVelib.Bicycle;
 import myVelib.ElectricalBicycle;
 import myVelib.MechanicalBicycle;
@@ -362,6 +362,7 @@ public class Simulation {
 					System.out.println("You can't ask for a bicycle if you received already one...");
 				}
 				else {
+					stationsOrdered.get(stationID).aNewUserLeftABicycle(this.users.get(userID));
 					Bicycle b = stationsOrdered.get(stationID).needBicycle(bicycleType, timeBicycleTaken);
 					if (this.users.get(userID).getActualRide() != null) {
 						this.users.get(userID).getActualRide().addBicycle(b, timeBicycleTaken);
@@ -393,7 +394,7 @@ public class Simulation {
 	
 	public void returnABicycle(int userID, int stationID, double timeBicycleGaveBack) throws StationOfflineException, StationFullException {
 		try {
-			Station stationTargeted = stations.get(stationID);
+			Station stationTargeted = stationsOrdered.get(stationID);
 			try {
 				User user = users.get(userID);
 				try {
@@ -413,6 +414,7 @@ public class Simulation {
 							System.out.println("This user is not on a ride right now ? He doesn't have any bicycle...");
 						
 						}else {
+							stationTargeted.aNewUserLeftABicycle(user);
 							stationTargeted.returnBicycle(bicycle,timeBicycleGaveBack);
 							users.get(userID).completeARide(timeBicycleGaveBack);
 						}
@@ -455,36 +457,34 @@ public class Simulation {
 	private  Map<Integer, Set<Integer>> mostUsedStations() {
 		
 		Map<Integer, Integer> stationsNotOrdered = new HashMap<Integer, Integer>();
-		{ for (Station station : stations) {
+		for (Station station : stations) {
 			stationsNotOrdered.put(station.getStationID(), station.getNumberOfDrop()+ station.getNumberOfRent());
 		}
-		
-		
 		Map<Integer, Set<Integer>> stationSorted = inverser(stationsNotOrdered);
 		
 		return stationSorted;
-		}
+		
 	}
 	/*
 	 * This function aims at returning an arraylist of station ordered considering the number of rent and drop
 	 */
 	public ArrayList<Station> getMostUsedStations(){
 		Map<Integer, Set<Integer>> stationSorted = mostUsedStations();
-		ArrayList<Station> stationOrdered = new ArrayList<Station>();
+		ArrayList<Station> stationordered = new ArrayList<Station>();
 		
 		for(Entry<Integer, Set<Integer>> entry : stationSorted.entrySet()) {
 			//Integer key = entry.getKey();
 			Set<Integer> object = entry.getValue();
 			//This is enough to take stations.get(key) because station in position k is the kth station...
 			for (Integer integer : object) {
-				stationOrdered.add(stations.get(integer));
+				stationordered.add(stationsOrdered.get(integer));
 			}
 			
 			
 		}
 		System.out.println("*************************List of Stations sorted by number of operations************************************");
-		System.out.println(stationOrdered);
-		return stationOrdered;
+		System.out.println(stationordered);
+		return stationordered;
 	}
 	
 	
@@ -513,9 +513,9 @@ public class Simulation {
 		for(Entry<Double, Set<Integer>> entry : stationSorted.entrySet()) {
 			//Double rateOccupation = entry.getKey();
 			Set<Integer> stationIDs = entry.getValue();
-			//This is enough to take stations.get(key) because station in position k is the kth station...
+			
 			for (Integer integer : stationIDs) {
-				stationOrdered.add(stations.get(integer));
+				stationOrdered.add(stationsOrdered.get(integer));
 			}
 			
 			

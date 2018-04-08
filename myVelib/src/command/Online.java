@@ -2,7 +2,7 @@ package command;
 
 import java.util.Map;
 
-import Gameground.Simulation;
+import gameground.Simulation;
 
 public class Online implements Command {
 	
@@ -20,8 +20,9 @@ public class Online implements Command {
 			try {
 				String velibnetworkName = mots[1];
 				int stationID = Integer.parseInt(mots[2]);
-				simulations.get(velibnetworkName).getStations().get(stationID).becomeOnline();
 				System.out.println("\n The station " +  stationID + " of the simulation " + velibnetworkName + " has become online!");
+				simulations.get(velibnetworkName).getStationsOrdered().get(stationID).becomeOnline();
+				
 			}
 			catch(NumberFormatException e)
 			{

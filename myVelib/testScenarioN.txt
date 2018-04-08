@@ -1,8 +1,9 @@
+setup Velib
 displayStation Velib 0
 addUser Théo Vlibre Velib
 display Velib
-rentBike 1 1 Velib 0
-returnBike 1 2 Velib 6
+rentBike 0 1 Velib 0
+returnBike 0 2 Velib 6
 offline Velib 0
 
 

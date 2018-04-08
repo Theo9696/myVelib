@@ -3,7 +3,7 @@ package command;
 import java.util.ArrayList;
 import java.util.Map;
 
-import Gameground.Simulation;
+import gameground.Simulation;
 import myVelib.Station;
 
 public class SortStation implements Command {
@@ -23,11 +23,9 @@ public class SortStation implements Command {
 				String velibnetworkName = mots[1];
 				String sortpolicy = mots[2];
 				if (sortpolicy.contentEquals( "mostusedStations")) {
-					ArrayList<Station> stations = simulations.get(velibnetworkName).getMostUsedStations();
-					System.out.println(stations);
+					simulations.get(velibnetworkName).getMostUsedStations();
 				} else if (sortpolicy.contentEquals( "leastoccupiedStations")) {
-					ArrayList<Station> stations = simulations.get(velibnetworkName).getLeastOccupiedStations(0, Double.POSITIVE_INFINITY);
-					System.out.println(stations);
+					simulations.get(velibnetworkName).getLeastOccupiedStations(0, Double.POSITIVE_INFINITY);
 				} else {
 					System.out.println("We do not know this sorting policy :" + sortpolicy);
 				}
@@ -45,6 +43,7 @@ public class SortStation implements Command {
 		else
 		{
 			System.out.println("\n\n" +"Pas le bon nombre d'arguments pour la commande sortStation");
+			System.out.println("sortStation <velibnetworkName, sortpolicy> with sortpolicy : mostusedStations or leastoccupiedStations");
 		}
 		
 	}

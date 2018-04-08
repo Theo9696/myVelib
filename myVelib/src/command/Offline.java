@@ -2,7 +2,7 @@ package command;
 
 import java.util.Map;
 
-import Gameground.Simulation;
+import gameground.Simulation;
 
 public class Offline implements Command {
 	
@@ -20,8 +20,9 @@ public class Offline implements Command {
 			try {
 				String velibnetworkName = mots[1];
 				int stationID = Integer.parseInt(mots[2]);
-				simulations.get(velibnetworkName).getStations().get(stationID).becomeOffline();
 				System.out.println("\n The station " +  stationID + " of the simulation " + velibnetworkName + " has become offline!");
+				simulations.get(velibnetworkName).getStationsOrdered().get(stationID).becomeOffline();
+				
 			}
 			catch(NumberFormatException e)
 			{
