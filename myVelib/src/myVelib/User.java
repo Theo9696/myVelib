@@ -28,7 +28,7 @@ public class User {
 	
 	
 	/****************************************** Creators ***************************************/
-	User(String name) {
+	public User(String name) {
 		
 		try {
 			this.name = name;
@@ -65,6 +65,33 @@ public class User {
 
 			this.GPScoordinate[0] = 0;
 			this.GPScoordinate[1] = 0;
+			this.currentRide = null;
+			
+		} catch (NullPointerException e) {
+		System.err.println("You tried to enter a null name !");
+	}
+	}
+	
+public User(String name, String cartType, double latitude, double longitude) {
+		
+		try {
+			this.name = name;
+			timecreditbalance = 0;
+			this.UserID = nextnumericalID;
+			nextnumericalID++;
+			if (cartType.equals("Vlibre")) {
+				this.subscription = new Vlibre();
+			} else if (cartType.equals( "Vmax")) {
+				this.subscription = new Vmax();
+			} else if (cartType.equals("NoSubscription")) {
+				this.subscription = new WithoutSubscription();
+			} else {
+				System.out.println("The subscription hasn't been recognized, the user created has then no subscription");
+				this.subscription = new WithoutSubscription();
+			}
+
+			this.GPScoordinate[0] = latitude;
+			this.GPScoordinate[1] = longitude;
 			this.currentRide = null;
 			
 		} catch (NullPointerException e) {
@@ -234,7 +261,7 @@ public class User {
 			currentRide.setTimeGivenBack(timeBicycleGivenBack);
 			System.out.println("Hello user n°" + this.UserID +"!");
 			System.out.println("The cost of the ride is : " + payement(currentRide.getTimeGivenBack() - currentRide.getTimeTaken(), currentRide.getBicycle(), currentRide.getStationDestination().getTypeStation()) + " €"
-					+ "\n We hope to see you another time ! ");
+					+ "\n We hope to see you another time !\n ");
 			this.addTimeSpentOnABike((float)(currentRide.getTimeGivenBack() - currentRide.getTimeTaken()));
 			this.currentRide = null;
 		} else {
@@ -248,12 +275,12 @@ public class User {
 		//Ma station d'arrivée n'est plus disponible
 		if (station.equals(currentRide.getStationDestination())) {
 			if (currentRide.getStationDestination().isFull() || currentRide.getStationDestination().isOffline()) {
-				System.out.println("The destination station is full or offline ! Do you want to recalculate the ride? (y/n)");
+				System.out.println("\nHi " +this.getName() +" (user " + this.getUserID()+") "+"\nThe destination station is full or offline ! Do you want to recalculate the ride? (y/n)\n");
 			}
 		} else if (station.equals(currentRide.getStationSource())) {
 			if (currentRide.getBicycle() == null) {
-				System.out.println("The source station where you should take a bicycle is no more available"
-						+ "\n Do you want to recalculate the ride? (y/n)");
+				System.out.println("\nHi " +this.getName() +" (user " + this.getUserID()+")" +" \nThe source station where you should take a bicycle is no more available"
+						+ "\n Do you want to recalculate the ride? (y/n)\n");
 			}
 		}
 	}

@@ -20,6 +20,7 @@ public class Display implements Command {
 			try {
 				String velibnetworkName = mots[1];
 				Simulation simu = simulations.get(velibnetworkName);
+				simu.getNameOfNetwork(); // if no simulation exist with this name it will call the catch NullPointerException
 				System.out.println(simu);
 			}
 			catch (NullPointerException e) {

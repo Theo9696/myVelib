@@ -132,7 +132,7 @@ public class Simulation {
 				while (a == true) {
 					float r = (float) (numberOfStations*Math.random());
 					try {
-						stations.get((int) Math.floor(r)).returnBicycle(newBicycle() , 0, true);
+						stations.get((int) Math.floor(r)).returnBicycle(newBicycle() , 0, false);
 						a = false;
 					} catch (StationFullException e) {
 						tries++;
@@ -352,6 +352,11 @@ public class Simulation {
 		this.addnewUser(new User(name, cartType));
 	}
 	
+	public void newUser(String cardType, String userName, Double latitude, Double longitude) {
+		this.addnewUser(new User(userName, cardType, latitude, longitude));
+		
+	} 
+	
 	public void takeABicycle(int userID, int stationID, String bicycleType, double timeBicycleTaken) throws StationOfflineException, StationEmptyException {
 		try {
 			// Test if the user exist before taking the bicycle from the station !
@@ -547,6 +552,8 @@ public class Simulation {
 				result.put(e.getValue(), set); } 
 			} 
 		return result; 
-		} 
+		}
+
+	
 	
 }

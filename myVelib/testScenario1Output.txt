@@ -1,4 +1,0 @@
-
- setup done !
-The user Théo has been added to the simulation Velib
-
