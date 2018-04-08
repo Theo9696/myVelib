@@ -14,6 +14,9 @@ public class StationFullException extends Exception {
 	public StationFullException(Station station, boolean bool) {
 		// TODO Auto-generated constructor stub
 		this.station = station;
+		if (bool) {
+			System.out.println("We are sorry...You can't park there because the station is full...");
+		}
 	}
 	
 	public StationFullException(Station station) {

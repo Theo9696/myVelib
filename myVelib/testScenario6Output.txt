@@ -1,0 +1,94 @@
+
+ setup done !
+The user Théo has been added to the simulation Velib
+
+The user Lucas has been added to the simulation Velib
+
+The user Hajar has been added to the simulation Velib
+
+The subscription hasn't been recognized, the user created has then no subscription
+The user Leila has been added to the simulation Velib
+
+The subscription hasn't been recognized, the user created has then no subscription
+The user Camille has been added to the simulation Velib
+
+The subscription hasn't been recognized, the user created has then no subscription
+The user Sarah has been added to the simulation Velib
+
+The subscription hasn't been recognized, the user created has then no subscription
+The user Paul has been added to the simulation Velib
+
+Hello user 0 ! Here is your ride : 
+ Departure : station n° 7 | Arrival : station n° 4
+Hello user 1 ! Here is your ride : 
+ Departure : station n° 6 | Arrival : station n° 4
+Hello user 2 ! Here is your ride : 
+ Departure : station n° 6 | Arrival : station n° 3
+Hello user 3 ! Here is your ride : 
+ Departure : station n° 2 | Arrival : station n° 4
+Hello user 4 ! Here is your ride : 
+ Departure : station n° 2 | Arrival : station n° 4
+Hello user 5 ! Here is your ride : 
+ Departure : station n° 5 | Arrival : station n° 3
+Hello user 6 ! Here is your ride : 
+ Departure : station n° 5 | Arrival : station n° 9
+
+The user 0 try to take a bicycle in the station advised
+The bicycle [bicycle n° 16 | type : Electrical] in the station n° 7 has been taken
+
+The user 1 try to take a bicycle in the station advised
+The bicycle [bicycle n° 4 | type : Mechanical] in the station n° 6 has been taken
+
+The user 2 try to take a bicycle in the station advised
+The bicycle [bicycle n° 86 | type : Mechanical] in the station n° 6 has been taken
+
+The user 3 try to take a bicycle in the station advised
+
+Hi Camille (user 4) 
+The source station where you should take a bicycle is no more available
+ Do you want to recalculate the ride? (y/n)
+
+The bicycle [bicycle n° 24 | type : Electrical] in the station n° 2 has been taken
+
+The user 4 try to take a bicycle in the station advised
+The bicycle [bicycle n° 6 | type : Mechanical] in the station n° 2 has been taken
+
+ Departure : station n° 7 | Arrival : station n° 4 | [bicycle n° 16 | type : Electrical]
+Hello user n°0!
+You obtain -0.0hour of credit
+The cost of the ride is : 4 €
+ We hope to see you another time !
+ 
+
+ Departure : station n° 6 | Arrival : station n° 4 | [bicycle n° 4 | type : Mechanical]
+Hello user n°1!
+You obtain -0.0hour of credit
+The cost of the ride is : 5 €
+ We hope to see you another time !
+ 
+
+ Departure : station n° 6 | Arrival : station n° 3 | [bicycle n° 86 | type : Mechanical]
+Hello user n°2!
+You obtain -0.0 hour of credit
+The cost of the ride is : 4 €
+ We hope to see you another time !
+ 
+
+ Departure : station n° 2 | Arrival : station n° 4 | [bicycle n° 24 | type : Electrical]
+Hello user n°3!
+The cost of the ride is : 16 €
+ We hope to see you another time !
+ 
+************* Statistics Station n° 0***************
+Number of rents operation: 0 | Number of return operations: 0
+
+************* Statistics Station n° 3***************
+Number of rents operation: 0 | Number of return operations: 1
+
+************* Statistics Station n° 7***************
+Number of rents operation: 1 | Number of return operations: 0
+
+******************** Statistics User n° 0 ******************************
+Number of rides: 1 | total time spent on a bike: 5.0
+total amount of charges: 4 | time-credit earned: 0.0
+

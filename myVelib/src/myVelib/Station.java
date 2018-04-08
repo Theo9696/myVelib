@@ -40,6 +40,16 @@ public class Station {
 		NumberBicycle.put("Mechanical", 0);
 		typestation = new StandardStation();
 	}
+	public Station(TypeStation type){
+		this.inorder = true;
+		this.GPScoordinate[0] = 0;
+		this.GPScoordinate[1] = 0;
+		this.StationID = nextnumericalID;
+		nextnumericalID++;
+		NumberBicycle.put("Electrical",0);
+		NumberBicycle.put("Mechanical", 0);
+		this.typestation = type;
+	}
 	
 	public Station(double latitude, double longitude){
 		this.inorder = true;
@@ -91,6 +101,7 @@ public class Station {
 			for (ParkingSlot p : parkingslot) {
 				if (p.isFree() && p.isUsable())
 					freeparkingslot.add(p);
+				
 				else if (p.isFree() && !p.isUsable())
 					outOfOrderParkingslot.add(p);
 				else {
@@ -128,8 +139,22 @@ public class Station {
 		return numberOfBicycle;
 	}
 	
+	public int getNumberofBikeAvailable() {
+		int numberOfBicycle = 0;
+		for (ParkingSlot parkingslot : occupiedparkingslot) {
+			if (parkingslot.getBicycle() != null) {
+				numberOfBicycle++;
+			}
+		}
+		return numberOfBicycle;
+	}
+	
 	public int getNumberOfFreeParkingslot() {
 		return freeparkingslot.size();
+	}
+	
+	public int getNumberOfOperations() {
+		return this.numberOfDrop + this.numberOfRent;
 	}
 	
 	
@@ -189,7 +214,7 @@ public class Station {
 	}
 	
 	public boolean isEmpty() {
-		if (freeparkingslot.size() ==0) {
+		if (occupiedparkingslot.size() ==0) {
 			return true;
 		} else {
 			return false;
@@ -350,7 +375,7 @@ public class Station {
 	}
 	
 	/*
-	 * Return a bicycle in the station if possible
+	 * Return a bicycle in the station if possible : use for the initialisation only : to treat but not println an error of stationfull type
 	 */
 	public void returnBicycle(Bicycle bicycle, double timeBicycleGaveBack, boolean bool) throws StationOfflineException, StationFullException {
 		if (!this.inorder) {
@@ -368,7 +393,9 @@ public class Station {
 						this.slotisoccupied(p);
 						igotaplace = true;
 						updateNumberBicyclePlus(p.getBicycle());
-						numberOfDrop++;
+						if (bool) {
+							numberOfDrop++;
+						}
 						
 						if (occupiedparkingslot.size() + outOfOrderParkingslot.size() == parkingslot.size()) {
 							this.changed = true;
@@ -428,7 +455,16 @@ public class Station {
 			averageTimeOfOccupation += slot.rateOfOccupationSlot(timeStart, timeEnd);
 		}
 		
-		averageTimeOfOccupation /= (parkingslot.size() * (timeEnd - timeStart));
+		if (parkingslot.size() == 0 ) {
+			System.out.println("The station " + this.getStationID() +" has no parkingslot, then no rate of occupation can be computed, by default : -1 !");
+			averageTimeOfOccupation = -1;
+		}
+		else if (timeEnd - timeStart == 0) {
+			System.out.println("You must entered a different timeStart from timeEnd, no rate of occupation can be computed, by default : -1 !");
+			averageTimeOfOccupation = -1;
+		} else {
+			averageTimeOfOccupation /= (parkingslot.size() * (timeEnd - timeStart));
+		}
 		
 		return averageTimeOfOccupation;
 	}
@@ -436,6 +472,9 @@ public class Station {
 	public String returnStationStatistics() {
 		return "************* Statistics Station n° " + this.StationID + "***************\n" +
 				"Number of rents operation: " + this.numberOfRent +" | Number of return operations: " + this.numberOfDrop + "\n";
+	}
+	public int getNumberOfParkingslot() {
+		return parkingslot.size();
 	}
 	
 }

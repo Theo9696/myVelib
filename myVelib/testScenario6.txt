@@ -1,0 +1,28 @@
+setup Velib
+addUser Théo Vmax Velib
+addUser Lucas Vmax Velib
+addUser Hajar Vlibre Velib 0 0
+addUser Leila No Velib 1 5
+addUser Camille No Velib 2 4
+addUser Sarah No Velib 4 2
+addUser Paul No Velib 3 3
+newRide 0 3 2 Electrical shortest Velib
+newRide 1 0 2 Mechanical uniformity Velib
+newRide 2 5 1 Mechanical fastest Velib
+newRide 3 1 2 Electrical preferplus Velib
+newRide 4 0 4 Mechanical uniformity Velib
+newRide 5 3 1 Mechanical avoidplus Velib
+newRide 6 3 0.5 Electrical uniformity Velib
+rentBikeInTheStationAdvised 0 Velib 0 Electrical
+rentBikeInTheStationAdvised 1 Velib 0 Mechanical
+rentBikeInTheStationAdvised 2 Velib 0 Mechanical
+rentBikeInTheStationAdvised 3 Velib 0 Electrical
+rentBikeInTheStationAdvised 4 Velib 0 Mechanical
+returnBikeInTheStationAdvised 0 Velib 5
+returnBikeInTheStationAdvised 1 Velib 6
+returnBikeInTheStationAdvised 2 Velib 5
+returnBikeInTheStationAdvised 3 Velib 8
+displayStation Velib 0
+displayStation Velib 3
+displayStation Velib 7
+displayUser Velib 0

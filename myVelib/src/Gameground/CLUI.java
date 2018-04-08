@@ -70,7 +70,7 @@ public class CLUI extends PrintStream {
 	public static void main(String[] args) throws IOException, ParkingSlotFullException, StationOfflineException, StationEmptyException, StationFullException, AskPlanningRideImpossibleException {
 		
 		Map<String, Simulation> simulations = new HashMap<String, Simulation>();
-			
+		
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -79,6 +79,13 @@ public class CLUI extends PrintStream {
 		
 		int compteur = 0;
 		String stop = "false";
+		
+		System.out.println("\n ***Would you like to load an intial configuration?****** (y/n)\n" + "It won't be possible to run other files without running again CLUI.java");
+		if (scan.nextLine().equals("y")) {
+			stop();
+			studyFile("my_velib.ini", simulations);
+			start("outputCLUI.txt");
+		}
 		
 		while (compteur <1000 && !stop.equals("stop")) {
 			System.out.println("\n ***Enter next command or stop to end****");
@@ -239,7 +246,9 @@ public class CLUI extends PrintStream {
 					Command command = new ConstructorCommand().create(commande);
 					
 					if (command == null) {
-						System.out.println("\n\n" +"Command \"" + commande + "\" of \"" + lignes[ligne] + "\" at the lign " + ligne + " is not recognized");
+						System.out.println("\n\n" +"Command \"" + commande + "\" of \"" + lignes[ligne] + "\" at the lign " + ligne + " is not recognized\n"+
+						"Choose between one of this one : [setup, runtest, addUser, display, displayStation, displayUser, newRide,\n offline, online, "+
+								"rentBike, rentBikeInTheStationAdvised, returnBike, returnBikeInTheStationAvised, sortStation]\n");
 					} else {
 					
 						command.test(mots, simulations, lignes, ligne);
@@ -257,8 +266,7 @@ public class CLUI extends PrintStream {
 		    }
 			return simulations;
 		}
-	
-	
+			
 
 
 }

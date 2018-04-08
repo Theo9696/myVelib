@@ -37,7 +37,7 @@ class AverageTimeOfOccupationTest {
 		
 		p3.addBicycle(b2, 0);
 		p3.removeBicycle(6);
-		
+		System.out.println(s1.returnStationStatistics());
 		assertTrue(s1.rateOfOccupation(0, 5) == (double)14/15);
 		
 	}
@@ -97,6 +97,35 @@ class AverageTimeOfOccupationTest {
 		p3.removeBicycle(6);
 		
 		assertTrue(s1.rateOfOccupation(11, 9) == 0);
+		
+	}
+	
+	@Test
+	void test4() throws ParkingSlotFullException {
+		ParkingSlot p1 = new ParkingSlot();
+		ParkingSlot p2 = new ParkingSlot();
+		ParkingSlot p3 = new ParkingSlot();
+		Bicycle b = new ElectricalBicycle();
+		Bicycle b2 = new MechanicalBicycle();
+		Station s1 = new Station();
+		s1.addParkingSlot(p1);
+		s1.addParkingSlot(p2);
+		s1.addParkingSlot(p3);
+		
+		p1.addBicycle(b, 0);
+		p1.removeBicycle(5);
+		p1.addBicycle(b2, 7.5);
+		p1.removeBicycle(7.7);
+		
+		p2.addBicycle(b2, 0);
+		p2.removeBicycle(4);
+		p2.addBicycle(b, 7);
+		p2.removeBicycle(9);
+		
+		p3.addBicycle(b2, 0);
+		p3.removeBicycle(6);
+		
+		assertTrue(s1.rateOfOccupation(11, Double.POSITIVE_INFINITY) == 0);
 		
 	}
 

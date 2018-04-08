@@ -48,7 +48,7 @@ public class ShortestPath implements RidePreferences {
 										+ Math.pow(destination[1]-s2.getStationLong(),2)); // walk between the station and the destination
 						
 						if (distanceNew < distance && !s1.isOffline() && !s2.isOffline()) {
-							if (s1.hasStationBicycle(typeBicycle) && !s2.isFull()) { //Departure has a bicycle of the wis
+							if (s1.hasStationBicycle(typeBicycle) && !s2.isFull()) { //Departure has a bicycle of the wished type
 								departure = s1;											//Arrival has a free slot 
 								arrival = s2;
 								distance = distanceNew;
