@@ -2,7 +2,9 @@ package myVelib;
 
 import java.util.ArrayList;
 
-import Exceptions.ComputingRideImpossibleException;
+import exception.ComputingRideImpossibleException;
+import rideComputingPossibilities.FastestPath;
+import rideComputingPossibilities.RidePreferences;
 
 public class ComputingRide {
 	

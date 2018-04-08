@@ -1,15 +1,15 @@
-package Gameground;
+package gameground;
 
 import java.io.*;
 import java.util.*;
 
-import Exceptions.AskPlanningRideImpossibleException;
-import Exceptions.ParkingSlotFullException;
-import Exceptions.StationEmptyException;
-import Exceptions.StationFullException;
-import Exceptions.StationOfflineException;
 import command.*;
 //import myVelib.Station;
+import exception.AskPlanningRideImpossibleException;
+import exception.ParkingSlotFullException;
+import exception.StationEmptyException;
+import exception.StationFullException;
+import exception.StationOfflineException;
 
 public class CLUI extends PrintStream {
 	
@@ -70,8 +70,7 @@ public class CLUI extends PrintStream {
 	public static void main(String[] args) throws IOException, ParkingSlotFullException, StationOfflineException, StationEmptyException, StationFullException, AskPlanningRideImpossibleException {
 		
 		Map<String, Simulation> simulations = new HashMap<String, Simulation>();
-		/*studyFile("testScenarioN.txt",simulations);*/
-		
+			
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -91,7 +90,7 @@ public class CLUI extends PrintStream {
 				stop();
 			} 
 
-			else if (lignes[0].length() == 7 && lignes[0].substring(0,7).contentEquals("runtest")) {
+			else if (lignes[0].length() >= 7 && lignes[0].substring(0,7).contentEquals("runtest")) {
 				
 				String delims2 = (String) "[ ,,]";
 				String[] mots = (String[]) ((java.lang.String) lignes[0]).split((java.lang.String) delims2);
@@ -240,7 +239,7 @@ public class CLUI extends PrintStream {
 					Command command = new ConstructorCommand().create(commande);
 					
 					if (command == null) {
-						System.out.println("\n\n" +"La commande \"" + commande + "\" de \"" + lignes[ligne] + "\" à la ligne " + ligne + " n'est pas reconnue");
+						System.out.println("\n\n" +"Command \"" + commande + "\" of \"" + lignes[ligne] + "\" at the lign " + ligne + " is not recognized");
 					} else {
 					
 						command.test(mots, simulations, lignes, ligne);

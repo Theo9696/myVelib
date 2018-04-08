@@ -2,7 +2,7 @@ package command;
 
 import java.util.Map;
 
-import Gameground.Simulation;
+import gameground.Simulation;
 
 public class Display implements Command {
 	

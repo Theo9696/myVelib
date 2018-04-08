@@ -2,8 +2,8 @@ package command;
 
 import java.util.Map;
 
-import Exceptions.AskPlanningRideImpossibleException;
-import Gameground.Simulation;
+import exception.AskPlanningRideImpossibleException;
+import gameground.Simulation;
 
 public class NewRide implements Command {
 

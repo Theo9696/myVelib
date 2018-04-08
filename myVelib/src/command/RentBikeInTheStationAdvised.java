@@ -2,9 +2,9 @@ package command;
 
 import java.util.Map;
 
-import Exceptions.StationEmptyException;
-import Exceptions.StationOfflineException;
-import Gameground.Simulation;
+import exception.StationEmptyException;
+import exception.StationOfflineException;
+import gameground.Simulation;
 
 public class RentBikeInTheStationAdvised implements Command {
 	
@@ -20,7 +20,7 @@ public class RentBikeInTheStationAdvised implements Command {
 		{
 			try {
 			// We had an information of the simulation we placed us
-			// rentBike <userID, stationID, velibnetworkName, time, BicycleType>
+			// rentBike <userID, velibnetworkName, time, BicycleType>
 				int userID = Integer.parseInt(mots[1]);
 				String velibnetworkName = mots[2];
 				Double timeBicycleTaken = Double.parseDouble(mots[3]);

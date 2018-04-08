@@ -3,9 +3,9 @@ package command;
 
 import java.util.Map;
 
-import Exceptions.ParkingSlotFullException;
-import Exceptions.StationOfflineException;
-import Gameground.Simulation;
+import exception.ParkingSlotFullException;
+import exception.StationOfflineException;
+import gameground.Simulation;
 
 public class Setup implements Command {
 	

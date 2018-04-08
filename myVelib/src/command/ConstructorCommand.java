@@ -44,7 +44,10 @@ public class ConstructorCommand {
 		} else if (name.equals("display")) {
 			return new Display();
 			
-		} else {
+		} else if (name.contentEquals("runtest")) {
+			return new Runtest();
+		}
+		else {
 			return null;
 		}
 	}

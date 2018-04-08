@@ -1,0 +1,57 @@
+
+ setup done !
+The user Théo has been added to the simulation Velib
+
+Hello user 0 ! Here is your ride : 
+ Departure : station n° 3 | Arrival : station n° 8
+
+ The station 5 of the simulation Velib has become offline!
+
+ The station 6 of the simulation Velib has become offline!
+
+ The station 7 of the simulation Velib has become offline!
+
+The user 0 try to take a bicycle in the station advised
+The bicycle [bicycle n° 37 | type : Electrical] in the station n° 3 has been taken
+
+ The station 0 of the simulation Velib has become offline!
+
+ The station 1 of the simulation Velib has become offline!
+
+ The station 2 of the simulation Velib has become offline!
+
+ Departure : station n° 3 | Arrival : station n° 8 | [bicycle n° 37 | type : Electrical]
+Hello user n°0!
+You obtain -0.0hour of credit
+The cost of the ride is : 4 €
+ We hope to see you another time ! 
+
+
+Command "" of "" at the lign 11 is not recognized
+
+ setup done !
+The user Théo has been added to the simulation Velib2
+
+Hello user 1 ! Here is your ride : 
+ Departure : station n° 12 | Arrival : station n° 16
+
+ The station 11 of the simulation Velib2 has become offline!
+
+ The station 12 of the simulation Velib2 has become offline!
+The source station where you should take a bicycle is no more available
+ Do you want to recalculate the ride? (y/n)
+
+ The station 13 of the simulation Velib2 has become offline!
+
+The user 1 try to take a bicycle in the station advised
+Station n° 12 is offline
+
+ The station 15 of the simulation Velib2 has become offline!
+
+ The station 16 of the simulation Velib2 has become offline!
+The destination station is full or offline ! Do you want to recalculate the ride? (y/n)
+
+ The station 17 of the simulation Velib2 has become offline!
+
+ Departure : station n° 12 | Arrival : station n° 16
+This user is not on a ride right now ? He doesn't have any bicycle...

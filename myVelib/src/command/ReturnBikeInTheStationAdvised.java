@@ -2,9 +2,9 @@ package command;
 
 import java.util.Map;
 
-import Exceptions.StationFullException;
-import Exceptions.StationOfflineException;
-import Gameground.Simulation;
+import exception.StationFullException;
+import exception.StationOfflineException;
+import gameground.Simulation;
 
 public class ReturnBikeInTheStationAdvised implements Command {
 	

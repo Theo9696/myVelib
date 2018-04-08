@@ -3,7 +3,7 @@ package command;
 
 import java.util.Map;
 
-import Gameground.Simulation;
+import gameground.Simulation;
 import myVelib.User;
 
 public class DisplayUser implements Command {

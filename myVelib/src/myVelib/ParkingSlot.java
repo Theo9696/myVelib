@@ -2,8 +2,7 @@ package myVelib;
 
 import java.util.ArrayList;
 
-
-import Exceptions.ParkingSlotFullException;
+import exception.ParkingSlotFullException;
 
 public class ParkingSlot {
 	

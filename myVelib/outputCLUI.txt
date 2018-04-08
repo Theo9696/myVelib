@@ -1,56 +1,332 @@
 
  ***Enter next command or stop to end****
-setup Velib
+sortStation Velib2 mostusedStations
+*************************List of Stations sorted by number of operations************************************
+[-----------------Standard Station 12------------ 10 parkingslot(s)-------------1.0"" 1.0"" --------------- Number of operations : 5
 
- setup done !
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+4 free slot(s) : [parkingslot 125 : [free], parkingslot 126 : [free], parkingslot 127 : [free], parkingslot 128 : [free]]
+5 occupied slot(s) : [parkingslot 120 : [bicycle 85], parkingslot 121 : [bicycle 87], parkingslot 122 : [bicycle 88], parkingslot 123 : [bicycle 113], parkingslot 124 : [bicycle 136]]
+1 out-of-order slot(s) : [parkingslot 129 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
 
- ***Enter next command or stop to end****
-addUser T V Velib
-The subscription hasn't been recognized, the user created has then no subscription
-The user T has been added to the simulation Velib
+, -----------------Standard Station 18------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 5
+5 free slot(s) : [parkingslot 185 : [free], parkingslot 186 : [free], parkingslot 187 : [free], parkingslot 188 : [free], parkingslot 189 : [free]]
+5 occupied slot(s) : [parkingslot 180 : [bicycle 86], parkingslot 181 : [bicycle 106], parkingslot 182 : [bicycle 118], parkingslot 183 : [bicycle 137], parkingslot 184 : [bicycle 150]]
+0 out-of-order slot(s) : []
+There is 0 electrical bicycle(s) and 5 mechanical bicycle(s)
 
+, -----------------Standard Station 10------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 6
+4 free slot(s) : [parkingslot 106 : [free], parkingslot 107 : [free], parkingslot 108 : [free], parkingslot 109 : [free]]
+6 occupied slot(s) : [parkingslot 100 : [bicycle 82], parkingslot 101 : [bicycle 95], parkingslot 102 : [bicycle 96], parkingslot 103 : [bicycle 101], parkingslot 104 : [bicycle 107], parkingslot 105 : [bicycle 119]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 5 mechanical bicycle(s)
 
- ***Enter next command or stop to end****
-addUser l V Velib
-The subscription hasn't been recognized, the user created has then no subscription
-The user l has been added to the simulation Velib
+, -----------------Standard Station 13------------ 10 parkingslot(s)-------------4.0"" 1.0"" --------------- Number of operations : 7
 
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 139 : [free]]
+7 occupied slot(s) : [parkingslot 130 : [bicycle 90], parkingslot 132 : [bicycle 93], parkingslot 133 : [bicycle 94], parkingslot 134 : [bicycle 99], parkingslot 135 : [bicycle 102], parkingslot 136 : [bicycle 104], parkingslot 138 : [bicycle 133]]
+2 out-of-order slot(s) : [parkingslot 131 : [OutofOrder], parkingslot 137 : [OutofOrder]]
+There is 4 electrical bicycle(s) and 3 mechanical bicycle(s)
 
- ***Enter next command or stop to end****
-newRide 0 2 5 Electrical uniformity Velib
------------------Plus Station 0------------ 10 parkingslot(s)-------------1.0"" 4.0"" --------------- Number of operations : 7
-2 free slot(s) : [parkingslot 8 : [free], parkingslot 9 : [free]]
-7 occupied slot(s) : [parkingslot 0 : [bicycle 4], parkingslot 1 : [bicycle 6], parkingslot 2 : [bicycle 47], parkingslot 3 : [bicycle 52], parkingslot 4 : [bicycle 53], parkingslot 5 : [bicycle 67], parkingslot 6 : [bicycle 69]]
-1 out-of-order slot(s) : [parkingslot 7 : [OutofOrder]]
-There is 3 electrical bicycle(s) and 4 mechanical bicycle(s)
+, -----------------Standard Station 11------------ 10 parkingslot(s)-------------4.0"" 2.0"" --------------- Number of operations : 8
 
-
------------------Standard Station 4------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 9
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 0 free slot(s) : []
-9 occupied slot(s) : [parkingslot 41 : [bicycle 10], parkingslot 42 : [bicycle 11], parkingslot 43 : [bicycle 31], parkingslot 44 : [bicycle 34], parkingslot 45 : [bicycle 40], parkingslot 46 : [bicycle 54], parkingslot 47 : [bicycle 56], parkingslot 48 : [bicycle 59], parkingslot 49 : [bicycle 70]]
-1 out-of-order slot(s) : [parkingslot 40 : [OutofOrder]]
-There is 2 electrical bicycle(s) and 7 mechanical bicycle(s)
+8 occupied slot(s) : [parkingslot 111 : [bicycle 81], parkingslot 112 : [bicycle 100], parkingslot 114 : [bicycle 112], parkingslot 115 : [bicycle 134], parkingslot 116 : [bicycle 135], parkingslot 117 : [bicycle 144], parkingslot 118 : [bicycle 149], parkingslot 119 : [bicycle 152]]
+2 out-of-order slot(s) : [parkingslot 110 : [OutofOrder], parkingslot 113 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 6 mechanical bicycle(s)
 
+, -----------------Standard Station 16------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 8
 
-Hello user 0 ! Here is your ride : 
- Departure : station n° 4 | Arrival : station n° 6
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 free slot(s) : [parkingslot 168 : [free], parkingslot 169 : [free]]
+8 occupied slot(s) : [parkingslot 160 : [bicycle 91], parkingslot 161 : [bicycle 125], parkingslot 162 : [bicycle 130], parkingslot 163 : [bicycle 131], parkingslot 164 : [bicycle 139], parkingslot 165 : [bicycle 151], parkingslot 166 : [bicycle 156], parkingslot 167 : [bicycle 159]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Plus Station 14------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 140 : [bicycle 97], parkingslot 141 : [bicycle 103], parkingslot 143 : [bicycle 109], parkingslot 144 : [bicycle 110], parkingslot 145 : [bicycle 117], parkingslot 146 : [bicycle 127], parkingslot 147 : [bicycle 129], parkingslot 148 : [bicycle 132], parkingslot 149 : [bicycle 147]]
+1 out-of-order slot(s) : [parkingslot 142 : [OutofOrder]]
+There is 1 electrical bicycle(s) and 8 mechanical bicycle(s)
+
+, -----------------Standard Station 15------------ 10 parkingslot(s)-------------2.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 159 : [free]]
+9 occupied slot(s) : [parkingslot 150 : [bicycle 92], parkingslot 151 : [bicycle 115], parkingslot 152 : [bicycle 116], parkingslot 153 : [bicycle 120], parkingslot 154 : [bicycle 121], parkingslot 155 : [bicycle 128], parkingslot 156 : [bicycle 138], parkingslot 157 : [bicycle 146], parkingslot 158 : [bicycle 158]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 17------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 179 : [free]]
+9 occupied slot(s) : [parkingslot 170 : [bicycle 83], parkingslot 171 : [bicycle 89], parkingslot 172 : [bicycle 108], parkingslot 173 : [bicycle 111], parkingslot 174 : [bicycle 114], parkingslot 175 : [bicycle 124], parkingslot 176 : [bicycle 126], parkingslot 177 : [bicycle 140], parkingslot 178 : [bicycle 142]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 19------------ 10 parkingslot(s)-------------1.0"" 2.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 190 : [bicycle 84], parkingslot 191 : [bicycle 98], parkingslot 192 : [bicycle 105], parkingslot 193 : [bicycle 122], parkingslot 194 : [bicycle 123], parkingslot 196 : [bicycle 141], parkingslot 197 : [bicycle 143], parkingslot 198 : [bicycle 145], parkingslot 199 : [bicycle 155]]
+1 out-of-order slot(s) : [parkingslot 195 : [OutofOrder]]
+There is 0 electrical bicycle(s) and 9 mechanical bicycle(s)
+
+]
+[-----------------Standard Station 12------------ 10 parkingslot(s)-------------1.0"" 1.0"" --------------- Number of operations : 5
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+4 free slot(s) : [parkingslot 125 : [free], parkingslot 126 : [free], parkingslot 127 : [free], parkingslot 128 : [free]]
+5 occupied slot(s) : [parkingslot 120 : [bicycle 85], parkingslot 121 : [bicycle 87], parkingslot 122 : [bicycle 88], parkingslot 123 : [bicycle 113], parkingslot 124 : [bicycle 136]]
+1 out-of-order slot(s) : [parkingslot 129 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Standard Station 18------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 5
+5 free slot(s) : [parkingslot 185 : [free], parkingslot 186 : [free], parkingslot 187 : [free], parkingslot 188 : [free], parkingslot 189 : [free]]
+5 occupied slot(s) : [parkingslot 180 : [bicycle 86], parkingslot 181 : [bicycle 106], parkingslot 182 : [bicycle 118], parkingslot 183 : [bicycle 137], parkingslot 184 : [bicycle 150]]
+0 out-of-order slot(s) : []
+There is 0 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 10------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 6
+4 free slot(s) : [parkingslot 106 : [free], parkingslot 107 : [free], parkingslot 108 : [free], parkingslot 109 : [free]]
+6 occupied slot(s) : [parkingslot 100 : [bicycle 82], parkingslot 101 : [bicycle 95], parkingslot 102 : [bicycle 96], parkingslot 103 : [bicycle 101], parkingslot 104 : [bicycle 107], parkingslot 105 : [bicycle 119]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 13------------ 10 parkingslot(s)-------------4.0"" 1.0"" --------------- Number of operations : 7
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 139 : [free]]
+7 occupied slot(s) : [parkingslot 130 : [bicycle 90], parkingslot 132 : [bicycle 93], parkingslot 133 : [bicycle 94], parkingslot 134 : [bicycle 99], parkingslot 135 : [bicycle 102], parkingslot 136 : [bicycle 104], parkingslot 138 : [bicycle 133]]
+2 out-of-order slot(s) : [parkingslot 131 : [OutofOrder], parkingslot 137 : [OutofOrder]]
+There is 4 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Standard Station 11------------ 10 parkingslot(s)-------------4.0"" 2.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+0 free slot(s) : []
+8 occupied slot(s) : [parkingslot 111 : [bicycle 81], parkingslot 112 : [bicycle 100], parkingslot 114 : [bicycle 112], parkingslot 115 : [bicycle 134], parkingslot 116 : [bicycle 135], parkingslot 117 : [bicycle 144], parkingslot 118 : [bicycle 149], parkingslot 119 : [bicycle 152]]
+2 out-of-order slot(s) : [parkingslot 110 : [OutofOrder], parkingslot 113 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 16------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 free slot(s) : [parkingslot 168 : [free], parkingslot 169 : [free]]
+8 occupied slot(s) : [parkingslot 160 : [bicycle 91], parkingslot 161 : [bicycle 125], parkingslot 162 : [bicycle 130], parkingslot 163 : [bicycle 131], parkingslot 164 : [bicycle 139], parkingslot 165 : [bicycle 151], parkingslot 166 : [bicycle 156], parkingslot 167 : [bicycle 159]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Plus Station 14------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 140 : [bicycle 97], parkingslot 141 : [bicycle 103], parkingslot 143 : [bicycle 109], parkingslot 144 : [bicycle 110], parkingslot 145 : [bicycle 117], parkingslot 146 : [bicycle 127], parkingslot 147 : [bicycle 129], parkingslot 148 : [bicycle 132], parkingslot 149 : [bicycle 147]]
+1 out-of-order slot(s) : [parkingslot 142 : [OutofOrder]]
+There is 1 electrical bicycle(s) and 8 mechanical bicycle(s)
+
+, -----------------Standard Station 15------------ 10 parkingslot(s)-------------2.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 159 : [free]]
+9 occupied slot(s) : [parkingslot 150 : [bicycle 92], parkingslot 151 : [bicycle 115], parkingslot 152 : [bicycle 116], parkingslot 153 : [bicycle 120], parkingslot 154 : [bicycle 121], parkingslot 155 : [bicycle 128], parkingslot 156 : [bicycle 138], parkingslot 157 : [bicycle 146], parkingslot 158 : [bicycle 158]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 17------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 179 : [free]]
+9 occupied slot(s) : [parkingslot 170 : [bicycle 83], parkingslot 171 : [bicycle 89], parkingslot 172 : [bicycle 108], parkingslot 173 : [bicycle 111], parkingslot 174 : [bicycle 114], parkingslot 175 : [bicycle 124], parkingslot 176 : [bicycle 126], parkingslot 177 : [bicycle 140], parkingslot 178 : [bicycle 142]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 19------------ 10 parkingslot(s)-------------1.0"" 2.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 190 : [bicycle 84], parkingslot 191 : [bicycle 98], parkingslot 192 : [bicycle 105], parkingslot 193 : [bicycle 122], parkingslot 194 : [bicycle 123], parkingslot 196 : [bicycle 141], parkingslot 197 : [bicycle 143], parkingslot 198 : [bicycle 145], parkingslot 199 : [bicycle 155]]
+1 out-of-order slot(s) : [parkingslot 195 : [OutofOrder]]
+There is 0 electrical bicycle(s) and 9 mechanical bicycle(s)
+
+]
 
  ***Enter next command or stop to end****
-rentBikeInTheStationAdvised 0 Velib 0 Electrical
+sortStation Velib2 leastoccupiedStations
 
-The user 0 try to take a bicycle in the station advised
-The bicycle [bicycle n° 40 | type : Electrical] in the station n° 4 has been taken
+*************************List of Stations sorted by rate of occupations between 0.0 and Infinity ************************************
+-----------------Standard Station 10------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 6
+4 free slot(s) : [parkingslot 106 : [free], parkingslot 107 : [free], parkingslot 108 : [free], parkingslot 109 : [free]]
+6 occupied slot(s) : [parkingslot 100 : [bicycle 82], parkingslot 101 : [bicycle 95], parkingslot 102 : [bicycle 96], parkingslot 103 : [bicycle 101], parkingslot 104 : [bicycle 107], parkingslot 105 : [bicycle 119]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 5 mechanical bicycle(s)
 
- ***Enter next command or stop to end****
-returnBikeInTheStationAdvised 0 Velib 5
+Occupation rate ( 0.0 -> Infinity): NaN
 
- Departure : station n° 4 | Arrival : station n° 6 | [bicycle n° 40 | type : Electrical]
-Hello user n°0!
-The cost of the ride is : 10 €
- We hope to see you another time ! 
 
- ***Enter next command or stop to end****
-returnBike 1 6 Velib 0
-This user is not on a ride right now ? He doesn't have any bicycle...
+-----------------Standard Station 11------------ 10 parkingslot(s)-------------4.0"" 2.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+0 free slot(s) : []
+8 occupied slot(s) : [parkingslot 111 : [bicycle 81], parkingslot 112 : [bicycle 100], parkingslot 114 : [bicycle 112], parkingslot 115 : [bicycle 134], parkingslot 116 : [bicycle 135], parkingslot 117 : [bicycle 144], parkingslot 118 : [bicycle 149], parkingslot 119 : [bicycle 152]]
+2 out-of-order slot(s) : [parkingslot 110 : [OutofOrder], parkingslot 113 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 12------------ 10 parkingslot(s)-------------1.0"" 1.0"" --------------- Number of operations : 5
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+4 free slot(s) : [parkingslot 125 : [free], parkingslot 126 : [free], parkingslot 127 : [free], parkingslot 128 : [free]]
+5 occupied slot(s) : [parkingslot 120 : [bicycle 85], parkingslot 121 : [bicycle 87], parkingslot 122 : [bicycle 88], parkingslot 123 : [bicycle 113], parkingslot 124 : [bicycle 136]]
+1 out-of-order slot(s) : [parkingslot 129 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 13------------ 10 parkingslot(s)-------------4.0"" 1.0"" --------------- Number of operations : 7
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 139 : [free]]
+7 occupied slot(s) : [parkingslot 130 : [bicycle 90], parkingslot 132 : [bicycle 93], parkingslot 133 : [bicycle 94], parkingslot 134 : [bicycle 99], parkingslot 135 : [bicycle 102], parkingslot 136 : [bicycle 104], parkingslot 138 : [bicycle 133]]
+2 out-of-order slot(s) : [parkingslot 131 : [OutofOrder], parkingslot 137 : [OutofOrder]]
+There is 4 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Plus Station 14------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 140 : [bicycle 97], parkingslot 141 : [bicycle 103], parkingslot 143 : [bicycle 109], parkingslot 144 : [bicycle 110], parkingslot 145 : [bicycle 117], parkingslot 146 : [bicycle 127], parkingslot 147 : [bicycle 129], parkingslot 148 : [bicycle 132], parkingslot 149 : [bicycle 147]]
+1 out-of-order slot(s) : [parkingslot 142 : [OutofOrder]]
+There is 1 electrical bicycle(s) and 8 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 15------------ 10 parkingslot(s)-------------2.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 159 : [free]]
+9 occupied slot(s) : [parkingslot 150 : [bicycle 92], parkingslot 151 : [bicycle 115], parkingslot 152 : [bicycle 116], parkingslot 153 : [bicycle 120], parkingslot 154 : [bicycle 121], parkingslot 155 : [bicycle 128], parkingslot 156 : [bicycle 138], parkingslot 157 : [bicycle 146], parkingslot 158 : [bicycle 158]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 16------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 free slot(s) : [parkingslot 168 : [free], parkingslot 169 : [free]]
+8 occupied slot(s) : [parkingslot 160 : [bicycle 91], parkingslot 161 : [bicycle 125], parkingslot 162 : [bicycle 130], parkingslot 163 : [bicycle 131], parkingslot 164 : [bicycle 139], parkingslot 165 : [bicycle 151], parkingslot 166 : [bicycle 156], parkingslot 167 : [bicycle 159]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 17------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 179 : [free]]
+9 occupied slot(s) : [parkingslot 170 : [bicycle 83], parkingslot 171 : [bicycle 89], parkingslot 172 : [bicycle 108], parkingslot 173 : [bicycle 111], parkingslot 174 : [bicycle 114], parkingslot 175 : [bicycle 124], parkingslot 176 : [bicycle 126], parkingslot 177 : [bicycle 140], parkingslot 178 : [bicycle 142]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 18------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 5
+5 free slot(s) : [parkingslot 185 : [free], parkingslot 186 : [free], parkingslot 187 : [free], parkingslot 188 : [free], parkingslot 189 : [free]]
+5 occupied slot(s) : [parkingslot 180 : [bicycle 86], parkingslot 181 : [bicycle 106], parkingslot 182 : [bicycle 118], parkingslot 183 : [bicycle 137], parkingslot 184 : [bicycle 150]]
+0 out-of-order slot(s) : []
+There is 0 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+-----------------Standard Station 19------------ 10 parkingslot(s)-------------1.0"" 2.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 190 : [bicycle 84], parkingslot 191 : [bicycle 98], parkingslot 192 : [bicycle 105], parkingslot 193 : [bicycle 122], parkingslot 194 : [bicycle 123], parkingslot 196 : [bicycle 141], parkingslot 197 : [bicycle 143], parkingslot 198 : [bicycle 145], parkingslot 199 : [bicycle 155]]
+1 out-of-order slot(s) : [parkingslot 195 : [OutofOrder]]
+There is 0 electrical bicycle(s) and 9 mechanical bicycle(s)
+
+Occupation rate ( 0.0 -> Infinity): NaN
+
+
+[-----------------Standard Station 10------------ 10 parkingslot(s)-------------2.0"" 1.0"" --------------- Number of operations : 6
+4 free slot(s) : [parkingslot 106 : [free], parkingslot 107 : [free], parkingslot 108 : [free], parkingslot 109 : [free]]
+6 occupied slot(s) : [parkingslot 100 : [bicycle 82], parkingslot 101 : [bicycle 95], parkingslot 102 : [bicycle 96], parkingslot 103 : [bicycle 101], parkingslot 104 : [bicycle 107], parkingslot 105 : [bicycle 119]]
+0 out-of-order slot(s) : []
+There is 1 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 11------------ 10 parkingslot(s)-------------4.0"" 2.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+0 free slot(s) : []
+8 occupied slot(s) : [parkingslot 111 : [bicycle 81], parkingslot 112 : [bicycle 100], parkingslot 114 : [bicycle 112], parkingslot 115 : [bicycle 134], parkingslot 116 : [bicycle 135], parkingslot 117 : [bicycle 144], parkingslot 118 : [bicycle 149], parkingslot 119 : [bicycle 152]]
+2 out-of-order slot(s) : [parkingslot 110 : [OutofOrder], parkingslot 113 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 12------------ 10 parkingslot(s)-------------1.0"" 1.0"" --------------- Number of operations : 5
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+4 free slot(s) : [parkingslot 125 : [free], parkingslot 126 : [free], parkingslot 127 : [free], parkingslot 128 : [free]]
+5 occupied slot(s) : [parkingslot 120 : [bicycle 85], parkingslot 121 : [bicycle 87], parkingslot 122 : [bicycle 88], parkingslot 123 : [bicycle 113], parkingslot 124 : [bicycle 136]]
+1 out-of-order slot(s) : [parkingslot 129 : [OutofOrder]]
+There is 2 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Standard Station 13------------ 10 parkingslot(s)-------------4.0"" 1.0"" --------------- Number of operations : 7
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 139 : [free]]
+7 occupied slot(s) : [parkingslot 130 : [bicycle 90], parkingslot 132 : [bicycle 93], parkingslot 133 : [bicycle 94], parkingslot 134 : [bicycle 99], parkingslot 135 : [bicycle 102], parkingslot 136 : [bicycle 104], parkingslot 138 : [bicycle 133]]
+2 out-of-order slot(s) : [parkingslot 131 : [OutofOrder], parkingslot 137 : [OutofOrder]]
+There is 4 electrical bicycle(s) and 3 mechanical bicycle(s)
+
+, -----------------Plus Station 14------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 140 : [bicycle 97], parkingslot 141 : [bicycle 103], parkingslot 143 : [bicycle 109], parkingslot 144 : [bicycle 110], parkingslot 145 : [bicycle 117], parkingslot 146 : [bicycle 127], parkingslot 147 : [bicycle 129], parkingslot 148 : [bicycle 132], parkingslot 149 : [bicycle 147]]
+1 out-of-order slot(s) : [parkingslot 142 : [OutofOrder]]
+There is 1 electrical bicycle(s) and 8 mechanical bicycle(s)
+
+, -----------------Standard Station 15------------ 10 parkingslot(s)-------------2.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 159 : [free]]
+9 occupied slot(s) : [parkingslot 150 : [bicycle 92], parkingslot 151 : [bicycle 115], parkingslot 152 : [bicycle 116], parkingslot 153 : [bicycle 120], parkingslot 154 : [bicycle 121], parkingslot 155 : [bicycle 128], parkingslot 156 : [bicycle 138], parkingslot 157 : [bicycle 146], parkingslot 158 : [bicycle 158]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 16------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 8
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 free slot(s) : [parkingslot 168 : [free], parkingslot 169 : [free]]
+8 occupied slot(s) : [parkingslot 160 : [bicycle 91], parkingslot 161 : [bicycle 125], parkingslot 162 : [bicycle 130], parkingslot 163 : [bicycle 131], parkingslot 164 : [bicycle 139], parkingslot 165 : [bicycle 151], parkingslot 166 : [bicycle 156], parkingslot 167 : [bicycle 159]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 17------------ 10 parkingslot(s)-------------4.0"" 4.0"" --------------- Number of operations : 9
+
+!!!!!!!!!!!!!!!!Offline!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 free slot(s) : [parkingslot 179 : [free]]
+9 occupied slot(s) : [parkingslot 170 : [bicycle 83], parkingslot 171 : [bicycle 89], parkingslot 172 : [bicycle 108], parkingslot 173 : [bicycle 111], parkingslot 174 : [bicycle 114], parkingslot 175 : [bicycle 124], parkingslot 176 : [bicycle 126], parkingslot 177 : [bicycle 140], parkingslot 178 : [bicycle 142]]
+0 out-of-order slot(s) : []
+There is 3 electrical bicycle(s) and 6 mechanical bicycle(s)
+
+, -----------------Standard Station 18------------ 10 parkingslot(s)-------------4.0"" 3.0"" --------------- Number of operations : 5
+5 free slot(s) : [parkingslot 185 : [free], parkingslot 186 : [free], parkingslot 187 : [free], parkingslot 188 : [free], parkingslot 189 : [free]]
+5 occupied slot(s) : [parkingslot 180 : [bicycle 86], parkingslot 181 : [bicycle 106], parkingslot 182 : [bicycle 118], parkingslot 183 : [bicycle 137], parkingslot 184 : [bicycle 150]]
+0 out-of-order slot(s) : []
+There is 0 electrical bicycle(s) and 5 mechanical bicycle(s)
+
+, -----------------Standard Station 19------------ 10 parkingslot(s)-------------1.0"" 2.0"" --------------- Number of operations : 9
+0 free slot(s) : []
+9 occupied slot(s) : [parkingslot 190 : [bicycle 84], parkingslot 191 : [bicycle 98], parkingslot 192 : [bicycle 105], parkingslot 193 : [bicycle 122], parkingslot 194 : [bicycle 123], parkingslot 196 : [bicycle 141], parkingslot 197 : [bicycle 143], parkingslot 198 : [bicycle 145], parkingslot 199 : [bicycle 155]]
+1 out-of-order slot(s) : [parkingslot 195 : [OutofOrder]]
+There is 0 electrical bicycle(s) and 9 mechanical bicycle(s)
+
+]
 
  ***Enter next command or stop to end****
